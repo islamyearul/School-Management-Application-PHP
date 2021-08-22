@@ -1,0 +1,366 @@
+<?php
+
+if(isset($_GET['status'])){
+    if($_GET['status']=='edit-course'){
+        $id = $_GET['id'];
+        $showCourse = "SELECT * FROM `courses` WHERE course_id = $id";
+        $courses = $crud->select($showCourse);
+        $course = mysqli_fetch_assoc($courses);
+    }
+    elseif($_GET['status']=='edit-fees'){
+        $id = $_GET['id'];
+        $showFees = "SELECT * FROM `course_process_fees` WHERE course_fees_id = $id";
+        $Fees = $crud->select($showFees);
+        $Fee = mysqli_fetch_assoc($Fees);
+    }
+    elseif($_GET['status']=='edit-times'){
+        $id = $_GET['id'];
+        $showtimes = "SELECT * FROM `course_time_table` WHERE course_time_id = $id";
+        $times = $crud->select($showtimes);
+        $time = mysqli_fetch_assoc($times);
+    }
+}
+
+
+
+// if(isset($_POST['add_course'])){
+
+//     $ImgName = $_FILES['course_image']['name'];
+//     $TmpName = $_FILES['course_image']['tmp_name'];
+
+//     extract($_POST);
+
+//     $addCourse = "INSERT INTO `courses`(`course_name`, `course_description`, `course_status`, `course_contact_person_name`, `course_contact_person_phone`, `course_contact_email`, `course_image`) VALUES ('$course_name','$course_description','$course_status','$course_contactP_name','$course_contactP_phone','$course_contactP_email','$ImgName')";
+//     $returnSMS = $crud->insert($addCourse);
+//     if($returnSMS){
+//         move_uploaded_file($TmpName, "upload/".$ImgName);
+//         echo "<h3 class='text-success'>Course Add Success</h3>";
+//     }
+// }
+
+// if(isset($_POST['add_course_syllabus'])){
+//     extract($_POST);
+//     $addcourseProcessFees = "INSERT INTO `course_process_fees`(`first_term_fee`, `second_term_fee`, `third_term_fee`, `forth_term_fee`, `fees_description`, `step_1_des`, `step_2_des`, `step_3_des`, `step_4_des`, `step_5_des`, course_id) VALUES ('$fst_trm_fee','$scnd_trm_fee','$thrd_trm_fee','$foth_trm_fee','$price_des','$A_step','$B_step','$C_step','$D_step','$E_step', '$course_id')";
+//     $fees = $crud->insert($addcourseProcessFees);
+//     if($fees){
+//         echo "<h3 class='text-success'>Course Fees & Process Add Success</h3>";
+//     }
+// }
+// if(isset($_POST['add_schedule'])){
+//     extract($_POST);
+//     $addSchedule = "INSERT INTO `course_time_table`(`1st_sem_name`, `1st_sem_des`, `2nd_sem_name`, `2nd_sem_des`, `3rd_sem_name`, `3rd_sem_des`, `4th_sem_name`, `4th_sem_des`, course_id) VALUES ('$semister_a','$semister_a_des','$semister_b','$semister_b_des','$semister_c','$semister_c_des','$semister_d','$semister_d_des', '$course_id')";
+//     $schedule = $crud->insert($addSchedule);
+//     if($schedule){
+
+//         echo "<h2 class='text-success'>Course Schedule Add Success</h2>";
+//     }
+
+
+// }
+
+?>
+<!--== User Details ==-->
+
+<h3>Add Course </h3>
+<div class="sb2-2-3">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box-inn-sp admin-form">
+                <div class="sb2-2-add-blog sb2-2-1">
+                    <h2>Add New Course</h2>
+                    <ul class="nav nav-tabs tab-list">
+                        <li class=""><a data-toggle="tab" href="#home" aria-expanded="true"><i class="fa fa-info" aria-hidden="true"></i> <span>Course Detail</span></a>
+                        </li>
+                        <li class="active" ><a data-toggle="tab" href="#menu1" aria-expanded="false"><i class="fa fa-bed" aria-hidden="true"></i> <span>Course Process & Fees</span></a>
+                        </li>
+                        <li class=""><a data-toggle="tab" href="#menu3" aria-expanded="false"><i class="fa fa-facebook" aria-hidden="true"></i> <span>Time table</span></a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div id="home" class="tab-pane fade active in">
+                            <div class="box-inn-sp">
+                                <div class="inn-title">
+                                    <h4>Course Information</h4>
+                                </div>
+                                <div class="bor">
+                                    <form accept="" method="post" enctype="multipart/form-data">
+                                        <div class="row">
+                                            <div class="col s12">
+                                                <label for="list-title" class="">Course Name</label>
+                                                <input id="list-title" type="text" class="validate" name="course_name" value="<?php echo $course['course_name'] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class=" col s12">
+                                                <label>Course Descriptions:</label>
+                                                <textarea class="materialize-textarea"
+                                                    name="course_description"><?php echo $course['course_description'] ?></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <div class="form-group ">
+                                                <label for="inputState">Status</label>
+                                                <select id="inputState" class="form-control" name="course_status"
+                                                    style="font-size: 15px;">
+                                                    <option selected disabled>Choose...</option>
+                                                    <option value="Active" <?php if($course['course_status']=='Active'){ echo "checked";} ?>>Active</option>
+                                                    <option value="Inactive" <?php if($course['course_status']=='Inactive'){ echo "checked";} ?>>Inactive</option>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                        <h4 class="pt-3">Contact Person Details</h4><hr>
+                                        <div class="row">
+                                            <div class=" col s6">
+                                                <label for="t5-n1">Contact Name</label>
+                                                <input id="t5-n1" type="text" class="validate"
+                                                    name="course_contactP_name" value="<?php echo $course['course_contact_person_name'] ?>">
+                                            </div>
+                                            <div class=" col s6">
+                                                <label for="t5-n3">Phone</label>
+                                                <input id="t5-n3" type="number" class="validate"
+                                                    name="course_contactP_phone" value="<?php echo $course['course_contact_person_phone'] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class=" col s12">
+                                                <label for="t5-n5">Email</label>
+                                                <input id="t5-n5" type="email" class="validate"
+                                                    name="course_contactP_email" value="<?php echo $course['course_contact_email'] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="file-field input-field">
+                                            <div class="btn admin-upload-btn">
+                                                <span>Course Banner</span>
+                                                <input type="file" multiple="" name="course_image">
+                                            </div>
+                                            <div class="file-path-wrapper">
+                                                <input class="file-path validate" type="text"
+                                                    placeholder="Upload course banner image">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="input-field col s12">
+                                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                                        type="submit" class="waves-button-input" value="Submit"
+                                                        name="add_course"></i>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                            <div class="inn-title">
+                                <h4>Requirements, feese and how to apply</h4>
+                            </div>
+                            <div class="bor ad-cou-deta-h4">
+                                <form action="" method="post">
+                                    <h4>Requirements:</h4>
+                                    <h4>Feese:</h4>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>1'st terms feese</label>
+                                            <input type="number" class="validate" required name="fst_trm_fee" value="<?php echo $fees['course_contact_email'] ?>">
+                                        </div>
+                                        <div class=" col s12">
+                                            <label>2'nd terms feese</label>
+                                            <input type="number" class="validate" required name="scnd_trm_fee" value="<?php echo $fees['course_contact_email'] ?>">
+                                        </div>
+                                        <div class=" col s12">
+                                            <label>3'rd terms feese</label>
+                                            <input type="number" class="validate" required name="thrd_trm_fee" value="<?php echo $fees['course_contact_email'] ?>">
+                                        </div>
+                                        <div class=" col s12">
+                                            <label>4'th terms feese</label>
+                                            <input type="number" class="validate" required name="foth_trm_fee" value="<?php echo $fees['course_contact_email'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Price Descriptions:</label>
+                                            <textarea class="materialize-textarea" name="price_des"><?php echo $fees['course_contact_email'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <h4>How to apply this course:</h4>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Step 1 Descriptions:</label>
+                                            <textarea name="A_step" id="" cols="30" rows="5"><?php echo $fees['course_contact_email'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Step 5 Descriptions:</label>
+                                            <textarea name="B_step" id="" cols="30" rows="5"><?php echo $fees['course_contact_email'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Step 4 Descriptions:</label>
+                                            <textarea name="D_step" id="" cols="30" rows="5"><?php echo $fees['course_contact_email'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Step 3 Descriptions:</label>
+                                            <textarea name="C_step" id="" cols="30" rows="5"><?php echo $fees['course_contact_email'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Step 4 Descriptions:</label>
+                                            <textarea name="E_step" id="" cols="30" rows="5"><?php echo $fees['course_contact_email'] ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class=" col s12">
+                                            <label>Course  ID</label>
+                                            <input type="number" name="course_id" class="validate" required value="<?php echo $fees['course_contact_email'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                                    type="submit" class="waves-button-input" value="Submit"
+                                                    name="add_course_syllabus"></i>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                            <div class="inn-title">
+                                <h4>Time table Schedule</h4>
+                            </div>
+                            <div class="bor ad-cou-deta-h4">
+                                <form action="" method="post">
+                                    <h4>1st semester:</h4>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="text" class="validate" required name="semister_a">
+                                            <label>Title:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea class="materialize-textarea" name="semister_a_des"></textarea>
+                                            <label>Descriptions:</label>
+                                        </div>
+                                    </div>
+                                    <h4>2nd semester:</h4>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="text" class="validate" required name="semister_b">
+                                            <label>Title:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea class="materialize-textarea" name="semister_b_des"></textarea>
+                                            <label>Descriptions:</label>
+                                        </div>
+                                    </div>
+                                    <h4>3rd semester:</h4>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="text" class="validate" required name="semister_c">
+                                            <label>Title:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea class="materialize-textarea" name="semister_c_des"></textarea>
+                                            <label>Descriptions:</label>
+                                        </div>
+                                    </div>
+                                    <h4>4th semester:</h4>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="text" class="validate" required name="semister_d">
+                                            <label>Title:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <textarea class="materialize-textarea" name="semister_d_des"></textarea>
+                                            <label>Descriptions:</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <input type="number" name="course_id" class="validate" required>
+                                            <label>Course  ID</label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <i class="waves-effect waves-light btn-large waves-input-wrapper"><input
+                                                    type="submit" class="waves-button-input" value="Submit"
+                                                    name="add_schedule"></i>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- <form id="regForm" action="">
+
+<h1>Register:</h1> -->
+
+<!-- One "tab" for each step in the form: -->
+<!-- <div class="tab">Name:
+  <p><input placeholder="First name..." oninput="this.className = ''"></p>
+  <p><input placeholder="Last name..." oninput="this.className = ''"></p>
+  
+</div>
+
+<div class="tab">Contact Info:
+  <p><input placeholder="E-mail..." oninput="this.className = ''"></p>
+  <p><input placeholder="Phone..." oninput="this.className = ''"></p>
+</div>
+
+<div class="tab">Birthday:
+  <p><input placeholder="dd" oninput="this.className = ''"></p>
+  <p><input placeholder="mm" oninput="this.className = ''"></p>
+  <p><input placeholder="yyyy" oninput="this.className = ''"></p>
+</div>
+
+<div class="tab">Login Info:
+  <p><input placeholder="Username..." oninput="this.className = ''"></p>
+  <p><input placeholder="Password..." oninput="this.className = ''"></p>
+</div>
+
+<div style="overflow:auto;">
+  <div style="float:right;">
+    <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+    <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+  </div>
+</div> -->
+
+<!-- Circles which indicates the steps of the form: -->
+<!-- <div style="text-align:center;margin-top:40px;">
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+  <span class="step"></span>
+</div>
+
+</form> -->
