@@ -157,7 +157,7 @@ elseif(isset($delTimeSMS)){
                                     <td><?php echo $fee['course_id'] ?></td>
                                     <td>
                                     <a href="?status=delete-fees&&id=<?php echo $fee['course_fees_id']; ?>" class="ad-st-view bg-danger" onclick="confirm('Are You Sure?')">Delete</a>
-                                        <a href="ad-edit-course.php?status=edit-fees&&id=<?php echo $fee['course_fees_id'] ?>" class="ad-st-view bg-info">Edit</a>
+                                        <a href="ad-edit-course_fees.php?status=edit-fees&&id=<?php echo $fee['course_fees_id'] ?>" class="ad-st-view bg-info">Edit</a>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -214,7 +214,7 @@ elseif(isset($delTimeSMS)){
 
                                     <td>
                                     <a href="?status=delete-times&&id=<?php echo $time['course_time_id']; ?>" class="ad-st-view bg-danger" onclick="confirm('Are You Sure?')">Delete</a>
-                                    <a href="ad-edit-course.php?status=edit-times&&id=<?php echo $time['course_time_id'] ?>" class="ad-st-view bg-info">Edit</a>
+                                    <a href="ad-edit-course_time.php?status=edit-times&&id=<?php echo $time['course_time_id'] ?>" class="ad-st-view bg-info">Edit</a>
                                     </td>
                                 </tr>
                                 <?php } ?>

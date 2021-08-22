@@ -57,6 +57,12 @@
                         elseif($view == "edit-course"){
                             include("views/admin-edit-courses.php");
                         }
+                        elseif($view == "edit-course-fees"){
+                            include("views/admin-edit-courses_fees.php");
+                        }
+                        elseif($view == "edit-course-time"){
+                            include("views/admin-edit-courses_time.php");
+                        }
                         elseif($view == "user-all"){
                             include("views/admin-user-all.php");
                         }

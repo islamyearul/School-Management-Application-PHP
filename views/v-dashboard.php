@@ -1,7 +1,10 @@
 <?php
 
-
-
+if(isset($_GET['status'])){
+    if($_GET['status']=='std-logout'){
+        $studentLogin->stdLogout();
+    }
+}
 ?>
 <!--SECTION START-->
 <section>

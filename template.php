@@ -13,18 +13,7 @@
 
 
 
-
-if(isset($_GET['status'])){
-    if($_GET['status']=='std-logout'){
-        $studentLogin->stdLogout();
-    }
-}
-
 ?>
-
-
-
-
 <?php include_once("includes/head.php"); ?>
 
 <body>

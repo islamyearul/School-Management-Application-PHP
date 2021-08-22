@@ -27,8 +27,8 @@ class StudentLogin{
            if($numRow > 0){
                $StdData = mysqli_fetch_assoc($action);
                session_start();
-               $_SESSION['sessionID'] = $StdData['std_reg_id'];            
-               $_SESSION['sessionNAME'] = $StdData['username'];
+               $_SESSION['StdsessionID'] = $StdData['std_reg_id'];            
+               $_SESSION['StdsessionNAME'] = $StdData['username'];
               // echo("<script>location.href = '".ADMIN_URL."/index.php?msg=$msg';</script>");
                //header("Location: dashboard.php");
                echo "<script type='text/javascript'>window.top.location='dashboard.php';</script>"; exit;
@@ -39,8 +39,8 @@ class StudentLogin{
 
 
     public function stdLogout(){
-        unset($_SESSION['sessionID']);
-        unset($_SESSION['sessionNAME']);
+        unset($_SESSION['StdsessionID']);
+        unset($_SESSION['StdsessionNAME']);
         header("location: std_login.php");
     }
 
