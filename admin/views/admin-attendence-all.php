@@ -5,10 +5,13 @@ $result= mysqli_query($mysqli,$query);
 ?>
 
 <?php 
-if(isset($_GET['delete'])){
+if(isset($_GET['status'])){
+    if($_GET['status']=='delete'){
         $id= $_GET['id'];
-        $deleteID= "delete from at_add_attendance where ID='$ID'";
+        $deleteID= "delete from at_add_attendance where ID='$id'";
         $delSMS= $crud->delete($deleteID);
+    }
+
     
     if(isset($delSMS)){
         echo $delSMS; 
