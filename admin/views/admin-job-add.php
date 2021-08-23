@@ -86,7 +86,7 @@ if(isset($returnSMS)){
                                  </select>
                                  </div>
                              
-                             </div>
+                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input" name="add_job"></i>

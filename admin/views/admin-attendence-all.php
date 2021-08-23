@@ -1,158 +1,84 @@
+<?php  
+$mysqli= @new mysqli("localhost", "root", "", "school_management_system_2021");
+$query= "SELECT * FROM at_add_attendance";
+$result= mysqli_query($mysqli,$query);
+?>
+
+<?php 
+if(isset($_GET['delete'])){
+        $id= $_GET['id'];
+        $deleteID= "delete from at_add_attendance where ID='$ID'";
+        $delSMS= $crud->delete($deleteID);
+    
+    if(isset($delSMS)){
+        echo $delSMS; 
+    }
+}
+ ?>
+
 <!--== User Details ==-->
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">
             <div class="box-inn-sp">
                 <div class="inn-title">
-                    <h4>Student Details</h4>
-                    <p>All about students like name, student id, phone, email, country, city and more</p>
+                    <h4>Attendence Details</h4>
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>User</th>
-                                    <th>Name</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Country</th>
-                                    <th>Id</th>
-                                    <th>Date of birth</th>
-                                    <th>Status</th>
-                                    <th>View</th>
+                                    <th>ID</th>
+                                    <th>Class</th>
+                                    <th>Student Name</th>
+                                    <th>Attend Status</th>
+                                    <th>Teacher's Comment</th>
+                                    <th>Student ID</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php
+
+                        while($row= mysqli_fetch_assoc($result)){
+                            $ID=$row['ID'];
+                            $Class=$row['Class'];
+                            $SName=$row['Student_Name'];
+                            $Attendance_Status=$row['Attendance'];
+                            $TComment=$row['Teachers_Comnt'];
+                            $SID=$row['Student_Id'];
+                           
+                        ?>
+
+
                                 <tr>
-                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 3214 6522</td>
-                                    <td>chadengle@dummy.com</td>
-                                    <td>united states</td>
-                                    <td>ST17241</td>
-                                    <td>03 Jun 1990</td>
+                                    <td><?php echo $ID ?></span> </td>
+                                    <td><?php echo $Class ?> </td>
+                                    <td><?php echo $SName ?></td>
+                                    <td><?php echo $Attendance_Status ?></td>
+                                    <td><?php echo $TComment ?></td>
+                                    <td><?php echo $SID ?></td>
+
                                     <td>
-                                        <span class="label label-success">Active</span>
+                                        <a class="ad-st-view bg-info" href="ad-attendence-edit.php?status=edit&&id=<?php echo $ID; ?>">Edit</a>
                                     </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Lucas Caden</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 8574 6854</td>
-                                    <td>lucas@gmail.com</td>
-                                    <td>Illinois</td>
-                                    <td>ST10231</td>
-                                    <td>16 Feb 1987</td>
                                     <td>
-                                        <span class="label label-success">Active</span>
+                                        <a onclick="confirm('Are you sure?')" href="?status=delete&&id=<?php echo $ID; ?>" class="ad-st-view bg-danger">Delete</a>
                                     </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
+                                    }
                                 </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 8574 6854</td>
-                                    <td>Ethan@gmail.com</td>
-                                    <td>Illinois</td>
-                                    <td>ST32168</td>
-                                    <td>21 Jun 1992</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 8574 6854</td>
-                                    <td>Ethan@gmail.com</td>
-                                    <td>Illinois</td>
-                                    <td>ST32168</td>
-                                    <td>21 Jun 1992</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/1.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Marsha Hogan</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 3214 6522</td>
-                                    <td>chadengle@dummy.com</td>
-                                    <td>united states</td>
-                                    <td>ST17241</td>
-                                    <td>03 Jun 1990</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/2.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Lucas Caden</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 8574 6854</td>
-                                    <td>lucas@gmail.com</td>
-                                    <td>Illinois</td>
-                                    <td>ST10231</td>
-                                    <td>16 Feb 1987</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/4.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 8574 6854</td>
-                                    <td>Ethan@gmail.com</td>
-                                    <td>Illinois</td>
-                                    <td>ST32168</td>
-                                    <td>21 Jun 1992</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="list-img"><img src="images/user/5.png" alt=""></span>
-                                    </td>
-                                    <td><a href="#"><span class="list-enq-name">Ethan Oliver</span><span
-                                                class="list-enq-city">Illunois, United States</span></a>
-                                    </td>
-                                    <td>+01 8574 6854</td>
-                                    <td>Ethan@gmail.com</td>
-                                    <td>Illinois</td>
-                                    <td>ST32168</td>
-                                    <td>21 Jun 1992</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-student-details.html" class="ad-st-view">View</a></td>
-                                </tr>
+                                <?php  
+
+                    }
+
+                        ?>
+
                             </tbody>
+
+
                         </table>
                     </div>
                 </div>

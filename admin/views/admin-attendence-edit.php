@@ -2,28 +2,7 @@
 
 $con = mysqli_connect("localhost","root","","school_management_system_2021");
 
-if(isset($_POST['submit']))
-{
-    $class = $_POST['at_class'];
-    $name = $_POST['at_std_name'];
-    $status = $_POST['at_Std-Status'];
-    $tnote = $_POST['at_teacher_note'];
-    $stdID = $_POST['at_std_id'];
 
-    $query = "INSERT INTO at_add_attendance (Class, Student_Name, Attendance, Teachers_Comnt, Student_Id ) VALUES ('$class','$name','$status','$tnote', '$stdID')";
-    $query_run = mysqli_query($con, $query);
-
-    if($query_run)
-    {
-        echo "Inserted Succesfully";
-        
-    }
-    else
-    {
-        echo "Not Inserted";
-        
-    }
-}
 ?>
 
 
@@ -34,8 +13,6 @@ if(isset($_POST['submit']))
             <div class="box-inn-sp admin-form">
                 <div class="inn-title">
                     <h4>Add Student Attendance</h4>
-                    <p>Here you can edit your website basic details URL, Phone, Email, Address, User and password and
-                        more</p>
                 </div>
                 <div class="tab-inn">
                     <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">

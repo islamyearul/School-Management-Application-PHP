@@ -162,6 +162,9 @@
                         elseif($view == "all-attendance"){
                             include("views/admin-attendence-all.php");
                         }
+                        elseif($view == "edit-attendance"){
+                            include("views/admin-attendence-edit.php");
+                        }
 
 
 
