@@ -1,3 +1,24 @@
+<?php 
+$event = "SELECT * FROM `add_event`";
+$events = $crud->select($event);
+
+if(isset($_GET['status'])){
+    if($_GET['status']=='delete'){
+        $d_id = $_GET['id'];
+        $delDataSQL = "DELETE FROM `add_event` WHERE id = $d_id";
+        $delSMS = $crud->delete($delDataSQL);
+        if(isset($delSMS)){
+            echo $delSMS;
+        }
+    }
+}
+
+
+?>
+
+
+
+
 <!--== User Details ==-->
 <div class="sb2-2-3">
     <div class="row">
@@ -12,82 +33,38 @@
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>ID</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>Start Date</th>
                                     <th>Location</th>
+                                    <th>Manage by</th>
                                     <th>Status</th>
                                     <th>Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
+                        <?php                                      
+                            while($items = mysqli_fetch_assoc($events)){
+                            ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td><span class="list-img"><img src="images/course/sm-1.jpg" alt=""></span></td>
-                                    <td>Admissions Information 2018</td>
-                                    <td>21 June 2018</td>
-                                    <td>los angeles</td>
+                                    <td><?php echo $items['id']; ?></td>
+                                    <td><span class="list-img"><img src="upload/<?php echo $items['file']; ?>" alt=""></span></td>
+                                    <td><?php echo $items['name']; ?></td>
+                                    <td><?php   echo $items['date']; ?> </td>
+                                    <td><?php echo $items['location'] ?></td>
+                                    <td><?php echo $items['manage_by'] ?></td>
                                     <td>
                                         <span class="label label-success">Active</span>
                                     </td>
-                                    <td><a href="admin-event-edit.html" class="ad-st-view">Edit</a></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><span class="list-img"><img src="images/course/sm-2.jpg" alt=""></span></td>
-                                    <td>CUNY Assessment Test Workshop</td>
-                                    <td>05 April 2018</td>
-                                    <td>los angeles</td>
                                     <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-event-edit.html" class="ad-st-view">Edit</a></td>
+                                        <a href="ad-event-edit.php?status=edit&&id=<?php echo $items['id'] ?>" class="ad-st-view bg-info">Edit</a>
+                                        <a onclick="confirm('Are You Sure??')" href="?status=delete&&id=<?php echo $items['id']; ?>" class="ad-st-view bg-danger">Delete</a>
+                                   </td>
                                 </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td><span class="list-img"><img src="images/course/sm-3.jpg" alt=""></span></td>
-                                    <td>Fire & ice launch party</td>
-                                    <td>12 December 2018</td>
-                                    <td>los angeles</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-event-edit.html" class="ad-st-view">Edit</a></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td><span class="list-img"><img src="images/course/sm-4.jpg" alt=""></span></td>
-                                    <td>Educate to Empower NYE Party</td>
-                                    <td>21 June 2018</td>
-                                    <td>los angeles</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-event-edit.html" class="ad-st-view">Edit</a></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td><span class="list-img"><img src="images/course/sm-5.jpg" alt=""></span></td>
-                                    <td>Latinoo College Expo 2018 - DONATION</td>
-                                    <td>21 June 2018</td>
-                                    <td>los angeles</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-event-edit.html" class="ad-st-view">Edit</a></td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td><span class="list-img"><img src="images/course/sm-6.jpg" alt=""></span></td>
-                                    <td>Training at Team Fabio Clemente</td>
-                                    <td>21 June 2018</td>
-                                    <td>los angeles</td>
-                                    <td>
-                                        <span class="label label-success">Active</span>
-                                    </td>
-                                    <td><a href="admin-event-edit.html" class="ad-st-view">Edit</a></td>
-                                </tr>
+
+                                <?php } ?>
+                               
                             </tbody>
                         </table>
                     </div>

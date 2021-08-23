@@ -93,6 +93,9 @@
                         elseif($view == "add-event"){
                             include("views/admin-event-add.php");
                         }
+                        elseif($view == "edit-event"){
+                            include("views/admin-event-edit.php");
+                        }
                         elseif($view == "all-event"){
                             include("views/admin-event-all.php");
                         }
