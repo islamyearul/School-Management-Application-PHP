@@ -1,3 +1,12 @@
+<?php
+ $getInTouchs = "SELECT * FROM `get_in_touch`";
+ $messages = $crud->select($getInTouchs);
+ $message = mysqli_num_rows($messages);
+
+
+
+?>
+
 <div class="container-fluid sb1">
     <div class="row">
         <!--== LOGO ==-->
@@ -17,12 +26,17 @@
         <!--== NOTIFICATION ==-->
         <div class="col-md-2 tab-hide">
             <div class="top-not-cen">
-                <a class='waves-effect btn-noti' href="admin-all-enquiry.html" title="all enquiry messages"><i
-                        class="fa fa-commenting-o" aria-hidden="true"></i><span>5</span></a>
+                <a class='waves-effect btn-noti' href="admin-all-enquiry.html" title="Get In Touuch Message"><i
+                        class="fa fa-commenting-o" aria-hidden="true"></i><span><?php echo @$message; ?></span>
+                </a>
+
                 <a class='waves-effect btn-noti' href="admin-course-enquiry.html" title="course booking messages"><i
-                        class="fa fa-envelope-o" aria-hidden="true"></i><span>5</span></a>
+                        class="fa fa-envelope-o" aria-hidden="true"></i><span>5</span>
+                </a>
+
                 <a class='waves-effect btn-noti' href="admin-admission-enquiry.html" title="admission enquiry"><i
-                        class="fa fa-tag" aria-hidden="true"></i><span>5</span></a>
+                        class="fa fa-tag" aria-hidden="true"></i><span>5</span>
+                </a>
             </div>
         </div>
         <!--== MY ACCCOUNT ==-->
@@ -34,7 +48,8 @@
 
             <!-- Dropdown Structure -->
             <ul id='top-menu' class='dropdown-content top-menu-sty'>
-                <li><a href="#" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Admin Setting</a>
+                <li><a href="dashboard.php" class="waves-effect"><i class="fa fa-cogs" aria-hidden="true"></i>Admin
+                        Setting</a>
                 </li>
                 <li class="divider"></li>
                 <li><a href="?adminLogout=logout" class="ho-dr-con-last waves-effect"><i class="fa fa-sign-in"

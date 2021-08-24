@@ -125,9 +125,9 @@
                              aria-hidden="true"></i> Exam Marks</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
-                             <li><a href="ad-firstterminal-exam.php">1st Terminal Exam Marks</a></li>
-                             <li><a href="ad-secondterminal-exam.php">2nd Terminal Exam Marks</a></li>
-                             <li><a href="ad-final-exam.php">Final Exam Marks</a></li>
+                             <li><a href="ad-firstterminal-exam.php">Add Marks</a></li>
+                             <li><a href="ad-secondterminal-exam.php">All Marks</a></li>
+
                              <!-- <li><a href="admin-exam-group-all.php">Final Exam</a></li>
                                     <li><a href="admin-exam-group-add.php">Create New Groups</a></li> -->
                          </ul>

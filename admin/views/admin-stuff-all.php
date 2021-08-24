@@ -22,6 +22,7 @@ if(isset($_GET['status'])){
 
 
 <!--== User Details ==-->
+<h1>All Stuffs</h1>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">

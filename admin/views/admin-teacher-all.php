@@ -20,6 +20,7 @@ if(isset($deleteSMS)){
 
 
 <!--== Teacher Details ==-->
+<h1>All Teachers</h1>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">

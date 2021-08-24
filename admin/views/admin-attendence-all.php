@@ -3,22 +3,18 @@ $mysqli= @new mysqli("localhost", "root", "", "school_management_system_2021");
 $query= "SELECT * FROM at_add_attendance";
 $result= mysqli_query($mysqli,$query);
 ?>
-
 <?php 
 if(isset($_GET['status'])){
     if($_GET['status']=='delete'){
         $id= $_GET['id'];
         $deleteID= "delete from at_add_attendance where ID='$id'";
         $delSMS= $crud->delete($deleteID);
-    }
-
-    
+    } 
     if(isset($delSMS)){
         echo $delSMS; 
     }
 }
  ?>
-
 <!--== User Details ==-->
 <div class="sb2-2-3">
     <div class="row">
@@ -52,11 +48,8 @@ if(isset($_GET['status'])){
                             $SName=$row['Student_Name'];
                             $Attendance_Status=$row['Attendance'];
                             $TComment=$row['Teachers_Comnt'];
-                            $SID=$row['Student_Id'];
-                           
+                            $SID=$row['Student_Id'];      
                         ?>
-
-
                                 <tr>
                                     <td><?php echo $ID ?></span> </td>
                                     <td><?php echo $Class ?> </td>
@@ -74,14 +67,9 @@ if(isset($_GET['status'])){
                                     }
                                 </tr>
                                 <?php  
-
                     }
-
                         ?>
-
                             </tbody>
-
-
                         </table>
                     </div>
                 </div>

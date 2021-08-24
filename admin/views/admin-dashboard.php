@@ -5,7 +5,7 @@
 <?php include("admin-student-all.php") ;?>
 
 <!--== Course Details ==-->
-<?php include("admin-all-courses.php") ;?>
+<?php //include("admin-all-courses.php") ;?>
 
 
 <div class="sb2-2-3">
@@ -17,7 +17,7 @@
     <div class="row">
 
         <!--== Event Details ==-->
-        <?php include("admin-seminar-all.php") ;?>
+        <?php //include("admin-seminar-all.php") ;?>
 
     </div>
 </div>

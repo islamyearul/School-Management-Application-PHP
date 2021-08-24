@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 22, 2021 at 04:12 PM
+-- Generation Time: Aug 23, 2021 at 07:24 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `school_management_system_2021`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_event`
+--
+
+CREATE TABLE `add_event` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `descriptions` varchar(200) NOT NULL,
+  `date` date NOT NULL,
+  `time` time(5) NOT NULL,
+  `location` varchar(20) NOT NULL,
+  `manage_by` varchar(20) NOT NULL,
+  `file` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `add_event`
+--
+
+INSERT INTO `add_event` (`id`, `name`, `descriptions`, `date`, `time`, `location`, `manage_by`, `file`) VALUES
+(49, 'MSS Admission', 'MSS Batch 47 admission start', '2021-08-26', '09:00:00.00000', 'Campus', 'Asad', 'error.PNG'),
+(50, 'Election', 'student election day', '2021-09-24', '11:45:00.00000', 'Aditoriam', 'maruf', 'images.jpg'),
+(53, 'Covid-19 Vaccine donate', 'Covid-19 Vaccine donate', '2021-09-09', '10:00:00.00000', 'School aditoriam', 'Maruf', 'download.jpg'),
+(54, 'Ajaira', 'Ajaira event ', '2021-09-10', '11:40:00.00000', 'Motijheel', 'Yearul', 'Screen Shot 2021-07-18 at 13.49.36.png');
 
 -- --------------------------------------------------------
 
@@ -98,6 +125,30 @@ INSERT INTO `apply_course` (`apply_course_id`, `name`, `email`, `phone`, `course
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `at_add_attendance`
+--
+
+CREATE TABLE `at_add_attendance` (
+  `ID` int(11) NOT NULL,
+  `Class` varchar(50) NOT NULL,
+  `Student_Name` varchar(50) NOT NULL,
+  `Attendance` varchar(10) NOT NULL,
+  `Teachers_Comnt` varchar(50) NOT NULL,
+  `Student_Id` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `at_add_attendance`
+--
+
+INSERT INTO `at_add_attendance` (`ID`, `Class`, `Student_Name`, `Attendance`, `Teachers_Comnt`, `Student_Id`) VALUES
+(2, 'Class 1', 'Hasan', 'Present', 'Good', 147852),
+(3, 'Class 5', 'Shanto', 'Present', 'NA', 1459632),
+(5, 'Class 5', 'Adnan Habib Rommel', 'Present', 'NA', 695847);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `courses`
 --
 
@@ -120,9 +171,9 @@ CREATE TABLE `courses` (
 --
 
 INSERT INTO `courses` (`course_id`, `course_name`, `course_description`, `course_status`, `course_cat`, `course_seat`, `course_start_date`, `course_contact_person_name`, `course_contact_person_phone`, `course_contact_email`, `course_image`) VALUES
-(3, 'MSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Inactive', 'Science', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
+(3, 'MSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, a', 'Inactive', 'Science', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', 'build wordpress ecommerce or business website responsive 2.png'),
 (4, 'BSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Active', 'Software Development', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
-(5, 'BBA', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Inactive', 'Web Application Development', 4, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
+(5, '', '', '', '', 0, '0000-00-00', '', 0, '', ''),
 (6, 'MBA', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Active', '	\r\nBasic Computer', 3, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
 (7, 'MSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Inactive', 'Science', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
 (8, 'BSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Active', 'Software Development', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
@@ -183,7 +234,7 @@ CREATE TABLE `course_process_fees` (
 --
 
 INSERT INTO `course_process_fees` (`course_fees_id`, `first_term_fee`, `second_term_fee`, `third_term_fee`, `forth_term_fee`, `fees_description`, `step_1_des`, `step_2_des`, `step_3_des`, `step_4_des`, `step_5_des`, `course_id`) VALUES
-(1, '10500.00', '7801.00', '45445.00', '7587.00', 'fsafsafsfasfs', 'safrwqrwqr', 'sdgsdgewgwe', 'sfdstwtwts', 'wqrwsafsaf', 'dfsg', 5),
+(1, '10500.00', '7801.00', '45445.00', '7587.00', 'fsafsafsfasfs', 'fffffff', 'sdgsdgewgwe', 'sfdstwtwts', 'wqrwsafsaf', 'dfsg', 5),
 (2, '12700.00', '7801.00', '45445.00', '7587.00', 'fsafsafsfasfs', 'safrwqrwqr', 'sdgsdgewgwe', 'sfdstwtwts', 'wqrwsafsaf', '', 3),
 (4, '55684.00', '4565.00', '4565.00', '5678.00', 'safsafsaf', 'sfafsads', 'gfgfdh', 'fsdfsdgsd', 'yhreyre', 'gSDGsdg', 6),
 (5, '55684.00', '4565.00', '4565.00', '5678.00', 'safsafsaf', 'sfafsads', 'gfgfdh', 'fsdfsdgsd', 'yhreyre', 'gSDGsdg', 0),
@@ -213,7 +264,7 @@ CREATE TABLE `course_time_table` (
 --
 
 INSERT INTO `course_time_table` (`course_time_id`, `1st_sem_name`, `1st_sem_des`, `2nd_sem_name`, `2nd_sem_des`, `3rd_sem_name`, `3rd_sem_des`, `4th_sem_name`, `4th_sem_des`, `course_id`) VALUES
-(1, 'dgfdg', 'fdgfdgfdgfd', 'fdgfdg', 'dhrhrh', 'fdhfdh', 'fdgfd re', 'reyrey', 'setetew', 5),
+(1, 'dgfdg', 'fdgfdgfdgfd', 'fdgfdg', 'dhrhrh', 'fdhfdh', 'fdgfd re', 'reyrey', 'hfdhfd', 0),
 (2, 'dgfdg', 'fdgfdgfdgfd', 'fdgfdg', 'dhrhrh', 'fdhfdh', 'fdgfd re', 'reyrey', 'setetew', 4),
 (4, 'dgfdg', 'fdgfdgfdgfd', 'fdgfdg', 'dhrhrh', 'fdhfdh', 'fdgfd re', 'reyrey', 'setetew', 6),
 (5, 'dgfdg', 'fdgfdgfdgfd', 'fdgfdg', 'dhrhrh', 'fdhfdh', 'fdgfd re', 'reyrey', 'setetew', 0),
@@ -500,6 +551,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 
 --
+-- Indexes for table `add_event`
+--
+ALTER TABLE `add_event`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admin_info`
 --
 ALTER TABLE `admin_info`
@@ -516,6 +573,12 @@ ALTER TABLE `admission_request`
 --
 ALTER TABLE `apply_course`
   ADD PRIMARY KEY (`apply_course_id`);
+
+--
+-- Indexes for table `at_add_attendance`
+--
+ALTER TABLE `at_add_attendance`
+  ADD PRIMARY KEY (`ID`);
 
 --
 -- Indexes for table `courses`
@@ -594,6 +657,12 @@ ALTER TABLE `teachers` ADD FULLTEXT KEY `teachers_name` (`teachers_name`);
 --
 
 --
+-- AUTO_INCREMENT for table `add_event`
+--
+ALTER TABLE `add_event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
+--
 -- AUTO_INCREMENT for table `admin_info`
 --
 ALTER TABLE `admin_info`
@@ -610,6 +679,12 @@ ALTER TABLE `admission_request`
 --
 ALTER TABLE `apply_course`
   MODIFY `apply_course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `at_add_attendance`
+--
+ALTER TABLE `at_add_attendance`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `courses`
