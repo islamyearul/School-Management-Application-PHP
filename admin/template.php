@@ -165,6 +165,98 @@
                         elseif($view == "edit-attendance"){
                             include("views/admin-attendence-edit.php");
                         }
+                        elseif($view == "add-grade"){
+                            include("views/admin-grade-add.php");
+                        }
+                        elseif($view == "all-grade"){
+                            include("views/admin-grade-all.php");
+                        }
+                        elseif($view == "edit-grade"){
+                            include("views/admin-grade-edit.php");
+                        }
+                        elseif($view == "edit-holydays"){
+                            include("views/admin-holiday-edit.php");
+                        }
+                        elseif($view == "all-holydays"){
+                            include("views/admin-holiday-all.php");
+                        }
+                        elseif($view == "add-holydays"){
+                            include("views/admin-holiday-add.php");
+                        }
+                        elseif($view == "edit-notice"){
+                            include("views/admin-notice-edit.php");
+                        }
+                        elseif($view == "all-notice"){
+                            include("views/admin-notice-all.php");
+                        }
+                        elseif($view == "add-notice"){
+                            include("views/admin-notice-add.php");
+                        }
+                        elseif($view == "edit-session"){
+                            include("views/admin-session-edit.php");
+                        }
+                        elseif($view == "all-session"){
+                            include("views/admin-session-all.php");
+                        }
+                        elseif($view == "add-session"){
+                            include("views/admin-session-add.php");
+                        }
+                        elseif($view == "edit-question"){
+                            include("views/admin-exam-question-edit.php");
+                        }
+                        elseif($view == "all-question"){
+                            include("views/admin-exam-question-all.php");
+                        }
+                        elseif($view == "add-question"){
+                            include("views/admin-exam-question-add.php");
+                        }
+                        elseif($view == "edit-subject"){
+                            include("views/admin-subjects-edit.php");
+                        }
+                        elseif($view == "all-subject"){
+                            include("views/admin-subjects-all.php");
+                        }
+                        elseif($view == "add-subject"){
+                            include("views/admin-subjects-add.php");
+                        }
+                        elseif($view == "edit-classroutine"){
+                            include("views/admin-class_routine-edit.php");
+                        }
+                        elseif($view == "all-classroutine"){
+                            include("views/admin-class_routine-all.php");
+                        }
+                        elseif($view == "add-classroutine"){
+                            include("views/admin-class_routine-add.php");
+                        }
+                        elseif($view == "edit-class"){
+                            include("views/admin-class-edit.php");
+                        }
+                        elseif($view == "all-class"){
+                            include("views/admin-class-all.php");
+                        }
+                        elseif($view == "add-class"){
+                            include("views/admin-class-add.php");
+                        }
+
+                        
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
 
 
 

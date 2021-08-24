@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 23, 2021 at 07:24 PM
+-- Generation Time: Aug 24, 2021 at 07:44 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -149,6 +149,56 @@ INSERT INTO `at_add_attendance` (`ID`, `Class`, `Student_Name`, `Attendance`, `T
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `class`
+--
+
+CREATE TABLE `class` (
+  `class_id` int(11) NOT NULL,
+  `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `name_numeric` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `teacher_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `class`
+--
+
+INSERT INTO `class` (`class_id`, `name`, `name_numeric`, `teacher_id`) VALUES
+(2, 'KG', 'KG1', 2),
+(3, 'Primary One', 'Primary 1', 2),
+(4, 'PRIMARY THREE', 'PRY 3', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `class_routine`
+--
+
+CREATE TABLE `class_routine` (
+  `day` varchar(50) NOT NULL,
+  `10:00-11:00` varchar(50) NOT NULL,
+  `11:00-12:00` varchar(50) NOT NULL,
+  `12:00-01:00` varchar(50) NOT NULL,
+  `01:00-02:00` varchar(50) NOT NULL,
+  `02:00-03:00` varchar(50) NOT NULL,
+  `03:00-04:00` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `class_routine`
+--
+
+INSERT INTO `class_routine` (`day`, `10:00-11:00`, `11:00-12:00`, `12:00-01:00`, `01:00-02:00`, `02:00-03:00`, `03:00-04:00`) VALUES
+('Saturday', 'Bangla', 'English', 'Math', 'Bangladesh and global studies', 'Religion', 'Physical education and health'),
+('Sunday', 'Physical education and health', 'Religion', 'Math', 'Bangla', 'Bangladesh and global studies', 'English'),
+('Monday', 'Bangla', 'English', 'Bangladesh and global studies', 'Math', 'Religion', 'Physical education and health'),
+('Tuesday', 'English', 'Bangla', 'Bangladesh and global studies', 'Math', 'Physical education and health', 'Religion'),
+('Wednesday', 'Bangladesh and global studies', 'English', 'Bangla', 'Math', 'Religion', 'Physical education and health'),
+('Thursday', 'Bangladesh and global studies', 'Bangla', 'Math', 'Religion', 'English', 'Physical education and health');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `courses`
 --
 
@@ -172,8 +222,7 @@ CREATE TABLE `courses` (
 
 INSERT INTO `courses` (`course_id`, `course_name`, `course_description`, `course_status`, `course_cat`, `course_seat`, `course_start_date`, `course_contact_person_name`, `course_contact_person_phone`, `course_contact_email`, `course_image`) VALUES
 (3, 'MSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, a', 'Inactive', 'Science', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', 'build wordpress ecommerce or business website responsive 2.png'),
-(4, 'BSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Active', 'Software Development', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
-(5, '', '', '', '', 0, '0000-00-00', '', 0, '', ''),
+(4, 'BSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a ', 'Active', 'Software Development', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', 'build wordpress ecommerce or business website responsive 2.png'),
 (6, 'MBA', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Active', '	\r\nBasic Computer', 3, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
 (7, 'MSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Inactive', 'Science', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
 (8, 'BSC', 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).\r\n\r\n', 'Active', 'Software Development', 5, '2021-08-20', 'dsfsdf', 35325235, 'fsafsa@gmail.com', '3cdd7db2149554995ca05e279fc78036.jpg'),
@@ -292,6 +341,111 @@ CREATE TABLE `course_view` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `examquestion`
+--
+
+CREATE TABLE `examquestion` (
+  `examquestion_id` int(11) NOT NULL,
+  `name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `title` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `file_name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `file_type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `class_id` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `examquestion`
+--
+
+INSERT INTO `examquestion` (`examquestion_id`, `name`, `title`, `description`, `file_name`, `file_type`, `class_id`, `timestamp`, `status`) VALUES
+(8, 'Optimum', 'Mathematics', 'THIS EXAM IS FOR PRIMARY ONE PUPILS, PLEASE READ AND GIVE FEEDBACK SIR. THANKS', 'FOLUSO.docx', '', '3', 'Sat, 08 July 2017', 'Approved');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_all`
+--
+
+CREATE TABLE `exam_all` (
+  `exam_id` int(11) NOT NULL,
+  `exam_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exam_all`
+--
+
+INSERT INTO `exam_all` (`exam_id`, `exam_name`) VALUES
+(1, '1st Terminal Exam'),
+(2, 'Middle Terminal Exam'),
+(3, 'Final Terminal Exam'),
+(4, 'Admission Test'),
+(5, 'Monthly Assesment');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_marks`
+--
+
+CREATE TABLE `exam_marks` (
+  `mark_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `subject_id` int(11) NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `mark_obtained` int(11) NOT NULL DEFAULT 0,
+  `mark_total` int(11) NOT NULL DEFAULT 100,
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `exam_marks`
+--
+
+INSERT INTO `exam_marks` (`mark_id`, `student_id`, `subject_id`, `class_id`, `exam_id`, `mark_obtained`, `mark_total`, `comment`) VALUES
+(1, 8, 6, 3, 1, 0, 100, ''),
+(2, 9, 6, 3, 1, 0, 100, ''),
+(3, 10, 6, 3, 1, 0, 100, ''),
+(4, 12, 6, 3, 1, 0, 100, ''),
+(5, 14, 6, 3, 1, 0, 100, ''),
+(6, 5, 1, 2, 1, 50, 100, ''),
+(7, 11, 1, 2, 1, 70, 100, ''),
+(8, 13, 1, 2, 1, 70, 100, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feescollection`
+--
+
+CREATE TABLE `feescollection` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `Student` int(10) UNSIGNED NOT NULL,
+  `Class` int(10) UNSIGNED DEFAULT NULL,
+  `Session` int(10) UNSIGNED NOT NULL,
+  `PaidAmount` int(11) NOT NULL,
+  `Balance` int(10) UNSIGNED DEFAULT NULL,
+  `Branch` int(10) UNSIGNED NOT NULL,
+  `Date` date DEFAULT NULL,
+  `Remarks` varchar(40) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `feescollection`
+--
+
+INSERT INTO `feescollection` (`id`, `Student`, `Class`, `Session`, `PaidAmount`, `Balance`, `Branch`, `Date`, `Remarks`) VALUES
+(0, 0, 0, 1, 11000, 0, 1, '2018-07-30', 'Paid'),
+(1, 1, 1, 1, 1000, 1, 1, '2018-05-02', NULL),
+(2, 1, 1, 1, 3000, 1, 2, '2018-05-03', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `get_in_touch`
 --
 
@@ -314,6 +468,55 @@ INSERT INTO `get_in_touch` (`gt_id`, `name`, `phone`, `email`, `topics`, `addres
 (00002, 'boby', '34646424', 'acs@gsg.com', 'Php', 'wrwrwqr', 'dgdsgdsgdsgagdf'),
 (00003, 'boby', '34646424', 'acs@gsg.com', 'Php', 'wrwrwqr', 'dgdsgdsgdsgagdf'),
 (00004, 'boby', '34646424', 'acs@gsg.com', 'Php', 'wrwrwqr', 'dgdsgdsgdsgagdf');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `grade`
+--
+
+CREATE TABLE `grade` (
+  `grade_id` int(11) NOT NULL,
+  `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `grade_point` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `mark_from` int(11) NOT NULL,
+  `mark_upto` int(11) NOT NULL,
+  `comment` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `grade`
+--
+
+INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`, `comment`) VALUES
+(1, 'A+', '5.00', 80, 100, 'Most Best'),
+(2, 'A', '4.00', 70, 79, 'Best'),
+(3, 'A-', '3.50', 60, 69, 'Good'),
+(4, 'B', '3.00', 50, 59, 'Middle'),
+(5, 'C', '2.00', 40, 49, 'Not Bad'),
+(6, 'D', '1.00', 33, 39, 'Pass'),
+(7, 'F', '0.00', 0, 32, 'Fail');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `holiday`
+--
+
+CREATE TABLE `holiday` (
+  `holiday_id` int(11) NOT NULL,
+  `title` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `holiday` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `date` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `holiday`
+--
+
+INSERT INTO `holiday` (`holiday_id`, `title`, `holiday`, `date`) VALUES
+(2, 'JUNE 12', 'THERE IS GOING TO BE HOLIDAY SOON', 'Wed, 26 July 2017'),
+(3, 'MAY 25', 'THERE IS GOING TO BE HOLIDAY SOON', 'Tue, 25 July 2017');
 
 -- --------------------------------------------------------
 
@@ -347,6 +550,115 @@ INSERT INTO `job_anounce` (`job_announce_id`, `job_post_name`, `job_description`
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `loan`
+--
+
+CREATE TABLE `loan` (
+  `loan_id` int(11) NOT NULL,
+  `staff_name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `amount` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `purpose` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `l_duration` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `mop` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `g_name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `g_relationship` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `g_number` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `g_address` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `g_country` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `c_name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `c_type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `model` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `make` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `serial_number` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `value` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `condition` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `date` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `file_name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loan`
+--
+
+INSERT INTO `loan` (`loan_id`, `staff_name`, `amount`, `purpose`, `l_duration`, `mop`, `g_name`, `g_relationship`, `g_number`, `g_address`, `g_country`, `c_name`, `c_type`, `model`, `make`, `serial_number`, `value`, `condition`, `date`, `status`, `file_name`) VALUES
+(3, 'teacher 2', '1000', 'I WANT TO USE TO PAY FOR MY SCHOOL CHILDREN SCHOOL FEES', 'Daily', 'MODE OF PAYMENT HERE', 'MR OPTIMUMLINKUP', 'FAMILY', 'NUMBER', 'G ADDRESS', 'G COUNTRY', 'COLLATERAL NAME', 'C TYPE', 'C MODEL', 'C MAKE', 'C SERIAL NYMEBNER', '6', 'Daily', 'Fri, 07 July 2017', 'Pending', ''),
+(5, 'teacher', '1000000', 'FOR WEDDING CEREMONY', 'Eight Months', 'Yearly', 'OMOLOLU', 'FAMILY', '081789644', 'G ADDRESS', 'COUNTRY', 'c name', 'c type', 'C MOD', 'C MAKE', 'C SERIAL NYMEBNER', '700000', 'Monthly', 'Wed, 12 July 2017', 'Pending', ''),
+(6, 'LIBRARIAN', '5000', 'jghhgh', 'One Month', 'Daily', 'hkuhkjh', 'hjkhj', 'hkjh', 'kjhkjhj', 'hjkhjkhjh', 'khhhj', 'hkhhj', 'hj', 'ghi890-9ookk', 'hhjhj', '35676543', 'Daily', 'Thu, 20 July 2017', 'Approved', ''),
+(7, 'Mr. Segun', '50000', 'jkkj`', 'One Month', 'Daily', 'jghjgh', 'jh', 'jh', 'jhj', 'hkjh', 'jk', 'hjk', 'hjk', 'hkj', 'hjk', '6789', 'Daily', 'Mon, 17 July 2017', 'Pending', ''),
+(8, 'hostel', '4000', 'purpoae', 'One Month', 'Daily', 'khkj', 'hjk', 'jkhjh', 'hjkh', 'hjkh', 'kjhj', 'hjk', 'kj', 'ljhkl', 'hjk', '67890', 'Daily', 'Tue, 18 July 2017', 'Pending', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `news_id` int(11) NOT NULL,
+  `news_title` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `date` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `news_content` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`news_id`, `news_title`, `date`, `news_content`) VALUES
+(3, 'INFORMATION ABOUT OMOLOU ESTHER IS CORRECT THAT SHE LOVES SEGUN', '23:12:12 PM', 'MARO RARA SHE IS JUST PRETENDING OOOOO');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `noticeboard`
+--
+
+CREATE TABLE `noticeboard` (
+  `notice_id` int(11) NOT NULL,
+  `notice_title` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `notice` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `create_timestamp` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `noticeboard`
+--
+
+INSERT INTO `noticeboard` (`notice_id`, `notice_title`, `notice`, `create_timestamp`) VALUES
+(1, 'hi', 'today', 1495065600),
+(2, 'Holiday', 'We are going on holidays soon', 1498867200);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment`
+--
+
+CREATE TABLE `payment` (
+  `payment_id` int(11) NOT NULL,
+  `expense_category_id` int(11) NOT NULL,
+  `title` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `payment_type` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `invoice_id` int(11) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `method` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `description` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `amount` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `timestamp` longtext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `expense_category_id`, `title`, `payment_type`, `invoice_id`, `student_id`, `method`, `description`, `amount`, `timestamp`) VALUES
+(1, 0, 'PAYMENT FOR SCHOOL FEES', 'income', 1, 5, '2', 'PAYMENT FOR SCHOOL FEES', '500000', '1499472000'),
+(2, 5, 'PURCHASE OF SCHOOL CHALK', 'expense', 0, 0, '1', 'WE ARE HAVE JUST PURCHASE SCHOO CHALK NOW', '4000', '1499458620');
+
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `popular_course_view`
 -- (See below for the actual view)
 --
@@ -360,6 +672,31 @@ CREATE TABLE `popular_course_view` (
 ,`course_image` varchar(200)
 ,`first_term_fee` decimal(10,2)
 );
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `section`
+--
+
+CREATE TABLE `section` (
+  `section_id` int(11) NOT NULL,
+  `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `nick_name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `section`
+--
+
+INSERT INTO `section` (`section_id`, `name`, `nick_name`, `class_id`, `teacher_id`) VALUES
+(1, 'FIRST', 'TERM', 1, 2),
+(2, 'FIRST TERM', 'FIRST TERM', 2, 2),
+(3, 'FIRST TERM', 'FIRST TERM', 3, 4),
+(4, 'SECOND TERM', '2ND TERM', 3, 2),
+(5, '2015-2016', 'Current Session', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -435,6 +772,37 @@ INSERT INTO `seminar_registration` (`std_reg_id`, `fullname`, `username`, `email
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `session`
+--
+
+CREATE TABLE `session` (
+  `session_id` int(11) NOT NULL,
+  `name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `session`
+--
+
+INSERT INTO `session` (`session_id`, `name`) VALUES
+(3, '2016-2017'),
+(4, '2017-2018'),
+(5, '2018-2019'),
+(6, '2019-2020'),
+(7, '2020-2021'),
+(8, '2021-2022'),
+(9, '2022-2023'),
+(10, '2023-2024'),
+(11, '2024-2025'),
+(12, '2025-2026'),
+(13, '2026-2027'),
+(14, '2027-2028'),
+(15, '2028-2029'),
+(16, '2029-2030');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -495,6 +863,30 @@ INSERT INTO `stuff` (`stuff_id`, `stuff_name`, `stuff_father`, `stuff_mother`, `
 (00008, 'Masud', 'maissa', 'aturi begum', 'masud@gmail.com', 'Peon', 127, 127, 'dsfsdfsdfds', 'male', '2021-08-03', '1123', 'danial.png'),
 (00009, 'Masud', 'maissa', 'aturi begum', 'masud@gmail.com', 'Peon', 127, 127, 'dsfsdfsdfds', 'male', '2021-08-03', '1123', 'danial.png'),
 (00010, 'Masud', 'maissa', 'aturi begum', 'masud@gmail.com', 'Peon', 127, 127, 'dsfsdfsdfds', 'male', '2021-08-03', '1123', 'danial.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subject`
+--
+
+CREATE TABLE `subject` (
+  `subject_id` int(11) NOT NULL,
+  `name` longtext COLLATE utf8_unicode_ci NOT NULL,
+  `class_id` int(11) NOT NULL,
+  `teacher_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`subject_id`, `name`, `class_id`, `teacher_id`) VALUES
+(1, 'Mathematics', 2, 2),
+(2, 'Economics', 2, 2),
+(4, 'Social Studies', 2, 2),
+(5, 'Science', 3, 2),
+(6, 'Mathematics', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -581,6 +973,12 @@ ALTER TABLE `at_add_attendance`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `class`
+--
+ALTER TABLE `class`
+  ADD PRIMARY KEY (`class_id`);
+
+--
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
@@ -607,10 +1005,49 @@ ALTER TABLE `course_time_table`
   ADD PRIMARY KEY (`course_time_id`);
 
 --
+-- Indexes for table `examquestion`
+--
+ALTER TABLE `examquestion`
+  ADD PRIMARY KEY (`examquestion_id`);
+
+--
+-- Indexes for table `exam_all`
+--
+ALTER TABLE `exam_all`
+  ADD PRIMARY KEY (`exam_id`);
+
+--
+-- Indexes for table `exam_marks`
+--
+ALTER TABLE `exam_marks`
+  ADD PRIMARY KEY (`mark_id`);
+
+--
+-- Indexes for table `feescollection`
+--
+ALTER TABLE `feescollection`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `Student` (`Student`),
+  ADD KEY `Session` (`Session`),
+  ADD KEY `Branch` (`Branch`);
+
+--
 -- Indexes for table `get_in_touch`
 --
 ALTER TABLE `get_in_touch`
   ADD PRIMARY KEY (`gt_id`);
+
+--
+-- Indexes for table `grade`
+--
+ALTER TABLE `grade`
+  ADD PRIMARY KEY (`grade_id`);
+
+--
+-- Indexes for table `holiday`
+--
+ALTER TABLE `holiday`
+  ADD PRIMARY KEY (`holiday_id`);
 
 --
 -- Indexes for table `job_anounce`
@@ -620,6 +1057,36 @@ ALTER TABLE `job_anounce`
   ADD KEY `job_post_name` (`job_post_name`);
 ALTER TABLE `job_anounce` ADD FULLTEXT KEY `job_description` (`job_description`);
 ALTER TABLE `job_anounce` ADD FULLTEXT KEY `job_description_2` (`job_description`);
+
+--
+-- Indexes for table `loan`
+--
+ALTER TABLE `loan`
+  ADD PRIMARY KEY (`loan_id`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`news_id`);
+
+--
+-- Indexes for table `noticeboard`
+--
+ALTER TABLE `noticeboard`
+  ADD PRIMARY KEY (`notice_id`);
+
+--
+-- Indexes for table `payment`
+--
+ALTER TABLE `payment`
+  ADD PRIMARY KEY (`payment_id`);
+
+--
+-- Indexes for table `section`
+--
+ALTER TABLE `section`
+  ADD PRIMARY KEY (`section_id`);
 
 --
 -- Indexes for table `seminar`
@@ -634,6 +1101,12 @@ ALTER TABLE `seminar_registration`
   ADD PRIMARY KEY (`std_reg_id`);
 
 --
+-- Indexes for table `session`
+--
+ALTER TABLE `session`
+  ADD PRIMARY KEY (`session_id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -644,6 +1117,12 @@ ALTER TABLE `students`
 --
 ALTER TABLE `stuff`
   ADD PRIMARY KEY (`stuff_id`);
+
+--
+-- Indexes for table `subject`
+--
+ALTER TABLE `subject`
+  ADD PRIMARY KEY (`subject_id`);
 
 --
 -- Indexes for table `teachers`
@@ -687,6 +1166,12 @@ ALTER TABLE `at_add_attendance`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `class`
+--
+ALTER TABLE `class`
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
@@ -711,16 +1196,76 @@ ALTER TABLE `course_time_table`
   MODIFY `course_time_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `examquestion`
+--
+ALTER TABLE `examquestion`
+  MODIFY `examquestion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `exam_all`
+--
+ALTER TABLE `exam_all`
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `exam_marks`
+--
+ALTER TABLE `exam_marks`
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `get_in_touch`
 --
 ALTER TABLE `get_in_touch`
   MODIFY `gt_id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `grade`
+--
+ALTER TABLE `grade`
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `holiday`
+--
+ALTER TABLE `holiday`
+  MODIFY `holiday_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `job_anounce`
 --
 ALTER TABLE `job_anounce`
   MODIFY `job_announce_id` int(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `loan`
+--
+ALTER TABLE `loan`
+  MODIFY `loan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `noticeboard`
+--
+ALTER TABLE `noticeboard`
+  MODIFY `notice_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `payment`
+--
+ALTER TABLE `payment`
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `section`
+--
+ALTER TABLE `section`
+  MODIFY `section_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `seminar`
@@ -735,6 +1280,12 @@ ALTER TABLE `seminar_registration`
   MODIFY `std_reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `session`
+--
+ALTER TABLE `session`
+  MODIFY `session_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
@@ -745,6 +1296,12 @@ ALTER TABLE `students`
 --
 ALTER TABLE `stuff`
   MODIFY `stuff_id` tinyint(5) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `teachers`

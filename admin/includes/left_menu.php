@@ -44,6 +44,39 @@
                          </ul>
                      </div>
                  </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book"
+                             aria-hidden="true"></i>Classes</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-class-add.php">All Class</a>
+                             </li>
+                             <li><a href="ad-class-all.php">Add New Class</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book"
+                             aria-hidden="true"></i>Class Routine</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-class-routine-add.php">All Class Routine</a>
+                             </li>
+                             <li><a href="ad-class-routine-all.php">Add New Class Routine</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-book"
+                             aria-hidden="true"></i>Subjects</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-subject-add.php">All Subjects</a>
+                             </li>
+                             <li><a href="ad-subject-all.php">Add New Subjects</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
                  <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-user"
                              aria-hidden="true"></i> Users</a>
                      <div class="collapsible-body left-sub-menu">
@@ -122,6 +155,17 @@
                      </div>
                  </li>
                  <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil"
+                             aria-hidden="true"></i> Exam Question</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-exam-question-all.php">All Exams Question</a></li>
+                             <li><a href="ad-exam-question-add.php">Add New Exam Question</a></li>
+                             <!-- <li><a href="ad-exam-group-all.php">All Groups</a></li>
+                                    <li><a href="ad-exam-group-add.php">Create New Groups</a></li> -->
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil"
                              aria-hidden="true"></i> Exam Marks</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
@@ -166,6 +210,56 @@
                         </li> -->
                  <!-- <li><a href="admin-quick-link.html"><i class="fa fa-external-link-square" aria-hidden="true"></i> Slider quick link</a>
                         </li> -->
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar"
+                             aria-hidden="true"></i> Session</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-session-all.php">All Session</a>
+                             </li>
+                             <li><a href="ad-session-add.php">Create New Session</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar"
+                             aria-hidden="true"></i> Grades</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-grade-all.php">All Grades</a>
+                             </li>
+                             <li><a href="ad-grade-add.php">Create New Grades</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar"
+                             aria-hidden="true"></i> Holidays</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-holidays-all.php">All Holidays</a>
+                             </li>
+                             <li><a href="ad-holidays-add.php">Create New Holidays</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+                 <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar"
+                             aria-hidden="true"></i> Notice</a>
+                     <div class="collapsible-body left-sub-menu">
+                         <ul>
+                             <li><a href="ad-notice-all.php">All Notice</a>
+                             </li>
+                             <li><a href="ad-notice-add.php">Create New Notice</a>
+                             </li>
+                         </ul>
+                     </div>
+                 </li>
+
+
+
+
+
+
                  <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-calendar"
                              aria-hidden="true"></i> Events</a>
                      <div class="collapsible-body left-sub-menu">
