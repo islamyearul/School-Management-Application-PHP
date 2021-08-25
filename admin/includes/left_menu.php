@@ -59,9 +59,9 @@
                              aria-hidden="true"></i>Class Routine</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
-                             <li><a href="ad-class-routine-add.php">All Class Routine</a>
+                             <li><a href="ad-class-routine-all.php">All Class Routine</a>
                              </li>
-                             <li><a href="ad-class-routine-all.php">Add New Class Routine</a>
+                             <li><a href="ad-class-routine-add.php">Add New Class Routine</a>
                              </li>
                          </ul>
                      </div>
