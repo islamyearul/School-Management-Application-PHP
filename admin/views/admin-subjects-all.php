@@ -1,98 +1,65 @@
-
 <?php
-if(isset($_POST['add_job'])){
-    extract($_POST);
-    $addJob = "INSERT INTO `job_anounce`( `job_post_name`, `job_description`, `job_empty_post`, `job_start_date`, `job_application_fee`, `job_location`, `job_application_deadline`, `Status`) VALUES ('$job_post','$job_description','$job_empty_post','$job_start_date','$application_fee','$job_location','$end_date','$job_status')";
+$subjectSelectSQL = "SELECT * FROM `subject`";
+$subjects = $crud->select($subjectSelectSQL);
 
-    $returnSMS = $crud->insert($addJob);
+if(isset($_GET['status'])){
+    if($_GET['status']=='delete'){
+        $d_id = $_GET['id'];
+        $delDataSQL = "DELETE FROM `subject` WHERE subject_id = $d_id";
+        $delSMS = $crud->delete($delDataSQL);
+        if(isset($delSMS)){
+            echo "<h2 class='text-success'>subject Delete Success</h2>";
+        }else{
+            echo "<h2 class='text-danger'>subject Delete Error, Please Try Again!!</h2>";
+        }
+    }
 }
-
-if(isset($returnSMS)){
-    echo $returnSMS;
-}
-
-
-
-
-
-
-
-
-
 
 ?>
-
-
-
-<!--== User Details ==-->
+<!--== Seminar Details ==-->
+<h1>All Subject</h1>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">
-            <div class="box-inn-sp admin-form">
+            <div class="box-inn-sp">
                 <div class="inn-title">
-                    <h4>New Job Opening</h4>
+                    <h4>All Subject</h4>
                 </div>
                 <div class="tab-inn">
-                    <form action="" method="post">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" value="" class="validate" required name="job_post">
-                                <label class="">Job Post Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea name="job_description" id="" cols="30" rows="5"></textarea>
-                                <label class="">Job Descriptions</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="number" value="" class="validate" required name="job_empty_post"> 
-                                <label class="">Empty Post</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                           <div class="input-field col s6">
-                                <input type="text" value="" class="validate" name="job_location">
-                                <label class="">Location</label>
-                            </div>
+                    <div class="table-responsive table-desi">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Serial No</th>
+                                    <th>ID</th>
+                                    <th>Subject Name</th>
+                                    <th>Class ID</th>
+                                    <th>Teachers ID</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        <?php  
+                            $i = 1;                                    
+                            while($subject = mysqli_fetch_assoc($subjects)){
+                            ?>
+                                <tr>
+                                    <td><?php echo $i++; ?></td>
+                                    <td><?php echo $subject['subject_id']; ?></td>
+                                    <td><?php echo $subject['name']; ?></td>
+                                    <td><?php echo $subject['class_id']; ?> </td>
+                                    <td><?php echo $subject['teacher_id'] ?></td>
+                                    <td>
+                                        <a href="ad-subject-edit.php?status=edit&&id=<?php echo $subject['subject_id'] ?>" class="ad-st-view bg-info">Edit</a>
+                                        <a onclick="return confirm('Are You Sure??')" href="?status=delete&&id=<?php echo $subject['subject_id'] ?>" class="ad-st-view bg-danger">Delete</a>
+                                   </td>
+                                </tr>
 
-                            <div class="input-field col s6">
-                                <input type="number" class="validate" value="" required name="application_fee">
-                                <label class="">Application Fee</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col s6">
-                                <label class="">Start Date</label>
-                                <input type="date" value="" class="validate" required name="job_start_date">
-                                
-                            </div>
-                            <div class=" col s6">
-                                <label class="">Application End Deadline</label>
-                                <input type="date" value="" class="validate" name="end_date">
-                                
-                            </div>
-                        </div>
-                        <div class="">
-                                 
-                                 <div class="form-group ">
-                                 <label for="inputState">Job Status</label>
-                                 <select id="inputState" class="form-control" name="job_status" style="font-size: 18px;">
-                                     <option selected disabled>Choose...</option>
-                                     <option value="Active">Active</option>
-                                     <option value="Inactive">Inactive</option>
-                                 </select>
-                                 </div>
-                             
-                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input" name="add_job"></i>
-                            </div>
-                        </div>
-                    </form>
+                                <?php } ?>
+                               
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
