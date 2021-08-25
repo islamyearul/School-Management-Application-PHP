@@ -236,9 +236,29 @@
                         }
                         elseif($view == "add-class"){
                             include("views/admin-class-add.php");
+                        }    
+                        elseif($view == "add-fees"){
+                            include("views/admin-student-fees-add.php");
+                        }
+                        elseif($view == "all-fees"){
+                            include("views/admin-student-fees-all.php");
+                        }
+                        elseif($view == "edit-fees"){
+                            include("views/admin-student-fees-edit.php");
                         }
 
+
+
                         
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
+                        elseif($view == ""){
+                            include("views/");
+                        }
                         elseif($view == ""){
                             include("views/");
                         }
