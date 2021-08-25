@@ -1,16 +1,16 @@
 
 <?php
-if(isset($_POST['add_stuff'])){
-    $ImgName = $_FILES['stuff_image']['name'];
-    $TmpName = $_FILES['stuff_image']['tmp_name'];
-    extract($_POST);
-    $addStuff = "INSERT INTO `stuff`(`stuff_name`, `stuff_father`, `stuff_mother`, `stuff_email`, `stuff_post`, `stuff_mobile`, `stuff_salary`, `stuff_address`, `stuff_gender`, `stuff_join_date`, `stuff_password`, `stuff_image`) VALUES ('$stuff_name','$stuff_fname','$stuff_mname','$stuff_email','$stuff_postname','$stuff_mobile','$stuff_salary','$stuff_address','$stuff_gender','$stuff_joining_date','$stuff_password','$ImgName')";
-    $insertSMS = $crud->insert($addStuff);
-    if(isset($insertSMS)){
-        echo $insertSMS;
-    }
+// if(isset($_POST['add_stuff'])){
+//     $ImgName = $_FILES['stuff_image']['name'];
+//     $TmpName = $_FILES['stuff_image']['tmp_name'];
+//     extract($_POST);
+//     $addStuff = "INSERT INTO `stuff`(`stuff_name`, `stuff_father`, `stuff_mother`, `stuff_email`, `stuff_post`, `stuff_mobile`, `stuff_salary`, `stuff_address`, `stuff_gender`, `stuff_join_date`, `stuff_password`, `stuff_image`) VALUES ('$stuff_name','$stuff_fname','$stuff_mname','$stuff_email','$stuff_postname','$stuff_mobile','$stuff_salary','$stuff_address','$stuff_gender','$stuff_joining_date','$stuff_password','$ImgName')";
+//     $insertSMS = $crud->insert($addStuff);
+//     if(isset($insertSMS)){
+//         echo $insertSMS;
+//     }
 
-}
+// }
 
 ?>
 <!--== User Details ==-->
@@ -19,7 +19,7 @@ if(isset($_POST['add_stuff'])){
         <div class="col-md-12">
             <div class="box-inn-sp admin-form">
                 <div class="inn-title">
-                    <h4>Add New Stuff Informations</h4>
+                    <h4>Add New Routine Informations</h4>
                 </div>
                 <div class="tab-inn">
                     <form action="" method="post" enctype="multipart/form-data">

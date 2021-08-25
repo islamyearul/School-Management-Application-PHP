@@ -1,82 +1,70 @@
 <?php
-if(isset($_POST['add_seminar'])){
-    $ImgName = $_FILES['sm_image']['name'];
-    $TmpName = $_FILES['sm_image']['tmp_name'];
+$teachersSQL = "SELECT * FROM `teachers`";
+$teachers = $crud->select($teachersSQL);
+
+if(isset($_GET['status'])){
+    if($_GET['status'] == 'edit'){
+        $retID = $_GET['id'];
+        $showClass = "SELECT * FROM `class` WHERE class_id = $retID";
+        $classes = $crud->select($showClass);
+        $class = mysqli_fetch_assoc($classes);
+    }
+}
+
+
+
+if(isset($_POST['update_class'])){
     extract($_POST);
-    $addSeminar =  "INSERT INTO `seminar`(`seminar_name`, `seminar_maintainer`, `seminar_description`, `seminar_location`, `seminar_date`, `seminar_time`, `seminar_end_time`, `seminar_image`) VALUES ('$sm_name','$sm_maintainer','$sm_description','$sm_location','$sm_date','$sm_time', '$sm_end_time', '$ImgName')";
-    $returnSMS = $crud->insert($addSeminar);
-    if($returnSMS){
-        move_uploaded_file($TmpName, "upload/".$ImgName);
-        echo $returnSMS;
+    $updateClass =  "UPDATE `class` SET `name`='$up_class_name',`name_numeric`='$up_class_name_numeric',`teacher_id`='$up_teacher_id' WHERE class_id = $up_id";
+    $returnSMS = $crud->update($updateClass);
+    if(isset($returnSMS)){
+        echo "<h2 class='text-success'>Class Update Success</h2>";
+    }else{
+        echo "<h2 class='text-danger'>Class Update Error, Please Try Again!!</h2>";
     }
 }
 
 ?>
 <!--== Seminar Details ==-->
+<h1>Class Edit</h1>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">
             <div class="box-inn-sp admin-form">
                 <div class="inn-title">
-                    <h4>Add Seminar</h4>
+                    <h4>edit Class</h4>
                 </div>
                 <div class="tab-inn">
-                    <form action="" method="post" enctype="multipart/form-data"> 
+                    <form action="" method="post">
                         <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" value="" class="validate" required name="sm_name">
-                                <label class="">Seminar name</label>
+                            <div class=" col s12">
+                                <label class="">Class name</label>
+                                <input type="text" value="<?php echo $class['name']; ?>" class="validate" required name="up_class_name">
+                            </div>
+                        </div>
+                        <input type="hidden" name="up_id" value="<?php echo $class['class_id']; ?>">
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Class name Numeric</label>
+                                <input type="text" value="<?php echo $class['name_numeric']; ?>" class="validate" required name="up_class_name_numeric">
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-group ">
+                                <label for="inputState">Teachers ID</label>
+                                <select id="inputState" class="form-control" name="up_teacher_id"
+                                    style="font-size: 15px;">
+                                    <option selected disabled>---Choose Teachers---</option>
+                                    <?php while($teacher = mysqli_fetch_assoc($teachers)){ ?>
+                                        <option value="<?php echo $teacher['teachers_id']; ?>" <?php if($teacher['teachers_id']==$class['teacher_id']){ echo "selected";} ?>><?php echo $teacher['teachers_name'];  ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
-                                <textarea name="sm_description" id="" cols="30" rows="5"></textarea>
-                                <label class="">Seminar Descriptions</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s6">
-                                <input type="text" value="" class="validate" name="sm_location">
-                                <label class="">Location</label>
-                            </div>
-                            <div class="input-field col s6">
-                                <input type="text" value="" class="validate" name="sm_maintainer">
-                                <label class="">Seminar Maintainer</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col s6">
-                            <label class="">Date</label>
-                                <input type="date" value="" class="validate" required name="sm_date">
-                                
-                            </div>
-                            <div class=" col s6">
-                            <label class="">Time</label>
-                                <input type="time" class="validate" value="" required name="sm_time">
-                              
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col s6">
-                            <label class="">End Time</label>
-                                <input type="time" class="validate" value="" required name="sm_end_time">
-                              
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="file-field input-field col s12">
-                                <div class="btn admin-upload-btn">
-                                    <span>Banner</span>
-                                    <input type="file" name="sm_image"> 
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Event image">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input" name="add_seminar"></i>
+                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit"
+                                        class="waves-button-input" name="update_class"></i>
                             </div>
                         </div>
                     </form>

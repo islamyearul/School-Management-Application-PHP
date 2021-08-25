@@ -19,7 +19,7 @@ if(isset($_POST['add_stuff'])){
         <div class="col-md-12">
             <div class="box-inn-sp admin-form">
                 <div class="inn-title">
-                    <h4>Add New Stuff Informations</h4>
+                    <h4>Add New routine Informations</h4>
                 </div>
                 <div class="tab-inn">
                     <form action="" method="post" enctype="multipart/form-data">
