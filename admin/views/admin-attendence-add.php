@@ -1,4 +1,6 @@
 <?php
+$classSQL = "SELECT * FROM `class`";
+$classes = $crud->select($classSQL);
 
 $con = mysqli_connect("localhost","root","","school_management_system_2021");
 
@@ -34,30 +36,20 @@ if(isset($_POST['submit']))
             <div class="box-inn-sp admin-form">
                 <div class="inn-title">
                     <h4>Add Student Attendance</h4>
-                    <p>Here you can edit your website basic details URL, Phone, Email, Address, User and password and
-                        more</p>
                 </div>
                 <div class="tab-inn">
-                    <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
-
+                    <form action="" method="post">
                         <div class="">
-
                             <div class="form-group ">
                                 <label for="inputState">Class</label>
                                 <select id="inputState" class="form-control" name="at_class" style="font-size: 15px;">
-                                    <option value="" disabled selected>---Select Class---</option>
-                                    <option value="Class 1">Class 1</option>
-                                    <option value="Class2">Class2</option>
-                                    <option value="Class 3">Class 3</option>
-                                    <option value="Class 4">Class 4</option>
-                                    <option value="Class 5">Class 5</option>
-                                    <option value="Class 6">Class 6</option>
-                                    <option value="Class 7">Class 7</option>
-                                    <option value="Class 8">Class 8</option>
-                                    <option value="Class 9">Class 9</option>
+                                    <option selected disabled>---Choose Class---</option>
+                                    <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
+                                    <option value="<?php echo $classe['class_id']; ?>"><?php echo $classe['name']; ?>
+                                    </option>
+                                    <?php } ?>
                                 </select>
                             </div>
-
                         </div>
                         <div class="row">
                             <div class="col s6">
@@ -69,8 +61,9 @@ if(isset($_POST['submit']))
 
                             <div class="form-group ">
                                 <label for="inputState">Attendence</label>
-                                <select id="inputState" class="form-control" name="at_Std-Status" style="font-size: 15px;">
-                                <option value="" disabled selected>Attendance</option>
+                                <select id="inputState" class="form-control" name="at_Std-Status"
+                                    style="font-size: 15px;">
+                                    <option value="" disabled selected>Attendance</option>
                                     <option value="Present">Present</option>
                                     <option value="Absent">Absent</option>
                                 </select>
