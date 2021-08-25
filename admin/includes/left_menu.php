@@ -48,9 +48,9 @@
                              aria-hidden="true"></i>Classes</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
-                             <li><a href="ad-class-add.php">All Class</a>
+                             <li><a href="ad-class-all.php">All Class</a>
                              </li>
-                             <li><a href="ad-class-all.php">Add New Class</a>
+                             <li><a href="ad-class-add.php">Add New Class</a>
                              </li>
                          </ul>
                      </div>
@@ -70,9 +70,9 @@
                              aria-hidden="true"></i>Subjects</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
-                             <li><a href="ad-subject-add.php">All Subjects</a>
+                             <li><a href="ad-subject-all.php">All Subjects</a>
                              </li>
-                             <li><a href="ad-subject-all.php">Add New Subjects</a>
+                             <li><a href="ad-subject-add.php">Add New Subjects</a>
                              </li>
                          </ul>
                      </div>

@@ -21,7 +21,11 @@ if(isset($_GET['status'])){
         <div class="col-md-12">
             <div class="box-inn-sp">
                 <div class="inn-title">
+<<<<<<< HEAD
                     <h4>Attendence Details</h4>
+=======
+                    <h4>Add New routine Informations</h4>
+>>>>>>> e268496c78eb0e70855a79e0db1a5c1723a39632
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
