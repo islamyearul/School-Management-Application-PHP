@@ -123,6 +123,12 @@
                         elseif($view == "add-exam"){
                             include("views/admin-exam-add.php");
                         }
+                        elseif($view == "edit-exam"){
+                            include("views/admin-exam-edit.php");
+                        }
+                        elseif($view == "trash-exam"){
+                            include("views/admin-exam-trash.php");
+                        }
                         elseif($view == "all-exam-group"){
                             include("views/admin-exam-group-all.php");
                         }
@@ -248,8 +254,6 @@
                         }
 
 
-
-                        
                         elseif($view == ""){
                             include("views/");
                         }

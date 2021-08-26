@@ -1,5 +1,5 @@
 <?php
-$examAllSQL = "SELECT * FROM `exam_all`";
+$examAllSQL = "SELECT * FROM `exam_all_trash`";
 $exams = $crud->select($examAllSQL);
 
 if(isset($_GET['status'])){
@@ -17,13 +17,13 @@ if(isset($_GET['status'])){
 
 ?>
 <!--== User Details ==-->
-<h2>All Exam List</h2>
+<h2>Trash Exam List</h2>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">
             <div class="box-inn-sp">
                 <div class="inn-title">
-                    <h4>Exams List and Time Table</h4>
+                    <h4>Trash Exams List and Time Table</h4>
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
@@ -31,6 +31,7 @@ if(isset($_GET['status'])){
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Trash Id</th>
                                     <th>Exam Id</th>
                                     <th>Exam Name</th>
                                     <th>Start Date</th>
@@ -43,14 +44,15 @@ if(isset($_GET['status'])){
                                 <?php $i = 1; while($exam = mysqli_fetch_assoc($exams)){ ?>
                                 <tr>
                                     <td><?php echo $i++; ?></td>
+                                    <td><?php echo $exam['trash_id']; ?></td>
                                     <td><?php echo $exam['exam_id']; ?></td>
                                     <td><?php echo $exam['exam_name']; ?></td>
                                     <td><?php echo $exam['start_date']; ?></td>
                                     <td><?php echo $exam['start_time']; ?></td>
                                     <td><?php echo $exam['duration']; ?></td>
                                     <td>
-                                        <a href="ad-exam-edit.php?status=edit&&id=<?php echo $exam['exam_id'] ?>" class="ad-st-view bg-info">Edit</a>
-                                        <a onclick="confirm('Are You Sure??')" href="?status=delete&&id=<?php echo $exam['exam_id']; ?>" class="ad-st-view bg-danger">Delete</a>
+                                        <!-- <a href="ad-event-edit.php?status=edit&&id=<?php //echo $exam['exam_id'] ?>" class="ad-st-view bg-info">Edit</a> -->
+                                        <a onclick="confirm('Are You Sure??')" href="?status=delete&&id=<?php echo $exam['trash_id']; ?>" class="ad-st-view bg-danger">Delete</a>
                                    </td>
                                 </tr>
                                 <?php } ?>

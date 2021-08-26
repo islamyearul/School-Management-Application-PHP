@@ -1,98 +1,62 @@
-
 <?php
-if(isset($_POST['add_job'])){
-    extract($_POST);
-    $addJob = "INSERT INTO `job_anounce`( `job_post_name`, `job_description`, `job_empty_post`, `job_start_date`, `job_application_fee`, `job_location`, `job_application_deadline`, `Status`) VALUES ('$job_post','$job_description','$job_empty_post','$job_start_date','$application_fee','$job_location','$end_date','$job_status')";
+$examAllSQL = "SELECT * FROM `exam_all`";
+$exams = $crud->select($examAllSQL);
 
-    $returnSMS = $crud->insert($addJob);
+if(isset($_GET['status'])){
+    if($_GET['status']=='delete'){
+        $d_id = $_GET['id'];
+        $delDataSQL = "DELETE FROM `exam_all` WHERE exam_id = $d_id";
+        $delSMS = $crud->delete($delDataSQL);
+        if(isset($delSMS)){
+            echo "<h2 class='text-success'>Exams Question Delete Success</h2>";
+        }else{
+            echo "<h2 class='text-danger'>Exams Question Delete Error, Please Try Again!!</h2>";
+        }
+    }
 }
-
-if(isset($returnSMS)){
-    echo $returnSMS;
-}
-
-
-
-
-
-
-
-
-
 
 ?>
-
-
-
 <!--== User Details ==-->
+<h2>All Exam Question</h2>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">
-            <div class="box-inn-sp admin-form">
+            <div class="box-inn-sp">
                 <div class="inn-title">
-                    <h4>New Job Opening</h4>
+                    <h4>Exams Questions</h4>
                 </div>
                 <div class="tab-inn">
-                    <form action="" method="post">
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="text" value="" class="validate" required name="job_post">
-                                <label class="">Job Post Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <textarea name="job_description" id="" cols="30" rows="5"></textarea>
-                                <label class="">Job Descriptions</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <input type="number" value="" class="validate" required name="job_empty_post"> 
-                                <label class="">Empty Post</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                           <div class="input-field col s6">
-                                <input type="text" value="" class="validate" name="job_location">
-                                <label class="">Location</label>
-                            </div>
-
-                            <div class="input-field col s6">
-                                <input type="number" class="validate" value="" required name="application_fee">
-                                <label class="">Application Fee</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col s6">
-                                <label class="">Start Date</label>
-                                <input type="date" value="" class="validate" required name="job_start_date">
-                                
-                            </div>
-                            <div class=" col s6">
-                                <label class="">Application End Deadline</label>
-                                <input type="date" value="" class="validate" name="end_date">
-                                
-                            </div>
-                        </div>
-                        <div class="">
-                                 
-                                 <div class="form-group ">
-                                 <label for="inputState">Job Status</label>
-                                 <select id="inputState" class="form-control" name="job_status" style="font-size: 18px;">
-                                     <option selected disabled>Choose...</option>
-                                     <option value="Active">Active</option>
-                                     <option value="Inactive">Inactive</option>
-                                 </select>
-                                 </div>
-                             
-                         </div>
-                        <div class="row">
-                            <div class="input-field col s12">
-                                <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit" class="waves-button-input" name="add_job"></i>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="table-responsive table-desi">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Exam Id</th>
+                                    <th>Exam Name</th>
+                                    <th>Start Date</th>
+                                    <th>Start Time</th>
+                                    <th>Duration</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php $i = 1; while($exam = mysqli_fetch_assoc($exams)){ ?>
+                                <tr>
+                                    <td><?php echo $i++; ?></td>
+                                    <td><?php echo $exam['exam_id']; ?></td>
+                                    <td><?php echo $exam['exam_name']; ?></td>
+                                    <td><?php echo $exam['start_date']; ?></td>
+                                    <td><?php echo $exam['start_time']; ?></td>
+                                    <td><?php echo $exam['duration']; ?></td>
+                                    <td>
+                                        <a href="ad-exam-edit.php?status=edit&&id=<?php echo $exam['exam_id'] ?>" class="ad-st-view bg-info">Edit</a>
+                                        <a onclick="confirm('Are You Sure??')" href="?status=delete&&id=<?php echo $exam['exam_id']; ?>" class="ad-st-view bg-danger">Delete</a>
+                                   </td>
+                                </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,61 +1,70 @@
 
 <?php
+if(isset($_GET['status'])){
+    if($_GET['status'] == 'edit'){
+        $retID = $_GET['id'];
+        $showExams = "SELECT * FROM `exam_all` WHERE exam_id = $retID";
+        $exams = $crud->select($showExams);
+        $exam = mysqli_fetch_assoc($exams);
+    }
+}
 
-
-
-if(isset($_POST['add_exam'])){
+if(isset($_POST['update_exam'])){
     extract($_POST);
 
-    $examAddSQL = "INSERT INTO `exam_all`( `exam_name`, `start_date`, `start_time`, `duration`) VALUES ('$exam_name','$exam_date','$exam_time','$duration')";
-    $retSMS = $crud->select($examAddSQL);
+    $examUpdateSQL = "INSERT INTO `exam_all`( `exam_name`, `start_date`, `start_time`, `duration`) VALUES ('$exam_name','$','$','$')";
+
+    $examUpdateSQL = "UPDATE `exam_all` SET `exam_name`='$exam_name',`start_date`='$exam_date',`start_time`='$exam_time',`duration`='$duration' WHERE exam_id = $up_id";
+    $retSMS = $crud->select($examUpdateSQL);
     if(isset($retSMS)){
-        echo "<h2 class='text-success'>Exam Add Success</h2>";
+        echo "<h2 class='text-success'>Exam Update Success</h2>";
     }else{
-        echo "<h2 class='text-danger'>Exam Added Error, Please Try Again!!</h2>";
+        echo "<h2 class='text-danger'>Exam Update Error, Please Try Again!!</h2>";
     }
 }
 
 ?>
 
 <!--== Seminar Details ==-->
-<h1>Add Exam</h1>
+<h1>Update Exam</h1>
 <div class="sb2-2-3">
     <div class="row">
         <div class="col-md-12">
             <div class="box-inn-sp admin-form">
                 <div class="inn-title">
-                    <h4>Add Exam</h4>
+                    <h4>Update Exam</h4>
                 </div>
                 <div class="tab-inn">
                     <form action="" method="post">
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Exam name</label>
-                                <input type="text" value="" class="validate" required name="exam_name">
+                                <input type="text" value="<?php echo $exam['exam_name']; ?>" class="validate" required name="exam_name">
                             </div>
                         </div>
+                        <input type="hidden" name="up_id" value="<?php echo $exam['exam_id']; ?>">
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Start Date</label>
-                                <input type="date" value="" class="validate" required name="exam_date">
+                                <input type="date" value="<?php echo $exam['start_date']; ?>" class="validate" required name="exam_date">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Start Time</label>
-                                <input type="time" value="" class="validate" required name="exam_time">
+                                <input type="time" value="<?php echo $exam['start_time']; ?>" class="validate" required name="exam_time">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Exam Duration</label>
-                                <input type="text" value="" class="validate" required name="duration">
+                                <input type="text" value="<?php echo $exam['duration']; ?>" class="validate" required name="duration">
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit"
-                                        class="waves-button-input" name="add_exam"></i>
+                                        class="waves-button-input" name="update_exam" value="Update"></i>
                             </div>
                         </div>
                     </form>

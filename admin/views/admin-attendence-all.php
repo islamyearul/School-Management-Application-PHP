@@ -64,11 +64,9 @@ if(isset($_GET['status'])){
                                     <td>
                                         <a onclick="confirm('Are you sure?')" href="?status=delete&&id=<?php echo $ID; ?>" class="ad-st-view bg-danger">Delete</a>
                                     </td>
-                                    }
+                                
                                 </tr>
-                                <?php  
-                    }
-                        ?>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

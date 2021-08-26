@@ -144,13 +144,12 @@
                      </div>
                  </li>
                  <li><a href="javascript:void(0)" class="collapsible-header"><i class="fa fa-pencil"
-                             aria-hidden="true"></i> Exam time table</a>
+                             aria-hidden="true"></i> Exam List & time table</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
                              <li><a href="ad-exam-all.php">All Exams</a></li>
                              <li><a href="ad-exam-add.php">Add New Exam</a></li>
-                             <!-- <li><a href="ad-exam-group-all.php">All Groups</a></li>
-                                    <li><a href="ad-exam-group-add.php">Create New Groups</a></li> -->
+                             <li><a href="ad-exam-trash.php">Trash Exam</a></li>
                          </ul>
                      </div>
                  </li>
