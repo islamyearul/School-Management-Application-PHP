@@ -1,4 +1,3 @@
-
 <?php
 if(isset($_POST['add_teacher'])){
     extract($_POST);
@@ -39,7 +38,7 @@ if(isset($resSMS)){
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
-                                <input type="number" value="" class="validate" required name="t_phone"> 
+                                <input type="number" value="" class="validate" required name="t_phone">
                                 <label class="">Teacherse Phone number</label>
                             </div>
 
@@ -47,23 +46,22 @@ if(isset($resSMS)){
                         <div class="form-group ">
                             <label>Gender</label>
                             <div class="form-check form-check-inline ">
-                                <input class="form-check-input" type="radio" name="t_gender" id="inlineRadio1" value="male">
+                                <input class="form-check-input" type="radio" name="t_gender" id="inlineRadio1"
+                                    value="male">
                                 <label class="form-check-label" for="inlineRadio1">Male</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="t_gender" id="inlineRadio2" value="female">
+                                <input class="form-check-input" type="radio" name="t_gender" id="inlineRadio2"
+                                    value="female">
                                 <label class="form-check-label" for="inlineRadio2">Female</label>
                             </div>
                         </div>
-
                         <div class="form-group">
-                            <div >
-                                
+                            <div>
+
                                 <label class="">Joining Date</label>
                                 <input type="date" value="" class="form-control" name="t_joining_date">
                             </div>
-                            
-
                         </div>
                         <div class="row">
                             <div class="input-field col s6">
@@ -81,21 +79,16 @@ if(isset($resSMS)){
                                 <input type="file" name="t_image">
                             </div>
                         </div>
-
-                            <div class="">
-                                 
-                                <div class="form-group ">
+                        <div class="">
+                            <div class="form-group ">
                                 <label for="inputState">Status</label>
                                 <select id="inputState" class="form-control" name="t_status">
                                     <option selected disabled>Choose...</option>
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
-                                </div>
-                            
                             </div>
-
-
+                        </div>
                         <div class="row">
                             <div class="input-field col s12">
                                 <i class="waves-effect waves-light btn-large waves-input-wrapper"><input type="submit"
@@ -108,4 +101,3 @@ if(isset($resSMS)){
         </div>
     </div>
 </div>
-
