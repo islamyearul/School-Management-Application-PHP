@@ -168,8 +168,8 @@
                              aria-hidden="true"></i> Exam Marks</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
-                             <li><a href="ad-firstterminal-exam.php">Add Marks</a></li>
-                             <li><a href="ad-secondterminal-exam.php">All Marks</a></li>
+                             <li><a href="ad-exam-marks-all.php">All Marks</a></li>
+                             <li><a href="ad-exam-marks-add.php">Add Marks</a></li>
 
                              <!-- <li><a href="admin-exam-group-all.php">Final Exam</a></li>
                                     <li><a href="admin-exam-group-add.php">Create New Groups</a></li> -->

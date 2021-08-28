@@ -135,14 +135,14 @@
                         elseif($view == "add-exam-group"){
                             include("views/admin-exam-group-add.php");
                         }
-                        elseif($view == "first-terminal-exam-marks"){
-                            include("views/admin-firstterminal-exam.php");
+                        elseif($view == "exam-marks-edit"){
+                            include("views/admin-exam-marks-edit.php");
                         }
-                        elseif($view == "second-terminal-exam-marks"){
-                            include("views/admin-secondterminal-exam.php");
+                        elseif($view == "exam-marks-all"){
+                            include("views/admin-exam-marks-all.php");
                         }
-                        elseif($view == "final-exam-marks"){
-                            include("views/admin-final-exam.php");
+                        elseif($view == "exam-marks-add"){
+                            include("views/admin-exam-marks-add.php");
                         }
                         elseif($view == "student-result"){
                             include("views/admin-student-result.php");
