@@ -11,11 +11,14 @@ $exams = $crud->select($examSQL);
 $subjectSQL = "SELECT * FROM `subject`";
 $subjects = $crud->select($subjectSQL);
 
+$gradeSQL = "SELECT * FROM `grade`";
+$grades = $crud->select($gradeSQL);
+
 
 
 if(isset($_POST['add_exam_marks'])){
     extract($_POST);
-    $examMarksSQL = "INSERT INTO `exam_marks`( `student_id`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `comment`) VALUES ('$std_id','$subject','$class','$session','$exam','$marks_obtain','$total_marks','$comments')";
+    $examMarksSQL = "INSERT INTO `exam_marks`(`student_id`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `result`, `comment`) VALUES ('$std_id','$subject','$class','$session','$exam','$marks_obtain','$total_marks', '$result','$comments')";
     $addMarkd  = $crud->insert($examMarksSQL);
 
     if(isset($addMarkd)){
@@ -40,7 +43,7 @@ if(isset($_POST['add_exam_marks'])){
                     <h4>Add Exam Marks</h4>
                 </div>
                 <div class="tab-inn">
-                    <form action="" method="post" enctype="multipart/form-data">
+                    <form action="" method="post">
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student ID</label>
@@ -99,7 +102,7 @@ if(isset($_POST['add_exam_marks'])){
 
                         <div class="row">
                             <div class=" col s12">
-                                <label class="">Marks Obtain</label>
+                                <label class="" id="marksObtain">Marks Obtain</label>
                                 <input type="number" value="" class="validate" required name="marks_obtain">
                             </div>
                         </div>
@@ -107,6 +110,12 @@ if(isset($_POST['add_exam_marks'])){
                             <div class=" col s12">
                                 <label class="">Marks Total</label>
                                 <input type="number" value="" class="validate" required name="total_marks">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Result</label>
+                                <input type="text" value="" id="marksres" class="validate" required name="result">
                             </div>
                         </div>
                         <div class="row">
@@ -127,3 +136,37 @@ if(isset($_POST['add_exam_marks'])){
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+    $("#marksres").focus(function(){
+        var marks = $("#marksObtain").val();
+
+        $("#marksres").val(marks);
+    
+        //         var res;
+        // let greeting;
+        // if (marks > 80) {
+        //     res = "A+";
+        // } 
+        // else if (marks > 70) {
+        //     res = "A";
+        // }
+        // else if (marks > 60) {
+        //     res = "A-";
+        // }
+        // else if (marks > 50) {
+        //     res = "B";
+        // }
+        // else if (marks > 40) {
+        //     res = "C";
+        // }
+        // else if (marks > 33) {
+        //     res = "D";
+        // }
+        // else {
+        //     res = "F";
+        // }
+        
+     });
+});
+</script>

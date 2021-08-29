@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 24, 2021 at 07:44 PM
+-- Generation Time: Aug 29, 2021 at 12:38 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -20,6 +20,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `school_management_system_2021`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_class` (IN `cname` LONGTEXT, IN `cnamenumeric` LONGTEXT, IN `cteacherid` INT(11))  BEGIN
+INSERT INTO `class`(`name`, `name_numeric`, `teacher_id`) VALUES (cname, cnamenumeric, cteacherid);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_grade` (IN `gname` LONGTEXT, IN `gpoint` LONGTEXT, IN `marksfrom` INT(11), IN `marksupto` INT(11), IN `gcomments` LONGTEXT)  BEGIN
+INSERT INTO `grade`( `name`, `grade_point`, `mark_from`, `mark_upto`, `comment`) VALUES (gname, gpoint, marksfrom, marksupto, gcomments);
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_subject` (IN `sname` LONGTEXT, IN `classid` INT(11), IN `teacherid` INT(11))  BEGIN
+INSERT INTO `subject`( `name`, `class_id`, `teacher_id`) VALUES (sname, classid, teacherid);
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -142,9 +160,9 @@ CREATE TABLE `at_add_attendance` (
 --
 
 INSERT INTO `at_add_attendance` (`ID`, `Class`, `Student_Name`, `Attendance`, `Teachers_Comnt`, `Student_Id`) VALUES
-(2, 'Class 1', 'Hasan', 'Present', 'Good', 147852),
-(3, 'Class 5', 'Shanto', 'Present', 'NA', 1459632),
-(5, 'Class 5', 'Adnan Habib Rommel', 'Present', 'NA', 695847);
+(2, '1', 'Hasan', 'Present', 'Good', 147852),
+(3, '2', 'Shanto', 'Present', 'NA', 1459632),
+(5, '3', 'Adnan Habib Rommel', '695847', 'haaaa', 695847);
 
 -- --------------------------------------------------------
 
@@ -166,7 +184,8 @@ CREATE TABLE `class` (
 INSERT INTO `class` (`class_id`, `name`, `name_numeric`, `teacher_id`) VALUES
 (2, 'KG', 'KG1', 2),
 (3, 'Primary One', 'Primary 1', 2),
-(4, 'PRIMARY THREE', 'PRY 3', 4);
+(4, 'PRIMARY THREE', 'PRY 3', 4),
+(6, 'SIX', '6', 8);
 
 -- --------------------------------------------------------
 
@@ -175,26 +194,27 @@ INSERT INTO `class` (`class_id`, `name`, `name_numeric`, `teacher_id`) VALUES
 --
 
 CREATE TABLE `class_routine` (
+  `id` int(11) NOT NULL,
   `day` varchar(50) NOT NULL,
   `10:00-11:00` varchar(50) NOT NULL,
   `11:00-12:00` varchar(50) NOT NULL,
   `12:00-01:00` varchar(50) NOT NULL,
-  `01:00-02:00` varchar(50) NOT NULL,
   `02:00-03:00` varchar(50) NOT NULL,
-  `03:00-04:00` varchar(50) NOT NULL
+  `03:00-04:00` varchar(50) NOT NULL,
+  `04:00-05:00` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `class_routine`
 --
 
-INSERT INTO `class_routine` (`day`, `10:00-11:00`, `11:00-12:00`, `12:00-01:00`, `01:00-02:00`, `02:00-03:00`, `03:00-04:00`) VALUES
-('Saturday', 'Bangla', 'English', 'Math', 'Bangladesh and global studies', 'Religion', 'Physical education and health'),
-('Sunday', 'Physical education and health', 'Religion', 'Math', 'Bangla', 'Bangladesh and global studies', 'English'),
-('Monday', 'Bangla', 'English', 'Bangladesh and global studies', 'Math', 'Religion', 'Physical education and health'),
-('Tuesday', 'English', 'Bangla', 'Bangladesh and global studies', 'Math', 'Physical education and health', 'Religion'),
-('Wednesday', 'Bangladesh and global studies', 'English', 'Bangla', 'Math', 'Religion', 'Physical education and health'),
-('Thursday', 'Bangladesh and global studies', 'Bangla', 'Math', 'Religion', 'English', 'Physical education and health');
+INSERT INTO `class_routine` (`id`, `day`, `10:00-11:00`, `11:00-12:00`, `12:00-01:00`, `02:00-03:00`, `03:00-04:00`, `04:00-05:00`) VALUES
+(1, 'Saturday', 'Bangla', 'English', 'Math', 'Bangladesh and global studies', 'Religion', 'Physical education and health'),
+(2, 'Sunday', 'Physical education and health', 'Religion', 'Math', 'Bangla', 'Bangladesh and global studies', 'English'),
+(3, 'Monday', 'Bangla', 'English', 'Bangladesh and global studies', 'Math', 'Religion', 'Physical education and health'),
+(4, 'Tuesday', 'English', 'Bangla', 'Bangladesh and global studies', 'Math', 'Physical education and health', 'Religion'),
+(5, 'Wednesday', 'Bangladesh and global studies', 'English', 'Bangla', 'Math', 'Religion', 'Physical education and health'),
+(6, 'Thursday', 'Bangladesh and global studies', 'Bangla', 'Math', 'Religion', 'English', 'Physical education and health....');
 
 -- --------------------------------------------------------
 
@@ -346,12 +366,15 @@ CREATE TABLE `course_view` (
 
 CREATE TABLE `examquestion` (
   `examquestion_id` int(11) NOT NULL,
-  `name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `exam` varchar(100) NOT NULL,
+  `class` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `teachers` varchar(50) NOT NULL,
+  `session` varchar(50) NOT NULL,
   `title` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `description` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `file_name` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `file_type` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `class_id` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `timestamp` longtext CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `status` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -360,8 +383,11 @@ CREATE TABLE `examquestion` (
 -- Dumping data for table `examquestion`
 --
 
-INSERT INTO `examquestion` (`examquestion_id`, `name`, `title`, `description`, `file_name`, `file_type`, `class_id`, `timestamp`, `status`) VALUES
-(8, 'Optimum', 'Mathematics', 'THIS EXAM IS FOR PRIMARY ONE PUPILS, PLEASE READ AND GIVE FEEDBACK SIR. THANKS', 'FOLUSO.docx', '', '3', 'Sat, 08 July 2017', 'Approved');
+INSERT INTO `examquestion` (`examquestion_id`, `subject`, `exam`, `class`, `teachers`, `session`, `title`, `description`, `file_name`, `file_type`, `timestamp`, `status`) VALUES
+(8, 'Optimum', '', '3', '', '', 'Mathematics', 'THIS EXAM IS FOR PRIMARY ONE PUPILS, PLEASE READ AND GIVE FEEDBACK SIR. THANKS', 'FOLUSO.docx', '', 'Sat, 08 July 2017', 'Approved'),
+(10, '1', '1', '2', '2', '11', 'fsaf', 'gryreya', '2021_08_22_15-40-31_pm.pdf', 'application/pdf', '2021-08-27 11:08:24', 'Inapprove'),
+(11, '1', '1', '2', '2', '11', 'fsaf', 'gryreya', '2021_08_22_15-40-31_pm.pdf', 'application/pdf', '2021-08-27 11:08:31', 'Inapprove'),
+(12, '1', '1', '2', '2', '11', 'fsaf', 'gryreya', '2021_08_22_15-41-58_pm.pdf', 'application/pdf', '2021-08-28 22:04:06', 'Inapprove');
 
 -- --------------------------------------------------------
 
@@ -371,19 +397,55 @@ INSERT INTO `examquestion` (`examquestion_id`, `name`, `title`, `description`, `
 
 CREATE TABLE `exam_all` (
   `exam_id` int(11) NOT NULL,
-  `exam_name` varchar(100) NOT NULL
+  `exam_name` varchar(100) NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `start_time` time NOT NULL,
+  `duration` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `exam_all`
 --
 
-INSERT INTO `exam_all` (`exam_id`, `exam_name`) VALUES
-(1, '1st Terminal Exam'),
-(2, 'Middle Terminal Exam'),
-(3, 'Final Terminal Exam'),
-(4, 'Admission Test'),
-(5, 'Monthly Assesment');
+INSERT INTO `exam_all` (`exam_id`, `exam_name`, `start_date`, `start_time`, `duration`) VALUES
+(1, '1st Terminal Exam', '2021-08-24', '10:00:00', '3 hours'),
+(2, 'Middle Terminal Exam', '2021-08-09', '10:00:00', '3 h'),
+(3, 'Final Terminal Exam', '2021-08-16', '03:00:00', '2 h'),
+(4, 'Admission Test', '2021-08-31', '11:00:00', '1 h'),
+(5, 'Monthly Assesment', '2021-08-27', '10:00:00', '30 min'),
+(6, 'sdfdsfds', '2021-08-05', '10:03:00', 'f4fhh'),
+(8, 'dsgdsgds', '2021-08-17', '08:22:00', 'sdgsdgsdg'),
+(9, 'dsgdsgds', '2021-08-17', '08:22:00', 'ggggg');
+
+--
+-- Triggers `exam_all`
+--
+DELIMITER $$
+CREATE TRIGGER `trash_exam` BEFORE DELETE ON `exam_all` FOR EACH ROW INSERT INTO exam_all_trash VALUES ('', OLD.exam_id, OLD.exam_name, OLD.start_date, OLD.start_time, OLD.duration)
+$$
+DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `exam_all_trash`
+--
+
+CREATE TABLE `exam_all_trash` (
+  `trash_id` int(11) NOT NULL,
+  `exam_id` int(11) NOT NULL,
+  `exam_name` varchar(100) NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `start_time` time NOT NULL,
+  `duration` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `exam_all_trash`
+--
+
+INSERT INTO `exam_all_trash` (`trash_id`, `exam_id`, `exam_name`, `start_date`, `start_time`, `duration`) VALUES
+(1, 10, 'dsgdsgds', '2021-08-17', '08:22:00', 'sdgsdgsdg');
 
 -- --------------------------------------------------------
 
@@ -396,9 +458,11 @@ CREATE TABLE `exam_marks` (
   `student_id` int(11) NOT NULL,
   `subject_id` int(11) NOT NULL,
   `class_id` int(11) NOT NULL,
+  `session_id` int(11) NOT NULL,
   `exam_id` int(11) NOT NULL,
   `mark_obtained` int(11) NOT NULL DEFAULT 0,
   `mark_total` int(11) NOT NULL DEFAULT 100,
+  `result` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `comment` longtext COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -406,15 +470,14 @@ CREATE TABLE `exam_marks` (
 -- Dumping data for table `exam_marks`
 --
 
-INSERT INTO `exam_marks` (`mark_id`, `student_id`, `subject_id`, `class_id`, `exam_id`, `mark_obtained`, `mark_total`, `comment`) VALUES
-(1, 8, 6, 3, 1, 0, 100, ''),
-(2, 9, 6, 3, 1, 0, 100, ''),
-(3, 10, 6, 3, 1, 0, 100, ''),
-(4, 12, 6, 3, 1, 0, 100, ''),
-(5, 14, 6, 3, 1, 0, 100, ''),
-(6, 5, 1, 2, 1, 50, 100, ''),
-(7, 11, 1, 2, 1, 70, 100, ''),
-(8, 13, 1, 2, 1, 70, 100, '');
+INSERT INTO `exam_marks` (`mark_id`, `student_id`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `result`, `comment`) VALUES
+(6, 14, 0, 3, 0, 1, 50, 100, '', 'pass'),
+(7, 11, 1, 2, 12, 1, 33, 100, '', 'fail'),
+(8, 13, 1, 2, 13, 1, 70, 100, '', 'pass'),
+(10, 21, 2, 2, 8, 3, 25, 100, '', 'fail'),
+(11, 11, 2, 4, 14, 3, 33, 100, '', 'pass'),
+(12, 11, 2, 4, 14, 3, 33, 100, '', 'pass'),
+(13, 20, 2, 2, 15, 3, 44, 100, 'B', 'pass');
 
 -- --------------------------------------------------------
 
@@ -423,13 +486,14 @@ INSERT INTO `exam_marks` (`mark_id`, `student_id`, `subject_id`, `class_id`, `ex
 --
 
 CREATE TABLE `feescollection` (
-  `id` int(10) UNSIGNED NOT NULL,
-  `Student` int(10) UNSIGNED NOT NULL,
-  `Class` int(10) UNSIGNED DEFAULT NULL,
-  `Session` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
+  `student_id` int(10) NOT NULL,
+  `student_name` varchar(50) NOT NULL,
+  `Class` int(10) DEFAULT NULL,
+  `Session` int(10) NOT NULL,
+  `total_fees` int(11) NOT NULL,
   `PaidAmount` int(11) NOT NULL,
-  `Balance` int(10) UNSIGNED DEFAULT NULL,
-  `Branch` int(10) UNSIGNED NOT NULL,
+  `due_balance` int(10) DEFAULT NULL,
   `Date` date DEFAULT NULL,
   `Remarks` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -438,10 +502,11 @@ CREATE TABLE `feescollection` (
 -- Dumping data for table `feescollection`
 --
 
-INSERT INTO `feescollection` (`id`, `Student`, `Class`, `Session`, `PaidAmount`, `Balance`, `Branch`, `Date`, `Remarks`) VALUES
-(0, 0, 0, 1, 11000, 0, 1, '2018-07-30', 'Paid'),
-(1, 1, 1, 1, 1000, 1, 1, '2018-05-02', NULL),
-(2, 1, 1, 1, 3000, 1, 2, '2018-05-03', NULL);
+INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES
+(1, 0, '', 0, 1, 0, 11000, 0, '2018-07-30', 'Paid'),
+(2, 1, '', 1, 1, 0, 1000, 1, '2018-05-02', NULL),
+(3, 1, '', 1, 1, 0, 3000, 1, '2018-05-03', NULL),
+(4, 2, 'Yearul', 2, 8, 12000, 5000, 7000, '2021-08-25', 'Dueee');
 
 -- --------------------------------------------------------
 
@@ -495,7 +560,8 @@ INSERT INTO `grade` (`grade_id`, `name`, `grade_point`, `mark_from`, `mark_upto`
 (4, 'B', '3.00', 50, 59, 'Middle'),
 (5, 'C', '2.00', 40, 49, 'Not Bad'),
 (6, 'D', '1.00', 33, 39, 'Pass'),
-(7, 'F', '0.00', 0, 32, 'Fail');
+(7, 'F', '0.00', 0, 32, 'Fail'),
+(8, 'sdf', '45', 43, 55, 'fdg');
 
 -- --------------------------------------------------------
 
@@ -882,11 +948,10 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `name`, `class_id`, `teacher_id`) VALUES
-(1, 'Mathematics', 2, 2),
+(1, 'Mathematics', 6, 6),
 (2, 'Economics', 2, 2),
 (4, 'Social Studies', 2, 2),
-(5, 'Science', 3, 2),
-(6, 'Mathematics', 3, 4);
+(11, 'Social Science', 3, 4);
 
 -- --------------------------------------------------------
 
@@ -979,6 +1044,12 @@ ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`);
 
 --
+-- Indexes for table `class_routine`
+--
+ALTER TABLE `class_routine`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
@@ -1017,6 +1088,12 @@ ALTER TABLE `exam_all`
   ADD PRIMARY KEY (`exam_id`);
 
 --
+-- Indexes for table `exam_all_trash`
+--
+ALTER TABLE `exam_all_trash`
+  ADD PRIMARY KEY (`trash_id`);
+
+--
 -- Indexes for table `exam_marks`
 --
 ALTER TABLE `exam_marks`
@@ -1027,9 +1104,8 @@ ALTER TABLE `exam_marks`
 --
 ALTER TABLE `feescollection`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `Student` (`Student`),
-  ADD KEY `Session` (`Session`),
-  ADD KEY `Branch` (`Branch`);
+  ADD KEY `Student` (`student_id`),
+  ADD KEY `Session` (`Session`);
 
 --
 -- Indexes for table `get_in_touch`
@@ -1163,13 +1239,19 @@ ALTER TABLE `apply_course`
 -- AUTO_INCREMENT for table `at_add_attendance`
 --
 ALTER TABLE `at_add_attendance`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `class_routine`
+--
+ALTER TABLE `class_routine`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -1199,19 +1281,31 @@ ALTER TABLE `course_time_table`
 -- AUTO_INCREMENT for table `examquestion`
 --
 ALTER TABLE `examquestion`
-  MODIFY `examquestion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `examquestion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `exam_all`
 --
 ALTER TABLE `exam_all`
-  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `exam_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `exam_all_trash`
+--
+ALTER TABLE `exam_all_trash`
+  MODIFY `trash_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `exam_marks`
 --
 ALTER TABLE `exam_marks`
-  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT for table `feescollection`
+--
+ALTER TABLE `feescollection`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `get_in_touch`
@@ -1223,7 +1317,7 @@ ALTER TABLE `get_in_touch`
 -- AUTO_INCREMENT for table `grade`
 --
 ALTER TABLE `grade`
-  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `grade_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `holiday`
@@ -1301,7 +1395,7 @@ ALTER TABLE `stuff`
 -- AUTO_INCREMENT for table `subject`
 --
 ALTER TABLE `subject`
-  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `subject_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `teachers`

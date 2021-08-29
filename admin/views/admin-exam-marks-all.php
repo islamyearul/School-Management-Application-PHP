@@ -40,6 +40,7 @@ if(isset($_GET['status'])){
                                     <th>Exam Id</th>
                                     <th>Obtain Marks</th>
                                     <th>Total Marks</th>
+                                    <th>Result</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                     <th>Comments</th>
@@ -57,8 +58,9 @@ if(isset($_GET['status'])){
                                     <td><?php echo $mark['exam_id']; ?></td>
                                     <td><?php echo $mark['mark_obtained']; ?></td>
                                     <td><?php echo $mark['mark_total']; ?></td>
+                                    <td><?php echo $mark['result']; ?></td>
                                     <td>
-                                        <?php if($mark['mark_obtained'] > 33){?>
+                                        <?php if($mark['mark_obtained'] > 32){?>
                                            <span class="label label-success">Pass</span>
                                         <?php }else{?>
                                             <span class="label label-danger">Fail</span>
