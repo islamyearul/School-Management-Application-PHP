@@ -21,7 +21,7 @@ if(isset($_GET['status'])){
 }
 if(isset($_POST['update_exam_marks'])){
     extract($_POST);
-    $examMarksupSQL = "UPDATE `exam_marks` SET `student_id`='$std_id',`subject_id`='$subject',`class_id`='$class',`session_id`='$session',`exam_id`='$exam',`mark_obtained`='$marks_obtain',`mark_total`='$total_marks',`comment`='$comments' WHERE mark_id = $up_id";
+    $examMarksupSQL = "UPDATE `exam_marks` SET `student_id`='$std_id',`subject_id`='$subject',`class_id`='$class',`session_id`='$session',`exam_id`='$exam',`mark_obtained`='$marks_obtain',`mark_total`='$total_marks', `result`='$result',`comment`='$comments' WHERE mark_id = $up_id";
     $updateMarkd  = $crud->insert($examMarksupSQL);
 
     if(isset($updateMarkd)){
@@ -107,13 +107,19 @@ if(isset($_POST['update_exam_marks'])){
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Marks Obtain</label>
-                                <input type="number" value="<?php echo $mark['mark_obtained']; ?>" class="validate" required name="marks_obtain">
+                                <input type="number" id="marksObtain" value="<?php echo $mark['mark_obtained']; ?>" class="validate" required name="marks_obtain">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Marks Total</label>
                                 <input type="number" value="<?php echo $mark['mark_total']; ?>" class="validate" required name="total_marks">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Result</label>
+                                <input type="text" value="<?php echo $mark['result']; ?>" id="marksres" class="validate" required name="result">
                             </div>
                         </div>
                         <div class="row">
@@ -134,3 +140,35 @@ if(isset($_POST['update_exam_marks'])){
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+    $("#marksres").focus(function(){
+        var marks = $("#marksObtain").val();  
+         var res;
+        if (marks >= 80) {
+            res = "A+";
+        } 
+        else if (marks >= 70) {
+            res = "A";
+        }
+        else if (marks >= 60) {
+            res = "A-";
+        }
+        else if (marks >= 50) {
+            res = "B";
+        }
+        else if (marks >= 40) {
+            res = "C";
+        }
+        else if (marks >= 33) {
+            res = "D";
+        } else {
+            res = "F";
+
+        }
+
+        $("#marksres").val(res);
+        
+     });
+});
+</script>

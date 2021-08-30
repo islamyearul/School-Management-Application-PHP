@@ -21,6 +21,8 @@
     <link href="../assets/css/bootstrap.css" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet" />
     <link href="../assets/css/multi-step-form.css" rel="stylesheet" />
+
+    <link href="../assets/css/islam-style.css" rel="stylesheet" />
     <!-- RESPONSIVE.CSS ONLY FOR MOBILE AND TABLET VIEWS -->
     <link href="../assets/css/style-mob.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

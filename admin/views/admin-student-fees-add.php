@@ -5,10 +5,13 @@ $classes = $crud->select($classSQL);
 $sessionSQL = "SELECT * FROM `session`";
 $sessions = $crud->select($sessionSQL);
 
+$feescatSQL = "SELECT * FROM `fees_cat`";
+$feescats = $crud->select($feescatSQL);
+
 
 if(isset($_POST['add_fees'])){
     extract($_POST);
-    $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id', '$std_name', '$class_id', '$session_id', '$total_fees', '$paid_ammount', '$due_balance', '$date', '$remarks')";
+    $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `fees_cat`,  `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id', '$std_name', '$class_id', '$session_id','$feescat', '$total_fees', '$paid_ammount', '$due_balance', '$date', '$remarks')";
 
     $returnSMS = $crud->insert($addfeesSQL);
     if(isset($returnSMS)){
@@ -34,13 +37,13 @@ if(isset($_POST['add_fees'])){
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Id</label>
-                                <input type="text" value="" class="validate" required name="std_id">
+                                <input type="text" value="" class="validate" required name="std_id" id="std-id-for-fees">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Name</label>
-                                <input type="text" value="" class="validate" required name="std_name">
+                                <input type="text" value="" class="validate" required name="std_name" id="std-name-for-fees">
                             </div>
                         </div>
                         <div class="">
@@ -50,7 +53,7 @@ if(isset($_POST['add_fees'])){
                                     style="font-size: 15px;">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
-                                        <option value="<?php echo $classe['class_id']; ?>"><?php echo $classe['name']; ?></option>
+                                        <option value="<?php echo $classe['name']; ?>"><?php echo $classe['name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -62,7 +65,19 @@ if(isset($_POST['add_fees'])){
                                     style="font-size: 15px;">
                                     <option selected disabled>---Choose Session---</option>
                                     <?php while($session = mysqli_fetch_assoc($sessions)){ ?>
-                                        <option value="<?php echo $session['session_id']; ?>"><?php echo $session['name']; ?></option>
+                                        <option value="<?php echo $session['name']; ?>"><?php echo $session['name']; ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-group ">
+                                <label for="inputState">Fees Category</label>
+                                <select id="inputState" class="form-control" name="feescat"
+                                    style="font-size: 15px;">
+                                    <option selected disabled>---Choose Fees Category---</option>
+                                    <?php while($feescat = mysqli_fetch_assoc($feescats)){ ?>
+                                        <option value="<?php echo $feescat['fees_cat_name']; ?>"><?php echo $feescat['fees_cat_name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -109,3 +124,17 @@ if(isset($_POST['add_fees'])){
         </div>
     </div>
 </div>
+
+<script>
+$(document).ready(function () {
+
+    $("#std-name-for-fees").focus(function(){
+
+        var stdidfees = $("#std-id-for-fees").val();  
+       
+        $.post("bind/stddata.php",{ fid: stdidfees }, function(data){
+            $("#std-name-for-fees").val(data);
+        });
+     });
+});
+</script>

@@ -252,6 +252,15 @@
                         elseif($view == "edit-fees"){
                             include("views/admin-student-fees-edit.php");
                         }
+                        elseif($view == "edit-feescat"){
+                            include("views/admin-fees-cat-edit.php");
+                        }
+                        elseif($view == "all-feescat"){
+                            include("views/admin-fees-cat-all.php");
+                        }
+                        elseif($view == "add-feescat"){
+                            include("views/admin-fees-cat-add.php");
+                        }
 
 
                         elseif($view == ""){

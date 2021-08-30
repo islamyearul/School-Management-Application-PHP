@@ -56,7 +56,7 @@ if(isset($_POST['add_exam_marks'])){
                                 <select id="inputState" class="form-control" name="subject" style="font-size: 15px;">
                                     <option selected disabled>---Choose Subject---</option>
                                     <?php while($subject = mysqli_fetch_assoc($subjects)){ ?>
-                                    <option value="<?php echo $subject['subject_id']; ?>">
+                                    <option value="<?php echo $subject['name']; ?>">
                                         <?php echo $subject['name']; ?>
                                     </option>
                                     <?php } ?>
@@ -69,7 +69,7 @@ if(isset($_POST['add_exam_marks'])){
                                 <select id="inputState" class="form-control" name="class" style="font-size: 15px;">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
-                                    <option value="<?php echo $classe['class_id']; ?>"><?php echo $classe['name']; ?>
+                                    <option value="<?php echo $classe['name']; ?>"><?php echo $classe['name']; ?>
                                     </option>
                                     <?php } ?>
                                 </select>
@@ -81,7 +81,7 @@ if(isset($_POST['add_exam_marks'])){
                                 <select id="inputState" class="form-control" name="session" style="font-size: 15px;">
                                     <option selected disabled>---Choose Session---</option>
                                     <?php while($session = mysqli_fetch_assoc($sessions)){ ?>
-                                    <option value="<?php echo $session['session_id']; ?>">
+                                    <option value="<?php echo $session['name']; ?>">
                                         <?php echo $session['name']; ?></option>
                                     <?php } ?>
                                 </select>
@@ -93,7 +93,7 @@ if(isset($_POST['add_exam_marks'])){
                                 <select id="inputState" class="form-control" name="exam" style="font-size: 15px;">
                                     <option selected disabled>---Choose Exam---</option>
                                     <?php while($exam = mysqli_fetch_assoc($exams)){ ?>
-                                    <option value="<?php echo $exam['exam_id']; ?>"><?php echo $exam['exam_name']; ?>
+                                    <option value="<?php echo $exam['exam_name']; ?>"><?php echo $exam['exam_name']; ?>
                                     </option>
                                     <?php } ?>
                                 </select>
@@ -102,8 +102,8 @@ if(isset($_POST['add_exam_marks'])){
 
                         <div class="row">
                             <div class=" col s12">
-                                <label class="" id="marksObtain">Marks Obtain</label>
-                                <input type="number" value="" class="validate" required name="marks_obtain">
+                                <label class="" >Marks Obtain</label>
+                                <input type="number" value="" id="marksObtain" class="validate" required name="marks_obtain">
                             </div>
                         </div>
                         <div class="row">
@@ -139,33 +139,31 @@ if(isset($_POST['add_exam_marks'])){
 <script>
 $(document).ready(function () {
     $("#marksres").focus(function(){
-        var marks = $("#marksObtain").val();
+        var marks = $("#marksObtain").val();  
+         var res;
+        if (marks >= 80) {
+            res = "A+";
+        } 
+        else if (marks >= 70) {
+            res = "A";
+        }
+        else if (marks >= 60) {
+            res = "A-";
+        }
+        else if (marks >= 50) {
+            res = "B";
+        }
+        else if (marks >= 40) {
+            res = "C";
+        }
+        else if (marks >= 33) {
+            res = "D";
+        } else {
+            res = "F";
 
-        $("#marksres").val(marks);
-    
-        //         var res;
-        // let greeting;
-        // if (marks > 80) {
-        //     res = "A+";
-        // } 
-        // else if (marks > 70) {
-        //     res = "A";
-        // }
-        // else if (marks > 60) {
-        //     res = "A-";
-        // }
-        // else if (marks > 50) {
-        //     res = "B";
-        // }
-        // else if (marks > 40) {
-        //     res = "C";
-        // }
-        // else if (marks > 33) {
-        //     res = "D";
-        // }
-        // else {
-        //     res = "F";
-        // }
+        }
+
+        $("#marksres").val(res);
         
      });
 });

@@ -129,6 +129,10 @@
                              </li>
                              <li><a href="ad-student-fees-add.php">Add New Students Fees</a>
                              </li>
+                             <li><a href="ad-fees-cat-all.php">ALL Fees Category </a>
+                             </li>
+                             <li><a href="ad-fees-cat-add.php">Add Fees Category </a>
+                             </li>
                          </ul>
                      </div>
                  </li>
