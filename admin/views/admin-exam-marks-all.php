@@ -34,6 +34,7 @@ if(isset($_GET['status'])){
                                     <th>SL</th>
                                     <th>Marks Id</th>
                                     <th>Student Id</th>
+                                    <th>Student Name</th>
                                     <th>Subject Id</th>
                                     <th>Class Id</th>
                                     <th>Session Id</th>
@@ -41,6 +42,7 @@ if(isset($_GET['status'])){
                                     <th>Obtain Marks</th>
                                     <th>Total Marks</th>
                                     <th>Result</th>
+                                    <th>Point</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                     <th>Comments</th>
@@ -52,6 +54,7 @@ if(isset($_GET['status'])){
                                     <td><?php echo $i++; ?></td>
                                     <td><?php echo $mark['mark_id']; ?></td>
                                     <td><?php echo $mark['student_id']; ?></td>
+                                    <td><?php echo $mark['student_name']; ?></td>
                                     <td><?php echo $mark['subject_id']; ?></td>
                                     <td><?php echo $mark['class_id']; ?></td>
                                     <td><?php echo $mark['session_id']; ?></td>
@@ -59,6 +62,7 @@ if(isset($_GET['status'])){
                                     <td><?php echo $mark['mark_obtained']; ?></td>
                                     <td><?php echo $mark['mark_total']; ?></td>
                                     <td><?php echo $mark['result']; ?></td>
+                                    <td><?php echo $mark['point']; ?></td>
                                     <td>
                                         <?php if($mark['mark_obtained'] > 32){?>
                                            <span class="label label-success">Pass</span>

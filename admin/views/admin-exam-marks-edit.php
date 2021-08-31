@@ -21,7 +21,11 @@ if(isset($_GET['status'])){
 }
 if(isset($_POST['update_exam_marks'])){
     extract($_POST);
-    $examMarksupSQL = "UPDATE `exam_marks` SET `student_id`='$std_id',`subject_id`='$subject',`class_id`='$class',`session_id`='$session',`exam_id`='$exam',`mark_obtained`='$marks_obtain',`mark_total`='$total_marks', `result`='$result',`comment`='$comments' WHERE mark_id = $up_id";
+    $subject = @$subject;
+    $class = @$class;
+    $session = @$session;
+
+    $examMarksupSQL = "UPDATE `exam_marks` SET `student_id`='$std_id',`student_name`='$std_name',`subject_id`='$subject',`class_id`='$class',`session_id`='$session',`exam_id`='$exam',`mark_obtained`='$marks_obtain',`mark_total`='$total_marks', `result`='$result',`point`='$point',`comment`='$comments' WHERE mark_id = $up_id";
     $updateMarkd  = $crud->insert($examMarksupSQL);
 
     if(isset($updateMarkd)){
@@ -43,10 +47,16 @@ if(isset($_POST['update_exam_marks'])){
                 </div>
                 <div class="tab-inn">
                     <form action="" method="post" enctype="multipart/form-data">
-                        <div class="row">
+                    <div class="row">
                             <div class=" col s12">
                                 <label class="">Student ID</label>
-                                <input type="text" value="<?php echo $mark['student_id']; ?>" class="validate" required name="std_id">
+                                <input type="text" value="<?php echo $mark['student_id']; ?>" class="validate" required name="std_id" id="std-id-for-fees">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Student name</label>
+                                <input type="text" value="<?php echo $mark['student_name']; ?>" class="validate" required name="std_name" id="std-name-for-fees">
                             </div>
                         </div>
                         <input type="hidden" name="up_id" value="<?php echo $mark['mark_id']; ?>">
@@ -56,8 +66,8 @@ if(isset($_POST['update_exam_marks'])){
                                 <select id="inputState" class="form-control" name="subject" style="font-size: 15px;">
                                     <option selected disabled>---Choose Subject---</option>
                                     <?php while($subject = mysqli_fetch_assoc($subjects)){ ?>
-                                    <option value="<?php echo $subject['subject_id']; ?>" 
-                                    <?php if($subject['subject_id']==$mark['subject_id']){ echo "selected";} ?>>
+                                    <option value="<?php echo $subject['name']; ?>" 
+                                    <?php if($subject['name']==$mark['subject_id']){ echo "selected";} ?>>
                                         <?php echo $subject['name']; ?>
                                     </option>
                                     <?php } ?>
@@ -70,8 +80,8 @@ if(isset($_POST['update_exam_marks'])){
                                 <select id="inputState" class="form-control" name="class" style="font-size: 15px;">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
-                                    <option value="<?php echo $classe['class_id']; ?>"
-                                    <?php if($classe['class_id']==$mark['class_id']){ echo "selected";} ?>><?php echo $classe['name']; ?>
+                                    <option value="<?php echo $classe['name']; ?>"
+                                    <?php if($classe['name']==$mark['class_id']){ echo "selected";} ?>><?php echo $classe['name']; ?>
                                     </option>
                                     <?php } ?>
                                 </select>
@@ -83,8 +93,8 @@ if(isset($_POST['update_exam_marks'])){
                                 <select id="inputState" class="form-control" name="session" style="font-size: 15px;">
                                     <option selected disabled>---Choose Session---</option>
                                     <?php while($session = mysqli_fetch_assoc($sessions)){ ?>
-                                    <option value="<?php echo $session['session_id']; ?>"
-                                    <?php if($session['session_id']==$mark['session_id']){ echo "selected";} ?>>
+                                    <option value="<?php echo $session['name']; ?>"
+                                    <?php if($session['name']==$mark['session_id']){ echo "selected";} ?>>
                                         <?php echo $session['name']; ?></option>
                                     <?php } ?>
                                 </select>
@@ -96,8 +106,8 @@ if(isset($_POST['update_exam_marks'])){
                                 <select id="inputState" class="form-control" name="exam" style="font-size: 15px;">
                                     <option selected disabled>---Choose Exam---</option>
                                     <?php while($exam = mysqli_fetch_assoc($exams)){ ?>
-                                    <option value="<?php echo $exam['exam_id']; ?>"
-                                    <?php if($exam['exam_id']==$mark['exam_id']){ echo "selected";} ?>><?php echo $exam['exam_name']; ?>
+                                    <option value="<?php echo $exam['exam_name']; ?>"
+                                    <?php if($exam['exam_name']==$mark['exam_id']){ echo "selected";} ?>><?php echo $exam['exam_name']; ?>
                                     </option>
                                     <?php } ?>
                                 </select>
@@ -120,6 +130,12 @@ if(isset($_POST['update_exam_marks'])){
                             <div class=" col s12">
                                 <label class="">Result</label>
                                 <input type="text" value="<?php echo $mark['result']; ?>" id="marksres" class="validate" required name="result">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Point</label>
+                                <input type="text" value="" id="markpoint" class="validate" required name="point">
                             </div>
                         </div>
                         <div class="row">
@@ -169,6 +185,49 @@ $(document).ready(function () {
 
         $("#marksres").val(res);
         
+     });
+});
+</script>
+<script>
+    $(document).ready(function () {
+        $("#markpoint").focus(function(){
+           
+        var point = $("#marksres").val(); 
+
+            if (point == "A+") {
+                ress = 5.00 ;
+            } 
+            else if (point == "A") {
+                ress = 4.00 ;
+            }
+            else if (point == "A-") {
+                ress = 3.50 ;
+            }
+            else if (point == "B") {
+                ress = 3.00 ;
+            }
+            else if (point == "C") {
+                ress = 2.00 ;
+            }
+            else if (point == "D") {
+                ress = 1.00 ;
+            } else {
+                ress = 0.00 ;
+
+            }
+             $("#markpoint").val(ress);
+        })
+    });
+</script>
+<script>
+$(document).ready(function () {
+    $("#std-name-for-fees").focus(function(){
+        var stdidfees = $("#std-id-for-fees").val();  
+       
+        $.get("bind/stddata.php",{ fid: stdidfees }, function(data){
+            //alert(data);
+            $("#std-name-for-fees").val(data);
+        });
      });
 });
 </script>

@@ -43,14 +43,14 @@ if(isset($_POST['update_fees'])){
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Id</label>
-                                <input type="text" value="<?php echo $fee['student_id']; ?>" class="validate" required name="std_id">
+                                <input type="text" value="<?php echo $fee['student_id']; ?>" class="validate" required name="std_id" id="std-id-for-fees">
                             </div>
                         </div>
                         <input type="hidden" name="up_id" value="<?php echo $fee['id']; ?>">
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Name</label>
-                                <input type="text" value="<?php echo $fee['student_name']; ?>" class="validate" required name="std_name">
+                                <input type="text" value="<?php echo $fee['student_name']; ?>" class="validate" required name="std_name" id="std-name-for-fees">
                             </div>
                         </div>
                         <div class="">
@@ -121,3 +121,15 @@ if(isset($_POST['update_fees'])){
         </div>
     </div>
 </div>
+<script>
+$(document).ready(function () {
+    $("#std-name-for-fees").focus(function(){
+        var stdidfees = $("#std-id-for-fees").val();  
+       
+        $.get("bind/stddata.php",{ fid: stdidfees }, function(data){
+            //alert(data);
+            $("#std-name-for-fees").val(data);
+        });
+     });
+});
+</script>

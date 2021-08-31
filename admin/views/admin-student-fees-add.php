@@ -8,7 +8,6 @@ $sessions = $crud->select($sessionSQL);
 $feescatSQL = "SELECT * FROM `fees_cat`";
 $feescats = $crud->select($feescatSQL);
 
-
 if(isset($_POST['add_fees'])){
     extract($_POST);
     $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `fees_cat`,  `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id', '$std_name', '$class_id', '$session_id','$feescat', '$total_fees', '$paid_ammount', '$due_balance', '$date', '$remarks')";
@@ -20,9 +19,7 @@ if(isset($_POST['add_fees'])){
         echo "<h2 class='text-danger'>Fees Added Error, Please Try Again!!</h2>";
     }
 }
-
 ?>
-
 <!--== Seminar Details ==-->
 <h1>Add Student Fees</h1>
 <div class="sb2-2-3">
@@ -127,14 +124,17 @@ if(isset($_POST['add_fees'])){
 
 <script>
 $(document).ready(function () {
-
     $("#std-name-for-fees").focus(function(){
-
         var stdidfees = $("#std-id-for-fees").val();  
        
-        $.post("bind/stddata.php",{ fid: stdidfees }, function(data){
+        $.get("bind/stddata.php",{ fid: stdidfees }, function(data){
+            //alert(data);
             $("#std-name-for-fees").val(data);
         });
      });
 });
 </script>
+
+    <?php
+    //var_dump($_POST);
+    ?>

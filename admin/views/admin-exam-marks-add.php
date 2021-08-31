@@ -18,7 +18,7 @@ $grades = $crud->select($gradeSQL);
 
 if(isset($_POST['add_exam_marks'])){
     extract($_POST);
-    $examMarksSQL = "INSERT INTO `exam_marks`(`student_id`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `result`, `comment`) VALUES ('$std_id','$subject','$class','$session','$exam','$marks_obtain','$total_marks', '$result','$comments')";
+    $examMarksSQL = "INSERT INTO `exam_marks`(`student_id`, `student_name`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `result`, `point`, `comment`) VALUES ('$std_id', '$std_name','$subject','$class','$session','$exam','$marks_obtain','$total_marks', '$result','$point','$comments')";
     $addMarkd  = $crud->insert($examMarksSQL);
 
     if(isset($addMarkd)){
@@ -47,7 +47,13 @@ if(isset($_POST['add_exam_marks'])){
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student ID</label>
-                                <input type="text" value="" class="validate" required name="std_id">
+                                <input type="text" value="" class="validate" required name="std_id" id="std-id-for-fees">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Student name</label>
+                                <input type="text" value="" class="validate" required name="std_name" id="std-name-for-fees">
                             </div>
                         </div>
                         <div class="">
@@ -120,6 +126,12 @@ if(isset($_POST['add_exam_marks'])){
                         </div>
                         <div class="row">
                             <div class=" col s12">
+                                <label class="">Point</label>
+                                <input type="text" value="" id="markpoint" class="validate" required name="point">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
                                 <label class="">Comments</label>
                                 <input type="text" value="" class="validate" required name="comments">
                             </div>
@@ -162,9 +174,50 @@ $(document).ready(function () {
             res = "F";
 
         }
-
         $("#marksres").val(res);
-        
+     });
+});
+</script>
+<script>
+    $(document).ready(function () {
+        $("#markpoint").focus(function(){
+           
+        var point = $("#marksres").val(); 
+
+            if (point == "A+") {
+                ress = 5.00 ;
+            } 
+            else if (point == "A") {
+                ress = 4.00 ;
+            }
+            else if (point == "A-") {
+                ress = 3.50 ;
+            }
+            else if (point == "B") {
+                ress = 3.00 ;
+            }
+            else if (point == "C") {
+                ress = 2.00 ;
+            }
+            else if (point == "D") {
+                ress = 1.00 ;
+            } else {
+                ress = 0.00 ;
+
+            }
+             $("#markpoint").val(ress);
+        })
+    });
+</script>
+<script>
+$(document).ready(function () {
+    $("#std-name-for-fees").focus(function(){
+        var stdidfees = $("#std-id-for-fees").val();  
+       
+        $.get("bind/stddata.php",{ fid: stdidfees }, function(data){
+            //alert(data);
+            $("#std-name-for-fees").val(data);
+        });
      });
 });
 </script>
