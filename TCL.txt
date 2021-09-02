@@ -1,3 +1,7 @@
 This is a file about TCL
+<<<<<<< HEAD
 
 yearul
+=======
+this is Maruf
+>>>>>>> f86bd437e0f55933259a69e224e1b3c7ec5e8de1
