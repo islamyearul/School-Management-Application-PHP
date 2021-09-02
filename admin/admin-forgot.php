@@ -1,11 +1,9 @@
-<?php include_once("includes/head.php"); 
+<?php 
+include_once("includes/head.php"); 
         include("libraries/database_crud.php");
         $crud = new Database();
 
     if(isset($_POST['forget'])){
-
-        // $e = $_POST['f_email'];
-        // echo $e;
         extract($_POST);
          $takeid = "SELECT * FROM `admin_info` WHERE ad_email = '$f_email'";
         $datas = $crud->select($takeid);
@@ -36,7 +34,6 @@
 				<div class="ad-log-in-con">
 			<div class="log-in-pop-right">
                     <h4>Forgot Password</h4>
-                    <!-- <p>Don't have an account? Create your account. It's take less then a minutes</p> -->
                     <form class="s12" action="" method="POST">
 
                         <div>
@@ -60,9 +57,23 @@
 		</div>
    </section>
 
- <!--Import jQuery before materialize.js-->
+ Import jQuery before materialize.js
  <?php include("includes/script.php") ;?>
 </body>
 
 
 </html>
+
+<?php
+// $to_email = "kolifarhana84@gmail.com";
+// $subject = "Simple Email Test via PHP";
+// $body = "Hi, This is test email send by PHP Script";
+// $headers = "From: sender\'s email";
+
+// if (mail($to_email, $subject, $body, $headers)) {
+//     echo "Email successfully sent to $to_email...";
+// } else {
+//     echo "Email sending failed...";
+// }
+
+?>

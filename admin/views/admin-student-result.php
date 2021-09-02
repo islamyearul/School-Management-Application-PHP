@@ -26,6 +26,7 @@ $subjects = $crud->select($subjectSQL);
                 type="button" id="subres">Subject Result</button> &nbsp;&nbsp;&nbsp;
             <button style="font-size: 20px; font-family: arial; font-weight: bold;" class="btn btn-outline-success"
                 type="button" id="fullres">Full Result</button> &nbsp;&nbsp;&nbsp;
+            <span><a class="btn btn-outline-success" style="font-size: 20px; font-family: arial; font-weight: bold;"  href="ad-student-result.php">Refresh Page</a></span>
         </form>
     </nav>
 </div>
@@ -43,14 +44,14 @@ $subjects = $crud->select($subjectSQL);
                             <div class=" col s12">
                                 <label class="">Student Id</label>
                                 <input type="text" value="" class="validate" required name="std_id"
-                                    id="std-id-for-fees">
+                                    id="std-id-for-fees" style="font-size: 15px;">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Name</label>
                                 <input type="text" value="" class="validate" required name="std_name"
-                                    id="std-name-for-fees">
+                                    id="std-name-for-fees" style="font-size: 15px;">
                             </div>
                         </div>
                         <div class="">

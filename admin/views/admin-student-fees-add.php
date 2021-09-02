@@ -1,12 +1,25 @@
 <?php
+// $sql = "SELECT * FROM `all_class_fees_table` WHERE class = 'eight' AND COLUMN_NAME = 'admission_fees' ";
+
+
+// $feeses = $crud->select($sql);
+// $rows = @mysqli_num_rows($feeses);
+
+// if( $rows > 0){
+//     $fees = @mysqli_fetch_assoc($feeses);
+//     echo $student['FullName'];
+// }else{
+//     echo "Student Data Not found, Please Be Sure Student ID";
+// }
+
+
+
 $classSQL = "SELECT * FROM `class`";
 $classes = $crud->select($classSQL);
 
 $sessionSQL = "SELECT * FROM `session`";
 $sessions = $crud->select($sessionSQL);
 
-$feescatSQL = "SELECT * FROM `fees_cat`";
-$feescats = $crud->select($feescatSQL);
 
 if(isset($_POST['add_fees'])){
     extract($_POST);
@@ -47,7 +60,7 @@ if(isset($_POST['add_fees'])){
                             <div class="form-group ">
                                 <label for="inputState">Class</label>
                                 <select id="inputState" class="form-control" name="class_id"
-                                    style="font-size: 15px;">
+                                    style="font-size: 15px;" id="clasname">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
                                         <option value="<?php echo $classe['name']; ?>"><?php echo $classe['name']; ?></option>
@@ -67,16 +80,40 @@ if(isset($_POST['add_fees'])){
                                 </select>
                             </div>
                         </div>
+                        <div>
+
+                        </div>
                         <div class="">
                             <div class="form-group ">
-                                <label for="inputState">Fees Category</label>
-                                <select id="inputState" class="form-control" name="feescat"
+                                <label for="fees-cat">Fees Category</label>
+                                <select id="fees-cat" class="form-control" name="feescat"
                                     style="font-size: 15px;">
                                     <option selected disabled>---Choose Fees Category---</option>
-                                    <?php while($feescat = mysqli_fetch_assoc($feescats)){ ?>
-                                        <option value="<?php echo $feescat['fees_cat_name']; ?>"><?php echo $feescat['fees_cat_name']; ?></option>
-                                    <?php } ?>
+                                    <?php
+                                    $sql = "SHOW COLUMNS FROM all_class_fees_table";
+                                    $feescats = $crud->select($sql);
+                                     while($feescat = mysqli_fetch_array($feescats)){ 
+                                        if($feescat['Field'] == 'all_class_fees_id'){
+                                            continue;
+                                        }
+                                        elseif ($feescat['Field'] == 'class') {
+                                            continue;
+                                        }
+                                        elseif ($feescat['Field'] == 'year') {
+                                            continue;
+                                        }
+                                        else{
+                                        
+                                        ?>
+                                        <option value="<?php echo $feescat['Field']; ?>"><?php echo $feescat['Field']; ?></option>
+                                    <?php } } ?>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Current Fees</label>
+                                <input type="text" value="" class="validate" required name="total_fees" id="current-fees">
                             </div>
                         </div>
                         <div class="row">
@@ -133,6 +170,20 @@ $(document).ready(function () {
         });
      });
 });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#current-fees").focus(function(){
+
+           var classn = $("#clasname").val();
+           var fescat = $("#fees-cat").val();
+
+           $.post("bind/feesdata.php",{className: classn, feesCat: fescat}, function(data){
+               
+
+           });
+        });
+    });
 </script>
 
     <?php

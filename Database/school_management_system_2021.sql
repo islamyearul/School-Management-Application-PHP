@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 29, 2021 at 12:38 PM
+-- Generation Time: Sep 02, 2021 at 11:32 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -28,6 +28,8 @@ DELIMITER $$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_class` (IN `cname` LONGTEXT, IN `cnamenumeric` LONGTEXT, IN `cteacherid` INT(11))  BEGIN
 INSERT INTO `class`(`name`, `name_numeric`, `teacher_id`) VALUES (cname, cnamenumeric, cteacherid);
 END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `add_fees_cat` (IN `fcname` VARCHAR(100))  INSERT INTO `fees_cat`(`fees_cat_name`) VALUES (fcname)$$
 
 CREATE DEFINER=`root`@`localhost` PROCEDURE `add_grade` (IN `gname` LONGTEXT, IN `gpoint` LONGTEXT, IN `marksfrom` INT(11), IN `marksupto` INT(11), IN `gcomments` LONGTEXT)  BEGIN
 INSERT INTO `grade`( `name`, `grade_point`, `mark_from`, `mark_upto`, `comment`) VALUES (gname, gpoint, marksfrom, marksupto, gcomments);
@@ -122,6 +124,46 @@ INSERT INTO `admission_request` (`id`, `name`, `phone`, `email`, `city`, `educat
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `all_class_fees_table`
+--
+
+CREATE TABLE `all_class_fees_table` (
+  `all_class_fees_id` int(11) NOT NULL,
+  `class` varchar(20) NOT NULL,
+  `year` int(11) NOT NULL,
+  `admission_fees` int(11) NOT NULL,
+  `session_fees` int(11) NOT NULL,
+  `seminar_fee` int(11) NOT NULL,
+  `event_fee` int(11) NOT NULL,
+  `january_salary` int(11) NOT NULL,
+  `february_salary` int(11) NOT NULL,
+  `march_salary` int(11) NOT NULL,
+  `afril_salary` int(11) NOT NULL,
+  `first_terminal_exam_fees` int(11) NOT NULL,
+  `may_salary` int(11) NOT NULL,
+  `june_salary` int(11) NOT NULL,
+  `july_salary` int(11) NOT NULL,
+  `august_salary` int(11) NOT NULL,
+  `mid_terminal_exam_fees` int(11) NOT NULL,
+  `september_salary` int(11) NOT NULL,
+  `october_salary` int(11) NOT NULL,
+  `november_salary` int(11) NOT NULL,
+  `december_salary` int(11) NOT NULL,
+  `final_exam_fees` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `all_class_fees_table`
+--
+
+INSERT INTO `all_class_fees_table` (`all_class_fees_id`, `class`, `year`, `admission_fees`, `session_fees`, `seminar_fee`, `event_fee`, `january_salary`, `february_salary`, `march_salary`, `afril_salary`, `first_terminal_exam_fees`, `may_salary`, `june_salary`, `july_salary`, `august_salary`, `mid_terminal_exam_fees`, `september_salary`, `october_salary`, `november_salary`, `december_salary`, `final_exam_fees`) VALUES
+(1, 'eight', 2021, 1000, 5000, 500, 200, 800, 800, 800, 800, 1200, 800, 800, 800, 800, 1200, 800, 800, 800, 800, 1200),
+(2, 'seven', 2021, 800, 5000, 400, 200, 700, 700, 700, 700, 1000, 700, 700, 700, 700, 1000, 700, 700, 700, 700, 1000),
+(3, 'six', 2021, 800, 4000, 300, 100, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `apply_course`
 --
 
@@ -185,7 +227,10 @@ INSERT INTO `class` (`class_id`, `name`, `name_numeric`, `teacher_id`) VALUES
 (2, 'KG', 'KG1', 2),
 (3, 'Primary One', 'Primary 1', 2),
 (4, 'PRIMARY THREE', 'PRY 3', 4),
-(6, 'SIX', '6', 8);
+(6, 'SIX', '6', 8),
+(7, 'eight', '8', 8),
+(8, 'seven', '7', 7),
+(9, 'six', '6', 4);
 
 -- --------------------------------------------------------
 
@@ -455,14 +500,16 @@ INSERT INTO `exam_all_trash` (`trash_id`, `exam_id`, `exam_name`, `start_date`, 
 
 CREATE TABLE `exam_marks` (
   `mark_id` int(11) NOT NULL,
-  `student_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL,
-  `class_id` int(11) NOT NULL,
-  `session_id` int(11) NOT NULL,
-  `exam_id` int(11) NOT NULL,
+  `student_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `student_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `subject_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `class_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `session_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `exam_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `mark_obtained` int(11) NOT NULL DEFAULT 0,
   `mark_total` int(11) NOT NULL DEFAULT 100,
-  `result` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `result` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'F',
+  `point` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `comment` longtext COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -470,14 +517,19 @@ CREATE TABLE `exam_marks` (
 -- Dumping data for table `exam_marks`
 --
 
-INSERT INTO `exam_marks` (`mark_id`, `student_id`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `result`, `comment`) VALUES
-(6, 14, 0, 3, 0, 1, 50, 100, '', 'pass'),
-(7, 11, 1, 2, 12, 1, 33, 100, '', 'fail'),
-(8, 13, 1, 2, 13, 1, 70, 100, '', 'pass'),
-(10, 21, 2, 2, 8, 3, 25, 100, '', 'fail'),
-(11, 11, 2, 4, 14, 3, 33, 100, '', 'pass'),
-(12, 11, 2, 4, 14, 3, 33, 100, '', 'pass'),
-(13, 20, 2, 2, 15, 3, 44, 100, 'B', 'pass');
+INSERT INTO `exam_marks` (`mark_id`, `student_id`, `student_name`, `subject_id`, `class_id`, `session_id`, `exam_id`, `mark_obtained`, `mark_total`, `result`, `point`, `comment`) VALUES
+(6, '1', '', '1', '1', '1', '1', 50, 100, 'B', '', 'pass'),
+(7, '2', '', '2', '2', '2', '2', 33, 100, 'D', '', 'fail'),
+(8, '13', 'Yearul', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 60, 100, 'A-', '3.5', 'pass'),
+(10, '16', 'Yearul', 'Economics', 'SIX', '2026-2027', 'Final Terminal Exam', 25, 100, 'F', '0', 'fail'),
+(11, '17', 'sss', 'Social Studies', 'seven', '2026-2027', 'sdfdsfds', 33, 100, 'D', '1', 'pass'),
+(12, '14', 'sss', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 33, 100, 'D', '1', 'pass'),
+(13, '17', 'sss', 'Economics', 'eight', '2023-2024', 'Admission Test', 44, 100, 'B', '3', 'pass'),
+(14, '5', 'Md Yearul Islam', 'Mathematics', 'Primary One', '2018-2019', 'Middle Terminal Exam', 80, 100, 'A+', '5', 'Good'),
+(15, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
+(16, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
+(17, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
+(18, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 33, 100, 'D', '1', 'pass');
 
 -- --------------------------------------------------------
 
@@ -489,8 +541,9 @@ CREATE TABLE `feescollection` (
   `id` int(11) NOT NULL,
   `student_id` int(10) NOT NULL,
   `student_name` varchar(50) NOT NULL,
-  `Class` int(10) DEFAULT NULL,
-  `Session` int(10) NOT NULL,
+  `Class` varchar(50) NOT NULL,
+  `Session` varchar(50) NOT NULL,
+  `fees_cat` varchar(50) NOT NULL,
   `total_fees` int(11) NOT NULL,
   `PaidAmount` int(11) NOT NULL,
   `due_balance` int(10) DEFAULT NULL,
@@ -502,11 +555,33 @@ CREATE TABLE `feescollection` (
 -- Dumping data for table `feescollection`
 --
 
-INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES
-(1, 0, '', 0, 1, 0, 11000, 0, '2018-07-30', 'Paid'),
-(2, 1, '', 1, 1, 0, 1000, 1, '2018-05-02', NULL),
-(3, 1, '', 1, 1, 0, 3000, 1, '2018-05-03', NULL),
-(4, 2, 'Yearul', 2, 8, 12000, 5000, 7000, '2021-08-25', 'Dueee');
+INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES
+(1, 0, '', '0', '1', '', 0, 11000, 0, '2018-07-30', 'Paid'),
+(2, 1, '', '1', '1', '', 0, 1000, 1, '2018-05-02', NULL),
+(3, 1, '', '1', '1', '', 0, 3000, 1, '2018-05-03', NULL),
+(4, 5, 'Md Yearul Islam', '2', '8', '', 12000, 5000, 7000, '2021-08-25', 'Dueee');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `fees_cat`
+--
+
+CREATE TABLE `fees_cat` (
+  `fees_cat_id` int(11) NOT NULL,
+  `fees_cat_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `fees_cat`
+--
+
+INSERT INTO `fees_cat` (`fees_cat_id`, `fees_cat_name`) VALUES
+(1, 'Admission Test'),
+(2, 'Monthly Salary'),
+(3, 'Exam Fees'),
+(4, 'Event Fees'),
+(5, 'Seminar Fees');
 
 -- --------------------------------------------------------
 
@@ -892,9 +967,12 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`std_id`, `FullName`, `Gender`, `DOB`, `Photo`, `RegNo`, `Class`, `AcademicYear`, `TotalFees`, `AdvanceFees`, `Balance`, `Parent`) VALUES
+(5, 'Md Yearul Islam', 'male', '2021-08-01', 'saiful.jpg', '1263640', 18, 2021, 15000, 5000, 10000, 123654),
 (12, 'Md Yearul Islam', 'male', '2021-08-01', 'saiful.jpg', '1263640', 18, 2021, 15000, 5000, 10000, 123654),
 (13, 'Yearul', 'male', '2021-08-19', 'Yearul-PP-2-Pic-2020-2.jpg', '1321313', 2312, 123213, 2132131, 123213, 12321321, 23213),
-(14, 'sss', 'male', '2021-08-24', 'roobon.png', '5354', 252, 32535, 542, 2454, 24545, 45452);
+(14, 'sss', 'male', '2021-08-24', 'roobon.png', '5354', 252, 32535, 542, 2454, 24545, 45452),
+(16, 'Yearul', 'male', '2021-08-19', 'Yearul-PP-2-Pic-2020-2.jpg', '1321313', 2312, 123213, 2132131, 123213, 12321321, 23213),
+(17, 'sss', 'male', '2021-08-24', 'roobon.png', '5354', 252, 32535, 542, 2454, 24545, 45452);
 
 -- --------------------------------------------------------
 
@@ -1026,6 +1104,13 @@ ALTER TABLE `admission_request`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `all_class_fees_table`
+--
+ALTER TABLE `all_class_fees_table`
+  ADD PRIMARY KEY (`all_class_fees_id`),
+  ADD UNIQUE KEY `class` (`class`);
+
+--
 -- Indexes for table `apply_course`
 --
 ALTER TABLE `apply_course`
@@ -1106,6 +1191,12 @@ ALTER TABLE `feescollection`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Student` (`student_id`),
   ADD KEY `Session` (`Session`);
+
+--
+-- Indexes for table `fees_cat`
+--
+ALTER TABLE `fees_cat`
+  ADD PRIMARY KEY (`fees_cat_id`);
 
 --
 -- Indexes for table `get_in_touch`
@@ -1230,6 +1321,12 @@ ALTER TABLE `admission_request`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `all_class_fees_table`
+--
+ALTER TABLE `all_class_fees_table`
+  MODIFY `all_class_fees_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `apply_course`
 --
 ALTER TABLE `apply_course`
@@ -1245,7 +1342,7 @@ ALTER TABLE `at_add_attendance`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `class_routine`
@@ -1299,13 +1396,19 @@ ALTER TABLE `exam_all_trash`
 -- AUTO_INCREMENT for table `exam_marks`
 --
 ALTER TABLE `exam_marks`
-  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `feescollection`
 --
 ALTER TABLE `feescollection`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `fees_cat`
+--
+ALTER TABLE `fees_cat`
+  MODIFY `fees_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `get_in_touch`
@@ -1383,7 +1486,7 @@ ALTER TABLE `session`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `std_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `std_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `stuff`
