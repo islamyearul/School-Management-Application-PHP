@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 02, 2021 at 11:32 AM
+-- Generation Time: Sep 04, 2021 at 08:00 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -132,9 +132,9 @@ CREATE TABLE `all_class_fees_table` (
   `class` varchar(20) NOT NULL,
   `year` int(11) NOT NULL,
   `admission_fees` int(11) NOT NULL,
-  `session_fees` int(11) NOT NULL,
-  `seminar_fee` int(11) NOT NULL,
-  `event_fee` int(11) NOT NULL,
+  `session_fees` int(11) DEFAULT NULL,
+  `seminar_fee` int(11) DEFAULT NULL,
+  `event_fee` int(11) DEFAULT NULL,
   `january_salary` int(11) NOT NULL,
   `february_salary` int(11) NOT NULL,
   `march_salary` int(11) NOT NULL,
@@ -159,7 +159,8 @@ CREATE TABLE `all_class_fees_table` (
 INSERT INTO `all_class_fees_table` (`all_class_fees_id`, `class`, `year`, `admission_fees`, `session_fees`, `seminar_fee`, `event_fee`, `january_salary`, `february_salary`, `march_salary`, `afril_salary`, `first_terminal_exam_fees`, `may_salary`, `june_salary`, `july_salary`, `august_salary`, `mid_terminal_exam_fees`, `september_salary`, `october_salary`, `november_salary`, `december_salary`, `final_exam_fees`) VALUES
 (1, 'eight', 2021, 1000, 5000, 500, 200, 800, 800, 800, 800, 1200, 800, 800, 800, 800, 1200, 800, 800, 800, 800, 1200),
 (2, 'seven', 2021, 800, 5000, 400, 200, 700, 700, 700, 700, 1000, 700, 700, 700, 700, 1000, 700, 700, 700, 700, 1000),
-(3, 'six', 2021, 800, 4000, 300, 100, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900);
+(3, 'six', 2021, 800, 4000, 300, 100, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900),
+(4, 'KG', 2021, 800, 4000, 300, 200, 500, 500, 500, 500, 1000, 500, 500, 500, 500, 1000, 500, 500, 500, 500, 1000);
 
 -- --------------------------------------------------------
 
@@ -229,8 +230,7 @@ INSERT INTO `class` (`class_id`, `name`, `name_numeric`, `teacher_id`) VALUES
 (4, 'PRIMARY THREE', 'PRY 3', 4),
 (6, 'SIX', '6', 8),
 (7, 'eight', '8', 8),
-(8, 'seven', '7', 7),
-(9, 'six', '6', 4);
+(8, 'seven', '7', 7);
 
 -- --------------------------------------------------------
 
@@ -544,6 +544,8 @@ CREATE TABLE `feescollection` (
   `Class` varchar(50) NOT NULL,
   `Session` varchar(50) NOT NULL,
   `fees_cat` varchar(50) NOT NULL,
+  `due_fees` int(11) DEFAULT NULL,
+  `current_fees` int(11) DEFAULT NULL,
   `total_fees` int(11) NOT NULL,
   `PaidAmount` int(11) NOT NULL,
   `due_balance` int(10) DEFAULT NULL,
@@ -555,33 +557,14 @@ CREATE TABLE `feescollection` (
 -- Dumping data for table `feescollection`
 --
 
-INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES
-(1, 0, '', '0', '1', '', 0, 11000, 0, '2018-07-30', 'Paid'),
-(2, 1, '', '1', '1', '', 0, 1000, 1, '2018-05-02', NULL),
-(3, 1, '', '1', '1', '', 0, 3000, 1, '2018-05-03', NULL),
-(4, 5, 'Md Yearul Islam', '2', '8', '', 12000, 5000, 7000, '2021-08-25', 'Dueee');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `fees_cat`
---
-
-CREATE TABLE `fees_cat` (
-  `fees_cat_id` int(11) NOT NULL,
-  `fees_cat_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `fees_cat`
---
-
-INSERT INTO `fees_cat` (`fees_cat_id`, `fees_cat_name`) VALUES
-(1, 'Admission Test'),
-(2, 'Monthly Salary'),
-(3, 'Exam Fees'),
-(4, 'Event Fees'),
-(5, 'Seminar Fees');
+INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES
+(2, 1, '', '1', '1', '', NULL, NULL, 0, 1000, 1350, '2018-05-02', NULL),
+(3, 1, '', '1', '1', '', NULL, NULL, 0, 3000, 3450, '2018-05-03', NULL),
+(4, 5, 'Md Yearul Islam', '2', '8', '', NULL, NULL, 12000, 5000, 7000, '2021-08-25', 'Dueee'),
+(6, 5, 'Md Yearul Islam', '7', '3', '', NULL, NULL, 12000, 5000, 7000, '2021-08-25', 'Dueee'),
+(7, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'october_salary', NULL, NULL, 800, 5000, 7000, '2021-09-08', 'Due'),
+(8, 5, 'Md Yearul Islam', '7', '3', 'admission_fees', 7000, 1000, 8000, 5000, 3000, '2021-09-21', 'Dueee'),
+(9, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'admission_fees', 7000, 1000, 8000, 5000, 3000, '2021-09-04', 'Due');
 
 -- --------------------------------------------------------
 
@@ -1126,7 +1109,9 @@ ALTER TABLE `at_add_attendance`
 -- Indexes for table `class`
 --
 ALTER TABLE `class`
-  ADD PRIMARY KEY (`class_id`);
+  ADD PRIMARY KEY (`class_id`),
+  ADD UNIQUE KEY `name` (`name`) USING HASH,
+  ADD UNIQUE KEY `name_numeric` (`name_numeric`) USING HASH;
 
 --
 -- Indexes for table `class_routine`
@@ -1191,12 +1176,6 @@ ALTER TABLE `feescollection`
   ADD PRIMARY KEY (`id`),
   ADD KEY `Student` (`student_id`),
   ADD KEY `Session` (`Session`);
-
---
--- Indexes for table `fees_cat`
---
-ALTER TABLE `fees_cat`
-  ADD PRIMARY KEY (`fees_cat_id`);
 
 --
 -- Indexes for table `get_in_touch`
@@ -1271,7 +1250,8 @@ ALTER TABLE `seminar_registration`
 -- Indexes for table `session`
 --
 ALTER TABLE `session`
-  ADD PRIMARY KEY (`session_id`);
+  ADD PRIMARY KEY (`session_id`),
+  ADD UNIQUE KEY `name` (`name`) USING HASH;
 
 --
 -- Indexes for table `students`
@@ -1324,7 +1304,7 @@ ALTER TABLE `admission_request`
 -- AUTO_INCREMENT for table `all_class_fees_table`
 --
 ALTER TABLE `all_class_fees_table`
-  MODIFY `all_class_fees_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `all_class_fees_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `apply_course`
@@ -1402,13 +1382,7 @@ ALTER TABLE `exam_marks`
 -- AUTO_INCREMENT for table `feescollection`
 --
 ALTER TABLE `feescollection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `fees_cat`
---
-ALTER TABLE `fees_cat`
-  MODIFY `fees_cat_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `get_in_touch`
