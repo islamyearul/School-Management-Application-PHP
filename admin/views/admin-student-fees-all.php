@@ -37,6 +37,9 @@ if(isset($_GET['status'])){
                                     <th>student_name</th>
                                     <th>Class</th>
                                     <th>Session</th>
+                                    <th>Fees cat</th>
+                                    <th>Prev Due</th>
+                                    <th>Curent Fees</th>
                                     <th>total_fees</th>
                                     <th>PaidAmount</th>
                                     <th>due_balance</th>
@@ -57,6 +60,9 @@ if(isset($_GET['status'])){
                                     <td><?php echo $fee['student_name']; ?></td>
                                     <td><?php echo $fee['Class']; ?></td>
                                     <td><?php echo $fee['Session']; ?></td>
+                                    <td><?php echo $fee['fees_cat']; ?></td>
+                                    <td><?php echo $fee['due_fees']; ?></td>
+                                    <td><?php echo $fee['current_fees']; ?></td>
                                     <td><?php echo $fee['total_fees']; ?></td>
                                     <td><?php echo $fee['PaidAmount']; ?></td>
                                     <td><?php echo $fee['due_balance']; ?></td>

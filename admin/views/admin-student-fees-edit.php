@@ -18,7 +18,7 @@ if(isset($_GET['status'])){
 
 if(isset($_POST['update_fees'])){
     extract($_POST);
-    $updatefees =  "UPDATE `feescollection` SET `student_id`='$std_id',`student_name`='$std_name',`Class`='$class_id',`Session`='$session_id',`total_fees`='$total_fees',`PaidAmount`='$paid_ammount',`due_balance`='$due_balance',`Date`='$date',`Remarks`='$remarks' WHERE id = $up_id";
+    $updatefees =  "UPDATE `feescollection` SET `student_id`='$std_id',`student_name`='$std_name',`Class`='$class_id',`Session`='$session_id',`fees_cat`='$feescat',`due_fees`='$due_fees',`current_fees`='$curent_fees',`total_fees`='$total_fees',`PaidAmount`='$paid_ammount',`due_balance`='$due_balance',`Date`='$date',`Remarks`='$remarks' WHERE id = $up_id";
     $returnSMS = $crud->update($updatefees);
     if(isset($returnSMS)){
         echo "<h2 class='text-success'>Fees Update Success</h2>";
@@ -43,25 +43,27 @@ if(isset($_POST['update_fees'])){
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Id</label>
-                                <input type="text" value="<?php echo $fee['student_id']; ?>" class="validate" required name="std_id" id="std-id-for-fees">
+                                <input type="text" value="<?php echo $fee['student_id']; ?>" class="validate" required
+                                    name="std_id" id="std-id-for-fees">
                             </div>
                         </div>
                         <input type="hidden" name="up_id" value="<?php echo $fee['id']; ?>">
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Student Name</label>
-                                <input type="text" value="<?php echo $fee['student_name']; ?>" class="validate" required name="std_name" id="std-name-for-fees">
+                                <input type="text" value="<?php echo $fee['student_name']; ?>" class="validate" required
+                                    name="std_name" id="std-name-for-fees">
                             </div>
                         </div>
                         <div class="">
                             <div class="form-group ">
                                 <label for="inputState">Class</label>
-                                <select id="inputState" class="form-control" name="class_id"
-                                    style="font-size: 15px;">
+                                <select id="inputState" class="form-control" name="class_id" style="font-size: 15px;">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
-                                        <option value="<?php echo $classe['class_id']; ?>"
-                                        <?php if($classe['class_id']==$fee['Class']){ echo "selected";} ?>><?php echo $classe['name']; ?></option>
+                                    <option value="<?php echo $classe['class_id']; ?>"
+                                        <?php if($classe['name']==$fee['Class']){ echo "selected";} ?>>
+                                        <?php echo $classe['name']; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -69,44 +71,90 @@ if(isset($_POST['update_fees'])){
                         <div class="">
                             <div class="form-group ">
                                 <label for="inputState">Session</label>
-                                <select id="inputState" class="form-control" name="session_id"
-                                    style="font-size: 15px;">
+                                <select id="inputState" class="form-control" name="session_id" style="font-size: 15px;">
                                     <option selected disabled>---Choose Session---</option>
                                     <?php while($session = mysqli_fetch_assoc($sessions)){ ?>
-                                        <option value="<?php echo $session['session_id']; ?>"
-                                        <?php if($session['session_id']==$fee['Session']){ echo "selected";} ?>><?php echo $session['name']; ?></option>
+                                    <option value="<?php echo $session['session_id']; ?>"
+                                        <?php if($session['name']==$fee['Session']){ echo "selected";} ?>>
+                                        <?php echo $session['name']; ?></option>
                                     <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="form-group ">
+                                <label for="fees-cat">Fees Category</label>
+                                <select id="fees-cat" class="form-control" name="feescat" style="font-size: 15px;">
+                                    <option selected disabled>---Choose Fees Category---</option>
+                                    <?php
+                                    $sql = "SHOW COLUMNS FROM all_class_fees_table";
+                                    $feescats = $crud->select($sql);
+                                     while($feescat = mysqli_fetch_array($feescats)){ 
+                                        if($feescat['Field'] == 'all_class_fees_id'){
+                                            continue;
+                                        }
+                                        elseif ($feescat['Field'] == 'class') {
+                                            continue;
+                                        }
+                                        elseif ($feescat['Field'] == 'year') {
+                                            continue;
+                                        }
+                                        else{?>
+                                    <option value="<?php echo $feescat['Field']; ?>" 
+                                    <?php if($feescat['Field']== $fee['fees_cat']){ echo "selected";} ?>
+                                    ><?php echo $feescat['Field']; ?>
+                                    </option>
+                                    <?php } } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
+                                <label class="">Due fees</label>
+                                <input type="text" value="<?php echo $fee['due_fees']; ?>" class="validate" required name="due_fees" id="due-balance"
+                                    >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Current fees</label>
+                                <input type="text" value="<?php echo $fee['current_fees']; ?>" class="validate" required name="curent_fees"
+                                    id="current-fees" >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
                                 <label class="">Total Fees</label>
-                                <input type="text" value="<?php echo $fee['total_fees']; ?>" class="validate" required name="total_fees">
+                                <input type="text" value="<?php echo $fee['total_fees']; ?>" class="validate" required
+                                    name="total_fees">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Paid Ammount</label>
-                                <input type="text" value="<?php echo $fee['PaidAmount']; ?>" class="validate" required name="paid_ammount">
+                                <input type="text" value="<?php echo $fee['PaidAmount']; ?>" class="validate" required
+                                    name="paid_ammount">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Due Balance</label>
-                                <input type="text" value="<?php echo $fee['due_balance']; ?>" class="validate" required name="due_balance">
+                                <input type="text" value="<?php echo $fee['due_balance']; ?>" class="validate" required
+                                    name="due_balance">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Date</label>
-                                <input type="date" value="<?php echo $fee['Date']; ?>" class="validate" required name="date">
+                                <input type="date" value="<?php echo $fee['Date']; ?>" class="validate" required
+                                    name="date">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Remarks</label>
-                                <input type="text" value="<?php echo $fee['Remarks']; ?>" class="validate" required name="remarks">
+                                <input type="text" value="<?php echo $fee['Remarks']; ?>" class="validate" required
+                                    name="remarks">
                             </div>
                         </div>
                         <div class="row">
@@ -122,14 +170,16 @@ if(isset($_POST['update_fees'])){
     </div>
 </div>
 <script>
-$(document).ready(function () {
-    $("#std-name-for-fees").focus(function(){
-        var stdidfees = $("#std-id-for-fees").val();  
-       
-        $.get("bind/stddata.php",{ fid: stdidfees }, function(data){
+$(document).ready(function() {
+    $("#std-name-for-fees").focus(function() {
+        var stdidfees = $("#std-id-for-fees").val();
+
+        $.get("bind/stddata.php", {
+            fid: stdidfees
+        }, function(data) {
             //alert(data);
             $("#std-name-for-fees").val(data);
         });
-     });
+    });
 });
 </script>

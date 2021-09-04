@@ -1,19 +1,4 @@
 <?php
-// $sql = "SELECT * FROM `all_class_fees_table` WHERE class = 'eight' AND COLUMN_NAME = 'admission_fees' ";
-
-
-// $feeses = $crud->select($sql);
-// $rows = @mysqli_num_rows($feeses);
-
-// if( $rows > 0){
-//     $fees = @mysqli_fetch_assoc($feeses);
-//     echo $student['FullName'];
-// }else{
-//     echo "Student Data Not found, Please Be Sure Student ID";
-// }
-
-
-
 $classSQL = "SELECT * FROM `class`";
 $classes = $crud->select($classSQL);
 
@@ -23,7 +8,7 @@ $sessions = $crud->select($sessionSQL);
 
 if(isset($_POST['add_fees'])){
     extract($_POST);
-    $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `fees_cat`,  `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id', '$std_name', '$class_id', '$session_id','$feescat', '$total_fees', '$paid_ammount', '$due_balance', '$date', '$remarks')";
+    $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id','$std_name','$class_id','$session_id','$feescat','$due_fees','$curent_fees','$total_fees','$paid_ammount','$due_balance', now(),'$remarks')";
 
     $returnSMS = $crud->insert($addfeesSQL);
     if(isset($returnSMS)){
@@ -58,9 +43,9 @@ if(isset($_POST['add_fees'])){
                         </div>
                         <div class="">
                             <div class="form-group ">
-                                <label for="inputState">Class</label>
-                                <select id="inputState" class="form-control" name="class_id"
-                                    style="font-size: 15px;" id="clasname">
+                                <label for="clasnamee">Class</label>
+                                <select class="form-control" name="class_id"
+                                    style="font-size: 15px;" id="clasnamee">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
                                         <option value="<?php echo $classe['name']; ?>"><?php echo $classe['name']; ?></option>
@@ -70,8 +55,8 @@ if(isset($_POST['add_fees'])){
                         </div>
                         <div class="">
                             <div class="form-group ">
-                                <label for="inputState">Session</label>
-                                <select id="inputState" class="form-control" name="session_id"
+                                <label for="session-data">Session</label>
+                                <select id="session-data" class="form-control" name="session_id"
                                     style="font-size: 15px;">
                                     <option selected disabled>---Choose Session---</option>
                                     <?php while($session = mysqli_fetch_assoc($sessions)){ ?>
@@ -112,32 +97,32 @@ if(isset($_POST['add_fees'])){
                         </div>
                         <div class="row">
                             <div class=" col s12">
-                                <label class="">Current Fees</label>
-                                <input type="text" value="" class="validate" required name="total_fees" id="current-fees">
+                                <label class="">Due fees</label>
+                                <input type="text" value="" class="validate" required name="due_fees" id="due-balance" readonly>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Current fees</label>
+                                <input type="text" value="" class="validate" required name="curent_fees" id="current-fees" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Total Fees</label>
-                                <input type="text" value="" class="validate" required name="total_fees">
+                                <input type="text" value="" class="validate" required name="total_fees" id="total-fees" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Paid Ammount</label>
-                                <input type="text" value="" class="validate" required name="paid_ammount">
+                                <input type="text" value="" class="validate" required name="paid_ammount" id="paid-amount">
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
-                                <label class="">Due Balance</label>
-                                <input type="text" value="" class="validate" required name="due_balance">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class=" col s12">
-                                <label class="">Date</label>
-                                <input type="date" value="" class="validate" required name="date">
+                                <label class="">Due</label>
+                                <input type="text" value="" class="validate" required name="due_balance" id="due-fees">
                             </div>
                         </div>
                         <div class="row">
@@ -161,7 +146,7 @@ if(isset($_POST['add_fees'])){
 
 <script>
 $(document).ready(function () {
-    $("#std-name-for-fees").focus(function(){
+    $("#std-name-for-fees").hover(function(){
         var stdidfees = $("#std-id-for-fees").val();  
        
         $.get("bind/stddata.php",{ fid: stdidfees }, function(data){
@@ -173,16 +158,55 @@ $(document).ready(function () {
 </script>
 <script>
     $(document).ready(function () {
-        $("#current-fees").focus(function(){
 
-           var classn = $("#clasname").val();
+        $("#fees-cat").change(function(){
+
+           var classn = $("#clasnamee").val();
            var fescat = $("#fees-cat").val();
+           var sessiondat = $("#session-data").val();
 
-           $.post("bind/feesdata.php",{className: classn, feesCat: fescat}, function(data){
-               
-
+           $.post("bind/feesdata.php",{className: classn, feesCat: fescat, SessionData: sessiondat}, function(data){
+            $("#current-fees").val(data);
            });
         });
+
+
+        $("#session-data").change(function(){
+
+           var stdId = $("#std-id-for-fees").val();
+           var classn = $("#clasnamee").val();
+           var sessiondat = $("#session-data").val();
+
+           $.post("bind/fessduedata.php",{className: classn, studentdId: stdId, SessionData: sessiondat}, function(data){
+            $("#due-balance").val(data);
+           });
+        });
+
+
+        $("#total-fees").focus(function(){
+
+           var crntfees = $("#current-fees").val();
+           var preduebal = $("#due-balance").val();
+
+          // var totalfees = $("#total-fees").val();
+           var neatTotal = parseInt(crntfees) + parseInt(preduebal);
+
+           $("#total-fees").val(neatTotal);
+        });
+
+
+        
+        $("#paid-amount").blur(function(){
+
+           var totalfees = $("#total-fees").val();
+           var paidAmount = $("#paid-amount").val();
+           var neatdue = parseInt(totalfees) - parseInt(paidAmount);
+           $("#due-fees").val(neatdue);
+        });
+
+
+
+
     });
 </script>
 
