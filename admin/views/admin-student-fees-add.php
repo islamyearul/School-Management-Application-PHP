@@ -8,6 +8,7 @@ $sessions = $crud->select($sessionSQL);
 
 if(isset($_POST['add_fees'])){
     extract($_POST);
+    $class_id = strtolower($class_id);
     $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id','$std_name','$class_id','$session_id','$feescat','$due_fees','$curent_fees','$total_fees','$paid_ammount','$due_balance', now(),'$remarks')";
 
     $returnSMS = $crud->insert($addfeesSQL);
@@ -184,12 +185,22 @@ $(document).ready(function () {
 
 
         $("#total-fees").focus(function(){
-
+           var neatTotal = 0;
            var crntfees = $("#current-fees").val();
            var preduebal = $("#due-balance").val();
 
           // var totalfees = $("#total-fees").val();
-           var neatTotal = parseInt(crntfees) + parseInt(preduebal);
+          if($.isNumeric(preduebal)){
+           neatTotal += parseInt(preduebal);
+           neatTotal += parseInt(crntfees);
+
+          }else{
+            neatTotal += parseInt(crntfees);
+          }
+
+
+           //neatTotal += Number($("#due-balance").val());
+          // neatTotal += Number($("#current-fees").val());
 
            $("#total-fees").val(neatTotal);
         });

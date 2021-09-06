@@ -125,6 +125,7 @@
                              aria-hidden="true"></i> Students Fees</a>
                      <div class="collapsible-body left-sub-menu">
                          <ul>
+                             <li><a href="ad-student-fees-check.php">Fees Check</a>
                              <li><a href="ad-student-fees-all.php">All Students Fees</a>
                              </li>
                              <li><a href="ad-student-fees-add.php">Add New Students Fees</a>

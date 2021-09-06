@@ -261,11 +261,11 @@
                         elseif($view == "add-feescat"){
                             include("views/admin-fees-cat-add.php");
                         }
-
-
-                        elseif($view == ""){
-                            include("views/");
+                        elseif($view == "student-fees-check"){
+                            include("views/admin-student-fees-check.php");
                         }
+
+                        
                         elseif($view == ""){
                             include("views/");
                         }

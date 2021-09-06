@@ -18,6 +18,7 @@ if(isset($_GET['status'])){
 
 if(isset($_POST['update_fees'])){
     extract($_POST);
+    $class_id = strtolower($class_id);
     $updatefees =  "UPDATE `feescollection` SET `student_id`='$std_id',`student_name`='$std_name',`Class`='$class_id',`Session`='$session_id',`fees_cat`='$feescat',`due_fees`='$due_fees',`current_fees`='$curent_fees',`total_fees`='$total_fees',`PaidAmount`='$paid_ammount',`due_balance`='$due_balance',`Date`='$date',`Remarks`='$remarks' WHERE id = $up_id";
     $returnSMS = $crud->update($updatefees);
     if(isset($returnSMS)){
@@ -52,7 +53,7 @@ if(isset($_POST['update_fees'])){
                             <div class=" col s12">
                                 <label class="">Student Name</label>
                                 <input type="text" value="<?php echo $fee['student_name']; ?>" class="validate" required
-                                    name="std_name" id="std-name-for-fees">
+                                    name="std_name" id="std-name-for-fees" readonly>
                             </div>
                         </div>
                         <div class="">
@@ -61,7 +62,7 @@ if(isset($_POST['update_fees'])){
                                 <select id="inputState" class="form-control" name="class_id" style="font-size: 15px;">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
-                                    <option value="<?php echo $classe['class_id']; ?>"
+                                    <option value="<?php echo $classe['name']; ?>"
                                         <?php if($classe['name']==$fee['Class']){ echo "selected";} ?>>
                                         <?php echo $classe['name']; ?></option>
                                     <?php } ?>
@@ -74,7 +75,7 @@ if(isset($_POST['update_fees'])){
                                 <select id="inputState" class="form-control" name="session_id" style="font-size: 15px;">
                                     <option selected disabled>---Choose Session---</option>
                                     <?php while($session = mysqli_fetch_assoc($sessions)){ ?>
-                                    <option value="<?php echo $session['session_id']; ?>"
+                                    <option value="<?php echo $session['name']; ?>"
                                         <?php if($session['name']==$fee['Session']){ echo "selected";} ?>>
                                         <?php echo $session['name']; ?></option>
                                     <?php } ?>
@@ -112,21 +113,21 @@ if(isset($_POST['update_fees'])){
                             <div class=" col s12">
                                 <label class="">Due fees</label>
                                 <input type="text" value="<?php echo $fee['due_fees']; ?>" class="validate" required name="due_fees" id="due-balance"
-                                    >
+                                    readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Current fees</label>
                                 <input type="text" value="<?php echo $fee['current_fees']; ?>" class="validate" required name="curent_fees"
-                                    id="current-fees" >
+                                    id="current-fees" readonly>
                             </div>
                         </div>
                         <div class="row">
                             <div class=" col s12">
                                 <label class="">Total Fees</label>
                                 <input type="text" value="<?php echo $fee['total_fees']; ?>" class="validate" required
-                                    name="total_fees">
+                                    name="total_fees" readonly>
                             </div>
                         </div>
                         <div class="row">
@@ -140,7 +141,7 @@ if(isset($_POST['update_fees'])){
                             <div class=" col s12">
                                 <label class="">Due Balance</label>
                                 <input type="text" value="<?php echo $fee['due_balance']; ?>" class="validate" required
-                                    name="due_balance">
+                                    name="due_balance" readonly>
                             </div>
                         </div>
                         <div class="row">
@@ -181,5 +182,18 @@ $(document).ready(function() {
             $("#std-name-for-fees").val(data);
         });
     });
+
+    $("#fees-cat").change(function(){
+
+    var classn = $("#clasnamee").val();
+    var fescat = $("#fees-cat").val();
+    var sessiondat = $("#session-data").val();
+
+    $.post("bind/feesdata.php",{className: classn, feesCat: fescat, SessionData: sessiondat}, function(data){
+    $("#current-fees").val(data);
+    });
+    });
+
+
 });
 </script>
