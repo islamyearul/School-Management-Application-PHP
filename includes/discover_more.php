@@ -66,7 +66,7 @@
                     </div>
                     <div class="col-md-3 col-sm-4 col-xs-12">
                         <div class="ed-course-in">
-                            <a class="course-overlay" href="events.html">
+                            <a class="course-overlay" href="seminars.php">
                                 <img src="images/h-res1.jpg" alt="">
                                 <span>Research & Education</span>
                             </a>

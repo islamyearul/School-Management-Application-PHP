@@ -83,9 +83,12 @@
                 elseif($view == 'db-courses'){
                     include("views/v-db-courses.php");
                 }
-                elseif($view == 'std-login'){
+
+
+                elseif($view == 'student_login'){
                     include("views/v-std_login.php");
                 }
+                
                 elseif($view == 'std-signup'){
                     include("views/v-std_signup.php");
                 }

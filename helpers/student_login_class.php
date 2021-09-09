@@ -20,7 +20,7 @@ class StudentLogin{
     public function Stdlogin($data){
         $pssword = $data['pass'];
         $user = $data['user'];
-     $query = "SELECT * FROM seminar_registration WHERE username = '$user' AND pass = '$pssword'";
+     $query = "SELECT * FROM student_registration WHERE username = '$user' AND pass = '$pssword'";
      
         if($action = mysqli_query($this->conn, $query)){
            $numRow = mysqli_num_rows($action);
@@ -31,7 +31,8 @@ class StudentLogin{
                $_SESSION['StdsessionNAME'] = $StdData['username'];
               // echo("<script>location.href = '".ADMIN_URL."/index.php?msg=$msg';</script>");
                //header("Location: dashboard.php");
-               echo "<script type='text/javascript'>window.top.location='dashboard.php';</script>"; exit;
+               echo "<script type='text/javascript'>window.top.location='dashboard.php';</script>"; 
+               exit;
             
            } 
         }
@@ -39,9 +40,12 @@ class StudentLogin{
 
 
     public function stdLogout(){
-        unset($_SESSION['StdsessionID']);
-        unset($_SESSION['StdsessionNAME']);
-        header("location: std_login.php");
+       // unset($_SESSION['StdsessionID']);
+        session_destroy($_SESSION['StdsessionID']);
+        session_destroy($_SESSION['StdsessionNAME']);
+        session_write_close();
+        //unset($_SESSION['StdsessionNAME']);
+        header("location: std-login.php");
     }
 
 

@@ -2,6 +2,10 @@
 if(isset($_POST['login'])){
     $sms = $studentLogin->Stdlogin($_POST);    
   }
+  session_start();
+  $sid = $_SESSION['StdsessionID'];
+  $snm = $_SESSION['StdsessionNAME'];
+  echo $sid . $snm;
 ?>
 
 <section>

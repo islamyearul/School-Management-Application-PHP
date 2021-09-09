@@ -1,9 +1,9 @@
     <!-- COPY RIGHTS -->
-    <section class="wed-rights py-3">
+    <section class="wed-rights ">
         <div class="container">
             <div class="row">
                 <div class="copy-right col-md-12">
-                   <a target="_blank" href="#">All Rights Reserved, "Md. Yearul Islam, Profession Web Developer, Graphics Designer,"</a>
+                   <p>&copy;All Rights Reserved, "Md. Yearul Islam, Profession Web Developer, Graphics Designer,"</p>
                 </div>
             </div>
         </div>

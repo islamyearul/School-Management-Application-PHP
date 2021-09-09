@@ -12,9 +12,11 @@
                 </div>
                 <div class="ed-com-t1-right">
                     <ul>
-                        <li><a href="std_login.php" id="top_singin">Sign In</a>
+                        <li><a href="admin/" id="top_singin">Admin</a>
                         </li>
-                        <li><a href="std_signup.php" id="t">Sign Up</a>
+                        <li><a href="std_login.php" id="top_singin">Student Sign In</a>
+                        </li>
+                        <li><a href="std_signup.php" id="t">Student Sign Up</a>
                         </li>
                     </ul>
                 </div>

@@ -74,7 +74,7 @@
                         <!--<li><a class='dropdown-button ed-sub-menu' href='#' data-activates='dropdown1'>Courses</a></li>-->
                         <li><a href="seminars.php">Seminars</a>
                         </li>
-                        <li><a href="std_login.php">Student</a>
+                        <li><a href="std-login.php">Student</a>
                         <li class="about-menu">
                             <a href="about.php" class="mm-arr">About us</a>
                             <!-- MEGA MENU 1 -->

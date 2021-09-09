@@ -20,7 +20,9 @@
         $errors[] = "Password Doesn't Match";
        }
       if(empty($errors)==true){
-        $stdReg = "INSERT INTO `seminar_registration`( `fullname`, `username`, `email`, `phone`, `student_id`, `course_id`, `password`, `confirm_password`, `image`) VALUES ('$fullname','$username','$email','$phone','$std_id','$course_id','$pass','$conf_pass','$ImgName')";
+        $stdReg = "INSERT INTO `student_registration`( `fullname`, `username`, `email`, `phone`, `student_id`, `course_id`, `pass`, `confirm_password`, `image`) VALUES ('$fullname','$username','$email','$phone','$std_id','$course_id','$pass','$conf_pass','$ImgName')";
+
+
         $RegSTD = $crud->insert($stdReg);
         if(isset($RegSTD)){
             move_uploaded_file($TmpName, "upload/".$ImgName);
@@ -121,7 +123,7 @@
                     </form>
                     <div>
                         <div class="input-field s12"> 
-                            <a href="std_login.php" >Are you a already member Login<a> 
+                            <a href="std-login.php" >Are you a already member Login<a> 
                         </div>
                     </div>
                 </div>

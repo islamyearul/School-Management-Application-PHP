@@ -7,17 +7,13 @@
 ?>
 <section>
     <div class="container com-sp pad-bot-0">
+    <div class="row">
+                <div class="con-title col-md-12">
+                    <h2>Upcoming Event</h2>
+                </div>
+            </div>
         <div class="row">
             <div class="col-md-4">
-                <!--<div class="ho-ex-title">
-							<h4>Upcoming Event</h4>
-						</div>-->
-                <div class="ho-ev-latest ho-ev-latest-bg-1">
-                    <div class="ho-lat-ev">
-                        <h4>Upcoming Event</h4>
-                        <p>Nulla at velit convallis, venenatis lacus quis, efficitur lectus.</p>
-                    </div>
-                </div>
                 <div class="ho-event ho-event-mob-bot-sp">
                     <ul>
                         <li>
@@ -28,7 +24,7 @@
                                 <a href="events.html">
                                     <h4>Latinoo College Expo 2018</h4>
                                 </a>
-                                <p>Nulla at velit convallis, venenatis lacus quis, efficitur lectus.</p>
+
                                 <span>9:15 am – 5:00 pm</span>
                             </div>
                         </li>
@@ -42,7 +38,7 @@
                 <div class="ho-ev-latest ho-ev-latest-bg-2">
                     <div class="ho-lat-ev">
                         <h4>Job Vacants</h4>
-                        <p>Join Us As A Teachers Or Stuff and take your bright future .</p>
+
                     </div>
                 </div>
                 <div class="ho-event ho-event-mob-bot-sp">

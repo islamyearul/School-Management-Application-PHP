@@ -5,57 +5,36 @@ if(isset($_GET['status'])){
         $studentLogin->stdLogout();
     }
 }
+
+
+  session_start();
+  $sid = $_SESSION['StdsessionID'];
+  $snm = $_SESSION['StdsessionNAME'];
+
+  $stdSQL = "SELECT * FROM `student_registration` WHERE std_reg_id =   $sid";
+  $stds = $crud->select($stdSQL);
+  $std = mysqli_fetch_assoc($stds);
+  //echo $sid . $snm;
+
 ?>
 <!--SECTION START-->
 <section>
-    <div class="pro-cover">
-    </div>
-    <div class="pro-menu">
-        <div class="container">
-            <div class="col-md-9 col-md-offset-3">
-                <ul>
-                    <li><a href="dashboard.html" class="pro-act">My Dashboard</a></li>
-                    <li><a href="db-profile.html">Profile</a></li>
-                    <li><a href="db-courses.html">Courses</a></li>
-                    <li><a href="db-exams.html">Exams</a></li>
-                    <li><a href="db-time-line.html">Time Line</a></li>
-                    <li><a href="#">Entry</a></li>
-                    <li><a href="#">Notifications</a></li>
-                    <li><a href="?status=std-logout">Logout</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+      <?php include("includes/std-menu.php") ?>
     <div class="stu-db">
         <div class="container pg-inn">
-            <div class="col-md-3">
-                <div class="pro-user">
-                    <img src="images/user.jpg" alt="user">
-                </div>
-                <div class="pro-user-bio py-3">
-                    <ul>
-                        <li>
-                            <h4>Emily Jessica</h4>
-                        </li>
-                        <li>Student Id: ST17241</li>
-                        <li><a href="#!"><i class="fa fa-facebook"></i> Facebook: my sample</a></li>
-                        <li><a href="#!"><i class="fa fa-google-plus"></i> Google: my sample</a></li>
-                        <li><a href="#!"><i class="fa fa-twitter"></i> Twitter: my sample</a></li>
-                    </ul>
-                </div>
-            </div>
+            <?php include("includes/std-pro.php") ?>
             <div class="col-md-9">
                 <div class="udb">
 
                     <div class="udb-sec udb-prof">
-                        <h4><img src="images/icon/db1.png" alt="" /> My Profile</h4>
+                        <h4><img src="assets/images/icon/db1.png" alt="" />My Profile</h4>
                         <p>It is a long established fact that a reader will be distracted by the readable content of a
                             page when looking at its layout. The point of using Lorem Ipsum is that it has a
                             more-or-less normal distribution of letters, as opposed
                             to using 'Content here, content here', making it look like readable English.</p>
                     </div>
                     <div class="udb-sec udb-cour">
-                        <h4><img src="images/icon/db2.png" alt="" /> Booking Courses</h4>
+                        <h4><img src="assets/images/icon/db2.png" alt="" /> Booking Courses</h4>
                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
                             model text.The point of using Lorem Ipsummaking it look like readable English.</p>
                         <div class="sdb-cours">
@@ -63,7 +42,7 @@ if(isset($_GET['status'])){
                                 <li>
                                     <a href="#">
                                         <div class="list-mig-like-com com-mar-bot-30">
-                                            <div class="list-mig-lc-img"> <img src="images/course/3.jpg" alt=""> <span
+                                            <div class="list-mig-lc-img"> <img src="assets/images/course/3.jpg" alt=""> <span
                                                     class="home-list-pop-rat list-mi-pr">Duration:150 Days</span> </div>
                                             <div class="list-mig-lc-con">
                                                 <h5>Master of Science</h5>
@@ -75,7 +54,7 @@ if(isset($_GET['status'])){
                                 <li>
                                     <a href="#">
                                         <div class="list-mig-like-com com-mar-bot-30">
-                                            <div class="list-mig-lc-img"> <img src="images/course/4.jpg" alt=""> <span
+                                            <div class="list-mig-lc-img"> <img src="assets/images/course/4.jpg" alt=""> <span
                                                     class="home-list-pop-rat list-mi-pr">Duration:60 Days</span> </div>
                                             <div class="list-mig-lc-con">
                                                 <h5>Java Programming</h5>
@@ -87,7 +66,7 @@ if(isset($_GET['status'])){
                                 <li>
                                     <a href="#">
                                         <div class="list-mig-like-com com-mar-bot-30">
-                                            <div class="list-mig-lc-img"> <img src="images/course/5.jpg" alt=""> <span
+                                            <div class="list-mig-lc-img"> <img src="assets/images/course/5.jpg" alt=""> <span
                                                     class="home-list-pop-rat list-mi-pr">Duration:30 Days</span> </div>
                                             <div class="list-mig-lc-con">
                                                 <h5>Aeronautical Engineering</h5>
@@ -99,7 +78,7 @@ if(isset($_GET['status'])){
                                 <li>
                                     <a href="#">
                                         <div class="list-mig-like-com com-mar-bot-30">
-                                            <div class="list-mig-lc-img"> <img src="images/course/3.jpg" alt=""> <span
+                                            <div class="list-mig-lc-img"> <img src="assets/images/course/3.jpg" alt=""> <span
                                                     class="home-list-pop-rat list-mi-pr">Duration:20 Days</span> </div>
                                             <div class="list-mig-lc-con">
                                                 <h5>Master of Science</h5>
@@ -112,7 +91,7 @@ if(isset($_GET['status'])){
                         </div>
                     </div>
                     <div class="udb-sec udb-cour-stat">
-                        <h4><img src="images/icon/db3.png" alt="" /> Course Status</h4>
+                        <h4><img src="assets/images/icon/db3.png" alt="" /> Course Status</h4>
                         <p>Many desktop publishing packages and web page editors now use Lorem Ipsum as their default
                             model text.The point of using Lorem Ipsummaking it look like readable English.</p>
                         <div class="pro-con-table">
@@ -180,7 +159,7 @@ if(isset($_GET['status'])){
                         </div>
                     </div>
                     <div class="udb-sec udb-time">
-                        <h4><img src="images/icon/db4.png" alt="" /> Class Time Line</h4>
+                        <h4><img src="assets/images/icon/db4.png" alt="" /> Class Time Line</h4>
                         <p>The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters,
                             as opposed to using 'Content here, content here', making it look like readable English.</p>
                         <div class="tour_head1 udb-time-line days">
