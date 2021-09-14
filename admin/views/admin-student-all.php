@@ -15,12 +15,7 @@
     }
 
 
-
-
 ?>
-
-
-
 
 <!--== User Details ==-->
  <br><h2>All Student Details</h2><hr>
@@ -34,7 +29,7 @@
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="studentallData">
                             <thead>
                                 <tr>
                                     <th>Image</th>
@@ -88,3 +83,18 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+    $('#studentallData').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );
+</script>

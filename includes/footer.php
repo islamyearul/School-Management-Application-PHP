@@ -13,27 +13,27 @@
                 <div class="col-md-4 foot-tc-mar-t-o">
                     <h4>Top Courses</h4>
                     <ul>
-                        <li><a href="course-details.html">Accounting/Finance</a></li>
-                        <li><a href="course-details.html">civil engineering</a></li>
-                        <li><a href="course-details.html">Art/Design</a></li>
-                        <li><a href="course-details.html">Marine Engineering</a></li>
-                        <li><a href="course-details.html">Business Management</a></li>
-                        <li><a href="course-details.html">Journalism/Writing</a></li>
-                        <li><a href="course-details.html">Physical Education</a></li>
-                        <li><a href="course-details.html">Political Science</a></li>
+                        <li><a href="all-course.php">Accounting/Finance</a></li>
+                        <li><a href="#">civil engineering</a></li>
+                        <li><a href="#">Art/Design</a></li>
+                        <li><a href="#">Marine Engineering</a></li>
+                        <li><a href="#">Business Management</a></li>
+                        <li><a href="#">Journalism/Writing</a></li>
+                        <li><a href="#">Physical Education</a></li>
+                        <li><a href="#">Political Science</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
                     <h4>New Courses</h4>
                     <ul>
-                        <li><a href="course-details.html">Sciences</a></li>
-                        <li><a href="course-details.html">Statistics</a></li>
-                        <li><a href="course-details.html">Web Design/Development</a></li>
-                        <li><a href="course-details.html">SEO</a></li>
-                        <li><a href="course-details.html">Google Business</a></li>
-                        <li><a href="course-details.html">Graphics Design</a></li>
-                        <li><a href="course-details.html">Networking Courses</a></li>
-                        <li><a href="course-details.html">Information technology</a></li>
+                        <li><a href="#">Sciences</a></li>
+                        <li><a href="#">Statistics</a></li>
+                        <li><a href="#">Web Design/Development</a></li>
+                        <li><a href="#">SEO</a></li>
+                        <li><a href="#">Google Business</a></li>
+                        <li><a href="#">Graphics Design</a></li>
+                        <li><a href="#">Networking Courses</a></li>
+                        <li><a href="#">Information technology</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

@@ -14,7 +14,7 @@
                     <ul>
                         <li><a href="admin/" id="top_singin">Admin</a>
                         </li>
-                        <li><a href="std_login.php" id="top_singin">Student Sign In</a>
+                        <li><a href="std-login.php" id="top_singin">Student Sign In</a>
                         </li>
                         <li><a href="std_signup.php" id="t">Student Sign Up</a>
                         </li>

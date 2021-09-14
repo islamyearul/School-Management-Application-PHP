@@ -19,7 +19,7 @@ if(isset($_GET['status'])){
 if(isset($_POST['update_fees'])){
     extract($_POST);
     $class_id = strtolower($class_id);
-    $updatefees =  "UPDATE `feescollection` SET `student_id`='$std_id',`student_name`='$std_name',`Class`='$class_id',`Session`='$session_id',`fees_cat`='$feescat',`due_fees`='$due_fees',`current_fees`='$curent_fees',`total_fees`='$total_fees',`PaidAmount`='$paid_ammount',`due_balance`='$due_balance',`Date`='$date',`Remarks`='$remarks' WHERE id = $up_id";
+    $updatefees =  "UPDATE `feescollection` SET `student_id`='$std_id',`student_name`='$std_name',`Class`='$class_id',`Session`='$session_id',`fees_cat`='$feescat',`due_fees`='$due_fees',`current_fees`='$curent_fees',`total_fees`='$total_fees',`PaidAmount`='$paid_ammount',`due_balance`='$due_balance',`Date`='$date',`receipt_no`='$receipt',`Remarks`='$remarks' WHERE id = $up_id";
     $returnSMS = $crud->update($updatefees);
     if(isset($returnSMS)){
         echo "<h2 class='text-success'>Fees Update Success</h2>";
@@ -58,8 +58,8 @@ if(isset($_POST['update_fees'])){
                         </div>
                         <div class="">
                             <div class="form-group ">
-                                <label for="inputState">Class</label>
-                                <select id="inputState" class="form-control" name="class_id" style="font-size: 15px;">
+                                <label for="clasnamee">Class</label>
+                                <select id="clasnamee" class="form-control" name="class_id" style="font-size: 15px;">
                                     <option selected disabled>---Choose Class---</option>
                                     <?php while($classe = mysqli_fetch_assoc($classes)){ ?>
                                     <option value="<?php echo $classe['name']; ?>"
@@ -149,6 +149,13 @@ if(isset($_POST['update_fees'])){
                                 <label class="">Date</label>
                                 <input type="date" value="<?php echo $fee['Date']; ?>" class="validate" required
                                     name="date">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Receipt No</label>
+                                <input type="text" value="<?php echo $fee['Remarks']; ?>" class="validate" required
+                                    name="receipt">
                             </div>
                         </div>
                         <div class="row">

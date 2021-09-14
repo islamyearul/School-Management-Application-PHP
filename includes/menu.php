@@ -12,7 +12,7 @@
                         </li>
 
                         <li class="admi-menu">
-                            <a href="#" class="mm-arr">Admission</a>
+                            <a href="admission.php" class="mm-arr">Admission</a>
                             <!-- MEGA MENU 1 -->
                             <div class="mm-pos">
                                 <div class="admi-mm m-menu">
@@ -20,7 +20,7 @@
                                         <div class="mm2-com mm1-com mm1-s1">
                                             <div class="ed-course-in">
                                                 <a class="course-overlay" href="about.php">
-                                                    <img src="images/h-about1.jpg" alt="">
+                                                    <img src="assets/images/h-about1.jpg" alt="">
                                                     <span>Academics</span>
                                                 </a>
                                             </div>
@@ -44,7 +44,7 @@
                                         <div class="mm2-com mm1-com mm1-s1">
                                             <div class="ed-course-in">
                                                 <a class="course-overlay" href="awards.php">
-                                                    <img src="images/h-cam1.jpg" alt="">
+                                                    <img src="assets/images/h-cam1.jpg" alt="">
                                                     <span>History & awards</span>
                                                 </a>
                                             </div>
@@ -56,7 +56,7 @@
                                         <div class="mm2-com mm1-com mm1-s4">
                                             <div class="ed-course-in">
                                                 <a class="course-overlay" href="seminars.php">
-                                                    <img src="images/h-res1.jpg" alt="">
+                                                    <img src="assets/images/h-res1.jpg" alt="">
                                                     <span>Seminar 2018</span>
                                                 </a>
                                             </div>
@@ -78,13 +78,13 @@
                         <li class="about-menu">
                             <a href="about.php" class="mm-arr">About us</a>
                             <!-- MEGA MENU 1 -->
-                            <div class="mm-pos">
+                            <!-- <div class="mm-pos">
                                 <div class="about-mm m-menu">
                                     <div class="m-menu-inn">
                                         <div class="mm1-com mm1-s1">
                                             <div class="ed-course-in">
                                                 <a class="course-overlay menu-about" href="admission.html">
-                                                    <img src="images/h-about.jpg" alt="">
+                                                    <img src="assets/images/h-about.jpg" alt="">
                                                     <span>Academics</span>
                                                 </a>
                                             </div>
@@ -93,7 +93,7 @@
                                             <p>Want to change the world? At Berkeley we’re doing just that. When you
                                                 join the Golden Bear community, you’re part of an institution that
                                                 shifts the global conversation every single day.</p>
-                                            <a href="about.html" class="mm-r-m-btn">Read more</a>
+                                            <a href="about.php" class="mm-r-m-btn">Read more</a>
                                         </div>
                                         <div class="mm1-com mm1-s3">
                                             <ul>
@@ -115,7 +115,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                         </li>
                         <li><a href="contact-us.php">Contact us</a>

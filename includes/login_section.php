@@ -16,7 +16,7 @@
                     </ul>
                 </div>
                 <div class="log-in-pop-right">
-                    <a href="#" class="pop-close" data-dismiss="modal"><img src="images/cancel.png" alt="" />
+                    <a href="#" class="pop-close" data-dismiss="modal"><img src="assets/images/cancel.png" alt="" />
                     </a>
                     <h4>Login</h4>
                     <p>Don't have an account? Create your account. It's take less then a minutes</p>
@@ -69,7 +69,7 @@
                     </ul>
                 </div>
                 <div class="log-in-pop-right">
-                    <a href="#" class="pop-close" data-dismiss="modal"><img src="images/cancel.png" alt="" />
+                    <a href="#" class="pop-close" data-dismiss="modal"><img src="assets/images/cancel.png" alt="" />
                     </a>
                     <h4>Create an Account</h4>
                     <p>Don't have an account? Create your account. It's take less then a minutes</p>
@@ -126,7 +126,7 @@
                     </ul>
                 </div>
                 <div class="log-in-pop-right">
-                    <a href="#" class="pop-close" data-dismiss="modal"><img src="images/cancel.png" alt="" />
+                    <a href="#" class="pop-close" data-dismiss="modal"><img src="assets/images/cancel.png" alt="" />
                     </a>
                     <h4>Forgot password</h4>
                     <p>Don't have an account? Create your account. It's take less then a minutes</p>

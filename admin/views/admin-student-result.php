@@ -139,7 +139,7 @@ $subjects = $crud->select($subjectSQL);
                             <div class=" col s12">
                                 <label class="">Student Name</label>
                                 <input type="text" value="" class="validate" required name="std_name"
-                                    id="std-name-for-feesn">
+                                    id="std-name-for-feesn" style="font-size: 15px;">
                             </div>
                         </div>
                         <div class="">
@@ -220,7 +220,7 @@ $subjects = $crud->select($subjectSQL);
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="stdResultsubject">
                             <thead>
                                 <tr>
                                     <th>Std Id</th>
@@ -297,7 +297,7 @@ $subjects = $crud->select($subjectSQL);
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="stdResultall">
                             <thead>
                                 <tr>
                                     <th>Std Id</th>
@@ -361,7 +361,7 @@ $subjects = $crud->select($subjectSQL);
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="">
                             <thead>
                                 <tr>
                                     <th>Std Id</th>
@@ -381,6 +381,7 @@ $subjects = $crud->select($subjectSQL);
                                     <td><?php echo  $obtainmarks; ?></td>
                                     <td><?php
                                      $point = $totalpoint/$rows;
+                                     $point = round($point, 2);
                                      echo  $point;
 
                                       ?></td>
@@ -469,4 +470,32 @@ $(document).ready(function() {
         });
     });
 });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    $('#stdResultsubject').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );
+    $(document).ready(function() {
+    $('#stdResultall').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );
 </script>

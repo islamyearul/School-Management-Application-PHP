@@ -9,7 +9,7 @@ $sessions = $crud->select($sessionSQL);
 if(isset($_POST['add_fees'])){
     extract($_POST);
     $class_id = strtolower($class_id);
-    $addfeesSQL = "INSERT INTO `feescollection`( `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES ('$std_id','$std_name','$class_id','$session_id','$feescat','$due_fees','$curent_fees','$total_fees','$paid_ammount','$due_balance', now(),'$remarks')";
+    $addfeesSQL = "INSERT INTO `feescollection`(`student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `receipt_no`, `Remarks`) VALUES ('$std_id','$std_name','$class_id','$session_id','$feescat','$due_fees','$curent_fees','$total_fees','$paid_ammount','$due_balance', now(), '$receipt', '$remarks')";
 
     $returnSMS = $crud->insert($addfeesSQL);
     if(isset($returnSMS)){
@@ -124,6 +124,12 @@ if(isset($_POST['add_fees'])){
                             <div class=" col s12">
                                 <label class="">Due</label>
                                 <input type="text" value="" class="validate" required name="due_balance" id="due-fees">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" col s12">
+                                <label class="">Receipt No</label>
+                                <input type="text" value="" class="validate" required name="receipt">
                             </div>
                         </div>
                         <div class="row">

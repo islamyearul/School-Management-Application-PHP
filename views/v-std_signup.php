@@ -1,4 +1,10 @@
 <?php
+
+
+$classSQL = "SELECT * FROM `class`";
+$classes = $crud->select($classSQL);
+
+
  if(isset($_POST['register'])){
      $ImgName = $_FILES['image']['name'];
      $TmpName = $_FILES['image']['tmp_name'];
@@ -20,12 +26,12 @@
         $errors[] = "Password Doesn't Match";
        }
       if(empty($errors)==true){
-        $stdReg = "INSERT INTO `student_registration`( `fullname`, `username`, `email`, `phone`, `student_id`, `course_id`, `pass`, `confirm_password`, `image`) VALUES ('$fullname','$username','$email','$phone','$std_id','$course_id','$pass','$conf_pass','$ImgName')";
+        $stdReg = "INSERT INTO `student_registration`( `fullname`, `username`, `email`, `phone`, `student_id`, `class`, `pass`, `confirm_password`, `image`) VALUES ('$fullname','$username','$email','$phone','$std_id','$class','$pass','$conf_pass','$ImgName')";
 
 
         $RegSTD = $crud->insert($stdReg);
         if(isset($RegSTD)){
-            move_uploaded_file($TmpName, "upload/".$ImgName);
+            move_uploaded_file($TmpName, "admin/upload/".$ImgName);
             echo "<h3>Registration Success</h3>";
         }
        } else {
@@ -92,12 +98,22 @@
                                 <label>Student ID</label>
                             </div>
                         </div>
-                        <div>
-                            <div class="input-field s12">
-                                <input type="number" class="validate" name="course_id">
-                                <label>Course ID</label>
-                            </div>
+
+                        <div class="">
+                        <div class="form-group ">
+                            <label for="">Class</label>
+                            <select id="std-class" class="" name="class" style="font-size: 15px;">
+                                <option selected disabled>---Choose Class---</option>
+                                <?php $classSQL = "SELECT * FROM `class`";
+                                        $classes = $crud->select($classSQL); 
+                                         while($classe = mysqli_fetch_assoc($classes)){ ?>
+                                <option value="<?php echo $classe['name']; ?>">
+                                    <?php echo $classe['name']; ?>
+                                </option>
+                                <?php } ?>
+                            </select>
                         </div>
+                    </div>
                         <div>
                             <div class="input-field s12">
                                 <input type="password" class="validate" name="pass">

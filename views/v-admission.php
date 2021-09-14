@@ -1,4 +1,6 @@
 <?php 
+$classSQL = "SELECT * FROM `class`";
+$classes = $crud->select($classSQL);
 
  $courseReq = "SELECT * FROM `courses`";
  $courses =  $crud->select($courseReq);
@@ -68,12 +70,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-sm-3">Course:</label>
+                            <label class="control-label col-sm-3">Class:</label>
                             <div class="col-sm-9">
                                 <select name="req_admsn_course">
-                                    <option value="" selected disabled>-- Select course --</option>
-                                    <?php while($course = mysqli_fetch_assoc($courses)){ ?>
-                                        <option value="<?php echo $course['course_name']; ?>"><?php echo $course['course_name']; ?></option>
+                                    <option value="" selected disabled>-- Select Class --</option>
+                                    <?php while($course = mysqli_fetch_assoc($classes)){ ?>
+                                        <option value="<?php echo $course['name']; ?>"><?php echo $course['name']; ?></option>
                                     <?php } ?>
                                     <!-- <option>Aerospace Engineering</option>
                                     <option>Agriculture Courses</option>

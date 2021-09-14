@@ -3,7 +3,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item slider1 active">
-                    <img src="images/slider/1.jpg" alt="">
+                    <img src="assets/images/slider/1.jpg" alt="">
                     <div class="carousel-caption slider-con">
                         <h2>Welcome to <span>Islam Education</span></h2>
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
@@ -11,7 +11,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/slider/2.jpg" alt="">
+                    <img src="assets/images/slider/2.jpg" alt="">
                     <div class="carousel-caption slider-con">
                         <h2>Admission open <span>2021</span></h2>
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="item">
-                    <img src="images/slider/3.jpg" alt="">
+                    <img src="assets/images/slider/3.jpg" alt="">
                     <div class="carousel-caption slider-con">
                         <h2>Islam <span>Education</span></h2>
                         <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form</p>

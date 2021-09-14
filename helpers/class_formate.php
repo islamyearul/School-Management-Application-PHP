@@ -45,7 +45,7 @@
             // y - A two digit representation of a year
         }
         public function BD_Date_Style($date){
-            return date('d-M, Y', strtotime($date));
+            return date('d, M, Y', strtotime($date));
             // Y - A four digit representation of a year
             // y - A two digit representation of a year
         }

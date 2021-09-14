@@ -24,11 +24,12 @@ if(isset($_GET['status'])){
         <div class="col-md-12">
             <div class="box-inn-sp">
                 <div class="inn-title">
-                    <h4>All Fees</h4>
+                <h4 class="text-center">All Fees</h4>
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="example">
+                       
                             <thead>
                                 <tr>
                                     <th>Serial</th>
@@ -44,6 +45,7 @@ if(isset($_GET['status'])){
                                     <th>PaidAmount</th>
                                     <th>due_balance</th>
                                     <th>Date</th>
+                                    <th>Receipt</th>
                                     <th>Remarks</th>
                                     <th>Action</th>
                                 </tr>
@@ -67,6 +69,7 @@ if(isset($_GET['status'])){
                                     <td><?php echo $fee['PaidAmount']; ?></td>
                                     <td><?php echo $fee['due_balance']; ?></td>
                                     <td><?php echo $fee['Date']; ?></td>
+                                    <td><?php echo $fee['receipt_no']; ?></td>
                                     <td><?php echo $fee['Remarks']; ?></td>
 
                                     <td>
@@ -85,3 +88,30 @@ if(isset($_GET['status'])){
         </div>
     </div>
 </div>
+
+<script>
+//     $(document).ready(function() {
+//     var table = $('#example').DataTable( {
+//         lengthChange: false,
+//         buttons: [ 'copy', 'excel', 'pdf', 'colvis' ]
+//     } );
+ 
+//     table.buttons().container()
+//         .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+// } );
+</script>
+
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );
+</script>

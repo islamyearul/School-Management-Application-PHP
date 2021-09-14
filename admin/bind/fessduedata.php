@@ -10,16 +10,16 @@ $Session = $_POST['SessionData'];
 //echo $clsn . $studentdId . $Session;
 
 if($clsn && $studentdId && $Session ){
-    $sql = "SELECT * FROM `feescollection` WHERE class= '$clsn' AND student_id = '$studentdId' AND  Session = '$Session'";
+    $sql = "SELECT * FROM `feescollection` WHERE class= '$clsn' AND student_id = '$studentdId' AND  `Session` = '$Session' ORDER BY Date DESC LIMIT 1";
 
-
+    // 
     $duefeeses = $crud->select($sql);
     $rows = @mysqli_num_rows($duefeeses);
     $res = 0;
     if( $rows > 0){
 
         $dufees = @mysqli_fetch_assoc($duefeeses);
-        $res += $dufees['due_balance'];
+        $res = $dufees['due_balance'];
     
             echo $res;
         

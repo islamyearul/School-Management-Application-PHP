@@ -28,7 +28,7 @@
                             <div class="col-md-3"> <img src="admin/upload/<?php echo $topPopular['course_image']; ?>" alt=""> </div>
                             <!--POPULAR COURSES: CONTENT-->
                             <div class="col-md-9 home-top-cour-desc">
-                                <a href="course-details.html">
+                                <a href="all-course.php">
                                     <h3><?php echo $topPopular['course_name']; ?></h3>
                                 </a>
                                 <h4><?php echo $topPopular['course_cat']; ?></h4>

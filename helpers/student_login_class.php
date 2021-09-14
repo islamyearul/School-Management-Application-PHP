@@ -27,11 +27,12 @@ class StudentLogin{
            if($numRow > 0){
                $StdData = mysqli_fetch_assoc($action);
                session_start();
-               $_SESSION['StdsessionID'] = $StdData['std_reg_id'];            
+               $_SESSION['StdsessionID'] = $StdData['student_id'];            
                $_SESSION['StdsessionNAME'] = $StdData['username'];
               // echo("<script>location.href = '".ADMIN_URL."/index.php?msg=$msg';</script>");
                //header("Location: dashboard.php");
                echo "<script type='text/javascript'>window.top.location='dashboard.php';</script>"; 
+               $_GET['std'] == 'std-dash-view';
                exit;
             
            } 
