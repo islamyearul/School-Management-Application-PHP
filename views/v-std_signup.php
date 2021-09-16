@@ -6,10 +6,20 @@ $classes = $crud->select($classSQL);
 
 
  if(isset($_POST['register'])){
+
+    $studentQL = "SELECT * FROM `students`";
+    $students = $crud->select($studentQL);
+    $std = mysqli_fetch_assoc($students);
+     @$stdid = $std['std_id '];
+
      $ImgName = $_FILES['image']['name'];
      $TmpName = $_FILES['image']['tmp_name'];
      $size = $_FILES['image']['size'];
      extract($_POST);
+
+    if($stdid == $std_id ){
+
+
      $errors = array();
      $sms;
        $n = explode(".", $ImgName);
@@ -34,16 +44,28 @@ $classes = $crud->select($classSQL);
             move_uploaded_file($TmpName, "admin/upload/".$ImgName);
             echo "<h3>Registration Success</h3>";
         }
-       } else {
-        foreach( $errors as $error){
+
+
+      } else {
+          foreach( $errors as $error){
             $sms .= $error . " and ";
             //echo "<h2>$error</h2>" . "<br>";
             // echo "<script>alert($error)</script>"; 
-         }
-       }
- }
+            } //foreach
+  
+        } //else of empty error
+
+    } // END OF STD ID MATCH  
+    else{
+      echo "<script>alert('You are Not Our Student');</script>";
+    }  
+
+ }  //isset
 ?>
+
 <section> 
+
+
         <!-- REGISTER SECTION -->
         <div class="row">
             <div class="col-md-12 pt-5">
@@ -69,33 +91,33 @@ $classes = $crud->select($classSQL);
                     <p>Don't have an account? Create your account. It's take less then a minutes</p>
                     <form class="s12" action="" method="post" enctype="multipart/form-data">
                         <div>
-                            <div class="input-field s12">
-                                <input type="text" class="validate" name="fullname">
+                            <div class=" s12">
                                 <label>Full name</label>
+                                <input type="text" class="validate" name="fullname">
                             </div>
                         </div>
                         <div>
-                            <div class="input-field s12">
-                                <input type="text" data-ng-model="name1" class="validate" name="username">
+                            <div class=" s12">
                                 <label>User name</label>
+                                <input type="text" data-ng-model="name1" class="validate" name="username">
                             </div>
                         </div>
                         <div>
-                            <div class="input-field s12">
-                                <input type="email" class="validate" name="email">
+                            <div class=" s12">
                                 <label>Email id</label>
+                                <input type="email" class="validate" name="email">
                             </div>
                         </div>
                         <div>
-                            <div class="input-field s12">
-                                <input type="number" class="validate" name="phone">
+                            <div class=" s12">
                                 <label>Phone</label>
+                                <input type="number" class="validate" name="phone">
                             </div>
                         </div>
                         <div>
-                            <div class="input-field s12">
-                                <input type="number" class="validate" name="std_id">
+                            <div class=" s12">
                                 <label>Student ID</label>
+                                <input type="number" class="validate" name="std_id">
                             </div>
                         </div>
 
@@ -115,15 +137,15 @@ $classes = $crud->select($classSQL);
                         </div>
                     </div>
                         <div>
-                            <div class="input-field s12">
-                                <input type="password" class="validate" name="pass">
+                            <div class=" s12">
                                 <label>Password</label>
+                                <input type="password" class="validate" name="pass">
                             </div>
                         </div>
                         <div>
-                            <div class="input-field s12">
-                                <input type="password" class="validate" name="conf_pass">
+                            <div class=" s12">
                                 <label>Confirm password</label>
+                                <input type="password" class="validate" name="conf_pass">
                             </div>
                         </div>
                         <div>

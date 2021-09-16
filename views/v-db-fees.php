@@ -8,7 +8,7 @@ $classes = $crud->select($classSQL);
 $sessionSQL = "SELECT * FROM `session`";
 $sessions = $crud->select($sessionSQL);
 
-$feesSelectSQL = "SELECT * FROM `feescollection` WHERE student_id = $sid";
+$feesSelectSQL = "SELECT * FROM `feescollection` WHERE student_id = '$sid' ORDER BY `Date` ASC";
 $fees = $crud->select($feesSelectSQL);
 
 $stdSQL = "SELECT * FROM `student_registration` WHERE student_id = '$sid' ";
@@ -201,7 +201,7 @@ if(isset($_POST['add_fees'])){
                             </div>
                             <div class="row">
                                 <div class=" col s12">
-                                    <label class="">Receipt No</label>
+                                    <label class="">Transaction No</label>
                                     <input type="text" value="" class="validate" required name="receipt"
                                         id="receipt_no">
                                 </div>

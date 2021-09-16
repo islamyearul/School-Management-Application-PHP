@@ -33,15 +33,15 @@ if(isset($_POST['login'])){
                     less then a minutes</p>
                 <form class="s12" action="" method="post">
                     <div>
-                        <div class="input-field s12">
-                            <input type="text"  class="validate" name="user">
+                        <div class=" s12">
                             <label>User name</label>
+                            <input type="text"  class="validate" name="user">
                         </div>
                     </div>
                     <div>
-                        <div class="input-field s12">
-                            <input type="password" class="validate" name="pass">
+                        <div class=" s12">
                             <label>Password</label>
+                            <input type="password" class="validate" name="pass">
                         </div>
                     </div>
                     <div>

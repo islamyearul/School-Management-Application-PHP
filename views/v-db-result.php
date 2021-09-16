@@ -1,19 +1,19 @@
 <?php
 
-$classSQL = "SELECT * FROM `class`";
-$classes = $crud->select($classSQL);
+// $classSQL = "SELECT * FROM `class`";
+// $classes = $crud->select($classSQL);
 
-$studentQL = "SELECT * FROM `students`";
-$students = $crud->select($studentQL);
+// $studentQL = "SELECT * FROM `students`";
+// $students = $crud->select($studentQL);
 
-$sessionSQL = "SELECT * FROM `session`";
-$sessions = $crud->select($sessionSQL);
+// $sessionSQL = "SELECT * FROM `session`";
+// $sessions = $crud->select($sessionSQL);
 
-$examSQL = "SELECT * FROM `exam_all`";
-$exams = $crud->select($examSQL);
+// $examSQL = "SELECT * FROM `exam_all`";
+// $exams = $crud->select($examSQL);
 
-$subjectSQL = "SELECT * FROM `subject`";
-$subjects = $crud->select($subjectSQL);
+// $subjectSQL = "SELECT * FROM `subject`";
+// $subjects = $crud->select($subjectSQL);
 
 
 
@@ -107,40 +107,29 @@ $subjects = $crud->select($subjectSQL);
 <?php
 
 if(isset($_POST['full_result'])){
-//    extract($_POST);
-//    print_r($_POST);
 
-  // $allResSQL= "SELECT * FROM `exam_marks` WHERE `student_id`='$std_id' AND `student_name`= '$std_name' AND `class_id`='$class' AND `session_id`='$session'  AND `exam_id`='$exam' ";
-   //$allresults = $crud->select($allResSQL);
-  // $rows = mysqli_num_rows($allresults);
+//     $allResSQL= "SELECT * FROM `exam_marks` WHERE `student_id`='$Stid' AND `student_name`= '$Stname' AND `class_id`='$Stclass' AND `session_id`='$Stsession'  AND `exam_id`='$Stidexam' ";
+//    $allresults = $crud->select($allResSQL);
+    
+//    $rows = mysqli_num_rows($allresults);
+
+//     if( $rows > 0){
+       // header("Location: views/std-result-report.php");
+        //echo "<script> location.replace('std-result-report.php'); </script>";
+        //echo "ok";
 
 
-
-    // if(isset($_POST['full_result'])){ 
-
-    header("Location: views/std-result-report.php");
-    //echo "<script> location.replace('std-result-report.php'); </script>";
-
+    } else {
+               
+        //echo "alert('Data Not Found')";
+       // echo "no";
     }
-
+//    extract($_POST);
+   //print_r($_POST);
 ?>
 <!-- End All Result -->
 
 
-<script>
-$(document).ready(function() {
-    $("#std-name-for-fees").focus(function() {
-        var stdidfees = $("#std-id-for-fees").val();
-
-        $.get("admin/bind/stddata.php", {
-            fid: stdidfees
-        }, function(data) {
-            //alert(data);
-            $("#std-name-for-fees").val(data);
-        });
-    });
-});
-</script>
 <script>
 $(document).ready(function() {
     $("#std-name-for-feesn").focus(function() {

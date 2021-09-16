@@ -172,7 +172,7 @@ $subjects = $crud->select($subjectSQL);
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="feesdataprintclass">
                             <thead>
                                 <tr>
                                     <th>Serial</th>
@@ -267,8 +267,9 @@ $subjects = $crud->select($subjectSQL);
 
     $stdfSQL= "SELECT * FROM `feescollection` WHERE `student_id`='$std_id' AND `student_name`= '$std_name' AND `Class`='$class' AND `Session`='$session'";
     $stdfeeses = $crud->select($stdfSQL);
-    $rows = mysqli_num_rows($stdfeeses);
-    if($stdfeeses){ ?>
+ 
+    if($stdfeeses){    @$rows = mysqli_num_rows($stdfeeses);  ?>
+    
 <!-- // header("Location: ");
         echo "<script> location.replace('ad-sub-result-show.php'); </script>"; -->
 <h2>Single Student Fees</h2>
@@ -281,7 +282,7 @@ $subjects = $crud->select($subjectSQL);
                 </div>
                 <div class="tab-inn">
                     <div class="table-responsive table-desi">
-                        <table class="table table-hover">
+                        <table class="table table-hover" id="feesdataprintstd">
                             <thead>
                                 <tr>
                                     <th>Serial</th>
@@ -410,4 +411,32 @@ $(document).ready(function() {
         });
     });
 });
+</script>
+
+
+<script>
+    $(document).ready(function() {
+    $('#feesdataprintclass').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );
+    $(document).ready(function() {
+    $('#feesdataprintstd').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5',
+            'print'
+        ]
+    } );
+} );
 </script>

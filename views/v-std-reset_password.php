@@ -37,7 +37,7 @@
                     </div>
                 </form>
                 <div>
-                    <div class="input-field s12"> <a href="std_login.php">Admin login</a> | <a
+                    <div class="input-field s12"> <a href="std-login.php">Admin login</a> | <a
                             href="std_signup.php">Create a new
                             account</a>
                     </div>

@@ -55,7 +55,7 @@
                         </div>
                     </form>
                     <div>
-                        <div class="input-field s12"> <a href="std_login.php">Are you a already member ? Login</a> | <a
+                        <div class="input-field s12"> <a href="std-login.php">Are you a already member ? Login</a> | <a
                                 href="std_signup.php">Create a new account</a>
                         </div>
                     </div>

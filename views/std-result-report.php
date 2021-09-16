@@ -11,8 +11,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
-    
- 
+
+
 
 
     <title>Document</title>
@@ -29,13 +29,16 @@
         background: #625D5D;
         color: white;
     }
+
     table {
         border-collapse: collapse;
     }
+
     .footer {
         text-align: right;
         font-weight: bold;
     }
+
     .output td {
         border: 1px solid #726E6D;
         padding: 15px;
@@ -47,15 +50,18 @@
         font-weight: 800;
         text-transform: uppercase;
     }
-  h2 {
+
+    h2 {
         color: #D95412;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 700;
     }
+
     .footer {
         text-align: right;
         font-weight: bold;
     }
+
     .output tbody>tr:nth-child(odd) {
         background: #D1D0CE;
     }
@@ -88,11 +94,11 @@ if(isset($_POST['full_result'])){
 
     //echo " $Stid  $Stname   $Stclass $Stsession $Stidexam";
 
-
+  if( $row > 0){
 ?>
 
 
-<div class="container my-5" id="example">
+    <div class="container my-5" id="example">
         <div>
             <div class="container">
                 <div class="row my-2">
@@ -115,16 +121,16 @@ if(isset($_POST['full_result'])){
                         <div class="row">
                             <div class="col-md-8">
                                 <div>
-                                    <table>  
+                                    <table>
                                         <?php while(@$res= mysqli_fetch_assoc($allresultsb)){ 
                                                                     
                                                 @$class = $res['class_id'];
                                                @ $session = $res['session_id'];
                                                @ $exam = $res['exam_id'];
                                                                 }
-                                         ?>                                   
-                                          <td>Student's Name:</td>
-                                            <td><?php echo @$std['FullName']; ?></td>
+                                         ?>
+                                        <td>Student's Name:</td>
+                                        <td><?php echo @$std['FullName']; ?></td>
                                         </tr>
                                         <tr>
                                             <td>Gender:</td>
@@ -141,7 +147,7 @@ if(isset($_POST['full_result'])){
                                         <tr>
                                             <td>Class:</td>
                                             <td><?php  echo @$class ?></td>
-                                        </tr>   
+                                        </tr>
                                         <tr>
                                             <td>Session:</td>
                                             <td><?php   echo @$session; ?></td>
@@ -168,7 +174,7 @@ if(isset($_POST['full_result'])){
         <div class="row">
             <div class="col-md-8 offset-md-3">
                 <table style="border-collapse: collapse;" class="output">
-                    <thead >
+                    <thead>
                         <tr>
                             <th>Subject</th>
                             <th>Total Marks</th>
@@ -239,31 +245,37 @@ if(isset($_POST['full_result'])){
         </div>
         <div class="row pt-2">
             <div class="col-md-6 text-center">
-            <img src="../assets/images/sign/tsign.png" class="img-fluid" alt="Responsive image" style="width: 100px;">
+                <img src="../assets/images/sign/tsign.png" class="img-fluid" alt="Responsive image"
+                    style="width: 100px;">
                 <p>Class Teacher</p>
             </div>
-            <div class="col-md-6 text-center"> 
-            <img src="../assets/images/sign/islam-sign.png" class="img-fluid" alt="Responsive image" style="width: 100px;">
+            <div class="col-md-6 text-center">
+                <img src="../assets/images/sign/islam-sign.png" class="img-fluid" alt="Responsive image"
+                    style="width: 100px;">
                 <p>Principal</p>
             </div>
         </div>
         <div class="justify-content-center text-center">
-        <button onclick="window.print()" class="btn btn-danger ">Print Result</button>
+            <button onclick="window.print()" class="btn btn-danger ">Print Result</button>
         </div>
     </div>
 
 
-   
 
 
 
-<?php 
+
+    <?php   } else {
+
+            echo "Result Not Found";
+            }
+
 } else {
 
     echo "Result Not Found";
 }
 ?>
-   
+
 
 
 

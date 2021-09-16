@@ -23,10 +23,15 @@
  $jbs = $crud->select($jobs);
  $jb = mysqli_num_rows($jbs);
 
+ 
  $events = "SELECT * FROM `add_event`";
  $evns = $crud->select($events);
  $evn = mysqli_num_rows($evns);
 
+
+ $admissionsql = "SELECT * FROM `admission_request`";
+ $admss = $crud->select($admissionsql);
+ $adm = mysqli_num_rows($admss);
 
 ?>
 
@@ -45,7 +50,7 @@
             <li>
                 <div class="dash-book dash-b-2">
                     <h5>Admission</h5>
-                    <h4>672</h4>
+                    <h4><?php echo @$adm; ?></h4>
                     <a href="#">View more</a>
                 </div>
             </li>
