@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2021 at 08:00 PM
+-- Generation Time: Sep 26, 2021 at 02:52 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -52,7 +52,7 @@ CREATE TABLE `add_event` (
   `name` varchar(100) NOT NULL,
   `descriptions` varchar(200) NOT NULL,
   `date` date NOT NULL,
-  `time` time(5) NOT NULL,
+  `time` time NOT NULL,
   `location` varchar(20) NOT NULL,
   `manage_by` varchar(20) NOT NULL,
   `file` varchar(200) NOT NULL
@@ -63,10 +63,10 @@ CREATE TABLE `add_event` (
 --
 
 INSERT INTO `add_event` (`id`, `name`, `descriptions`, `date`, `time`, `location`, `manage_by`, `file`) VALUES
-(49, 'MSS Admission', 'MSS Batch 47 admission start', '2021-08-26', '09:00:00.00000', 'Campus', 'Asad', 'error.PNG'),
-(50, 'Election', 'student election day', '2021-09-24', '11:45:00.00000', 'Aditoriam', 'maruf', 'images.jpg'),
-(53, 'Covid-19 Vaccine donate', 'Covid-19 Vaccine donate', '2021-09-09', '10:00:00.00000', 'School aditoriam', 'Maruf', 'download.jpg'),
-(54, 'Ajaira', 'Ajaira event ', '2021-09-10', '11:40:00.00000', 'Motijheel', 'Yearul', 'Screen Shot 2021-07-18 at 13.49.36.png');
+(49, 'MSS Admission', 'MSS Batch 47 admission start', '2021-08-26', '09:00:00', 'Campus', 'Asad', 'error.PNG'),
+(50, 'Election', 'student election day', '2021-09-24', '11:45:00', 'Aditoriam', 'maruf', 'images.jpg'),
+(53, 'Covid-19 Vaccine donate', 'Covid-19 Vaccine donate', '2021-09-09', '10:00:00', 'School aditoriam', 'Maruf', 'download.jpg'),
+(54, 'Ajaira', 'Ajaira event ', '2021-09-10', '11:40:00', 'Motijheel', 'Yearul', 'Screen Shot 2021-07-18 at 13.49.36.png');
 
 -- --------------------------------------------------------
 
@@ -119,7 +119,8 @@ CREATE TABLE `admission_request` (
 
 INSERT INTO `admission_request` (`id`, `name`, `phone`, `email`, `city`, `education`, `course`) VALUES
 (1, 'Nazim', '226465654', 'nazim@yahoo.com', 'Dhaka', 'BSC', 'MSC'),
-(2, 'Nazim', '226465654', 'nazim@yahoo.com', 'Dhaka', 'BSC', 'MSC');
+(2, 'Nazim', '226465654', 'nazim@yahoo.com', 'Dhaka', 'BSC', 'MSC'),
+(3, 'Nazim', '4656546', 'nazim@yahoo.com', 'Dhaka', 'BSC', 'six');
 
 -- --------------------------------------------------------
 
@@ -161,6 +162,38 @@ INSERT INTO `all_class_fees_table` (`all_class_fees_id`, `class`, `year`, `admis
 (2, 'seven', 2021, 800, 5000, 400, 200, 700, 700, 700, 700, 1000, 700, 700, 700, 700, 1000, 700, 700, 700, 700, 1000),
 (3, 'six', 2021, 800, 4000, 300, 100, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900, 600, 600, 600, 600, 900),
 (4, 'KG', 2021, 800, 4000, 300, 200, 500, 500, 500, 500, 1000, 500, 500, 500, 500, 1000, 500, 500, 500, 500, 1000);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `alumni`
+--
+
+CREATE TABLE `alumni` (
+  `a_id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `toggle1_title` varchar(50) DEFAULT NULL,
+  `toggle1_des` varchar(200) DEFAULT NULL,
+  `toggle2_title` varchar(50) DEFAULT NULL,
+  `toggle2_des` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `alumni`
+--
+
+INSERT INTO `alumni` (`a_id`, `name`, `description`, `date`, `time`, `toggle1_title`, `toggle1_des`, `toggle2_title`, `toggle2_des`) VALUES
+(1, '\r\nAcademy Leadership', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(2, '\r\nHealth Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL),
+(3, '\r\nAcademy', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(4, '\r\n Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL),
+(5, '\r\nAcademy Leadership', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(6, '\r\nHealth Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL),
+(7, '\r\nAcademy', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(8, '\r\n Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -210,6 +243,38 @@ INSERT INTO `at_add_attendance` (`ID`, `Class`, `Student_Name`, `Attendance`, `T
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `awards`
+--
+
+CREATE TABLE `awards` (
+  `a_id` int(11) NOT NULL,
+  `name` varchar(150) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `date` date NOT NULL,
+  `time` time NOT NULL,
+  `toggle1_title` varchar(50) DEFAULT NULL,
+  `toggle1_des` varchar(200) DEFAULT NULL,
+  `toggle2_title` varchar(50) DEFAULT NULL,
+  `toggle2_des` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `awards`
+--
+
+INSERT INTO `awards` (`a_id`, `name`, `description`, `date`, `time`, `toggle1_title`, `toggle1_des`, `toggle2_title`, `toggle2_des`) VALUES
+(1, '\r\nAcademy Leadership', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(2, '\r\nHealth Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL),
+(3, '\r\nAcademy', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(4, '\r\n Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL),
+(5, '\r\nAcademy Leadership', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(6, '\r\nHealth Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL),
+(7, '\r\nAcademy', 'Praesent ac velit non eros maximus porta in suscipit elit. Aenean viverra lorem quis mattis accumsan. Etiam facilisis magna ut diam pulvinar condimentum.', '2021-09-22', '09:00:00', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit ', 'Leadership', 'Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa. Donec ipsum ipsum, rhoncus sit amet arcu in, hendrerit placerat libero. Morbi sit '),
+(8, '\r\n Care', 'Etiam facilisis magna ut diam pulvinar condimentum. Nulla mattis, ipsum cursus scelerisque pretium, nisl nisl elementum tellus, a facilisis turpis tellus sit amet massa.\r\n\r\n', '2021-09-12', '12:50:19', NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `class`
 --
 
@@ -225,12 +290,12 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_id`, `name`, `name_numeric`, `teacher_id`) VALUES
-(2, 'KG', 'KG1', 2),
-(3, 'Primary One', 'Primary 1', 2),
-(4, 'PRIMARY THREE', 'PRY 3', 4),
-(6, 'SIX', '6', 8),
+(2, 'kg one', 'k1', 2),
+(3, 'Primary One', 'P 1', 2),
+(4, 'primary 3', 'p 3', 4),
 (7, 'eight', '8', 8),
-(8, 'seven', '7', 7);
+(8, 'seven', '7', 7),
+(10, 'six', 'vi', 4);
 
 -- --------------------------------------------------------
 
@@ -274,7 +339,7 @@ CREATE TABLE `courses` (
   `course_status` varchar(10) NOT NULL,
   `course_cat` varchar(100) NOT NULL,
   `course_seat` int(11) NOT NULL,
-  `course_start_date` date NOT NULL DEFAULT current_timestamp(),
+  `course_start_date` date NOT NULL,
   `course_contact_person_name` varchar(50) NOT NULL,
   `course_contact_person_phone` int(15) NOT NULL,
   `course_contact_email` varchar(100) NOT NULL,
@@ -525,11 +590,12 @@ INSERT INTO `exam_marks` (`mark_id`, `student_id`, `student_name`, `subject_id`,
 (11, '17', 'sss', 'Social Studies', 'seven', '2026-2027', 'sdfdsfds', 33, 100, 'D', '1', 'pass'),
 (12, '14', 'sss', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 33, 100, 'D', '1', 'pass'),
 (13, '17', 'sss', 'Economics', 'eight', '2023-2024', 'Admission Test', 44, 100, 'B', '3', 'pass'),
-(14, '5', 'Md Yearul Islam', 'Mathematics', 'Primary One', '2018-2019', 'Middle Terminal Exam', 80, 100, 'A+', '5', 'Good'),
-(15, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
-(16, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
-(17, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
-(18, '5', 'Md Yearul Islam', 'Mathematics', 'KG', '2016-2017', '1st Terminal Exam', 33, 100, 'D', '1', 'pass');
+(16, '5', 'Md Yearul Islam', 'Mathematics', 'eight', '2016-2017', '1st Terminal Exam', 75, 100, 'A+', '5', 'Good'),
+(17, '5', 'Md Yearul Islam', 'Mathematics', 'eight', '2016-2017', '1st Terminal Exam', 80, 100, 'A+', '5', 'Good'),
+(18, '5', 'Md Yearul Islam', 'Mathematics', 'eight', '2016-2017', '1st Terminal Exam', 33, 100, 'D', '1', 'pass'),
+(19, '5', 'Md Yearul Islam', 'Physics', 'eight', '2016-2017', '1st Terminal Exam', 63, 100, 'A+', '5', 'Good'),
+(20, '5', 'Md Yearul Islam', 'Biology', 'eight', '2016-2017', '1st Terminal Exam', 79, 100, 'A+', '5', 'Good'),
+(21, '5', 'Md Yearul Islam', 'Bangla', 'eight', '2016-2017', '1st Terminal Exam', 53, 100, 'D', '1', 'pass');
 
 -- --------------------------------------------------------
 
@@ -544,12 +610,13 @@ CREATE TABLE `feescollection` (
   `Class` varchar(50) NOT NULL,
   `Session` varchar(50) NOT NULL,
   `fees_cat` varchar(50) NOT NULL,
-  `due_fees` int(11) DEFAULT NULL,
+  `due_fees` int(11) DEFAULT 0,
   `current_fees` int(11) DEFAULT NULL,
   `total_fees` int(11) NOT NULL,
   `PaidAmount` int(11) NOT NULL,
   `due_balance` int(10) DEFAULT NULL,
   `Date` date DEFAULT NULL,
+  `receipt_no` varchar(50) NOT NULL,
   `Remarks` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -557,14 +624,22 @@ CREATE TABLE `feescollection` (
 -- Dumping data for table `feescollection`
 --
 
-INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `Remarks`) VALUES
-(2, 1, '', '1', '1', '', NULL, NULL, 0, 1000, 1350, '2018-05-02', NULL),
-(3, 1, '', '1', '1', '', NULL, NULL, 0, 3000, 3450, '2018-05-03', NULL),
-(4, 5, 'Md Yearul Islam', '2', '8', '', NULL, NULL, 12000, 5000, 7000, '2021-08-25', 'Dueee'),
-(6, 5, 'Md Yearul Islam', '7', '3', '', NULL, NULL, 12000, 5000, 7000, '2021-08-25', 'Dueee'),
-(7, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'october_salary', NULL, NULL, 800, 5000, 7000, '2021-09-08', 'Due'),
-(8, 5, 'Md Yearul Islam', '7', '3', 'admission_fees', 7000, 1000, 8000, 5000, 3000, '2021-09-21', 'Dueee'),
-(9, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'admission_fees', 7000, 1000, 8000, 5000, 3000, '2021-09-04', 'Due');
+INSERT INTO `feescollection` (`id`, `student_id`, `student_name`, `Class`, `Session`, `fees_cat`, `due_fees`, `current_fees`, `total_fees`, `PaidAmount`, `due_balance`, `Date`, `receipt_no`, `Remarks`) VALUES
+(8, 5, 'Md Yearul Islam', 'six', '2018-2019', 'admission_fees', 7000, 1000, 8000, 5000, 3000, '2021-09-21', '565454545', 'Dueee'),
+(12, 14, 'sss', 'six', '2016-2017', 'event_fee', 0, 100, 100, 100, 0, '2021-09-06', '1465465465', 'paid'),
+(13, 14, 'sss', 'six', '2016-2017', 'event_fee', 0, 100, 100, 100, 0, '2021-09-06', '466465465', 'paid'),
+(15, 5, 'Md Yearul Islam', 'six', '2016-2017', 'admission_fees', 0, 800, 800, 600, 200, '2021-09-06', '45454521', 'Due'),
+(16, 5, 'Md Yearul Islam', 'six', '2016-2017', 'january_salary', 200, 600, 800, 700, 100, '2021-09-06', '5464654', 'Due'),
+(17, 2, 'Md Yearul Islam', 'seven', '2018-2019', 'admission_fees', 900, 1000, 1900, 1000, 900, '2021-09-09', '4456524445', 'paid'),
+(18, 2, 'Md Yearul Islam', 'seven', '2018-2019', 'january_salary', 900, 600, 1500, 100, 1400, '2021-09-16', '5667843512', 'paid'),
+(19, 2, 'Nabil Islam', 'seven', '2016-2017', 'admission_fees', 0, 800, 800, 500, 300, '2021-09-01', '', 'Due'),
+(20, 2, 'Nabil Islam', 'seven', '2016-2017', 'admission_fees', 600, 800, 1400, 500, 900, '2021-09-03', '', 'Due'),
+(21, 2, 'Nabil Islam', 'seven', '2016-2017', 'admission_fees', 300, 800, 1100, 500, 600, '2021-09-02', '', 'Due'),
+(22, 9, 'Md Yearul Islam', 'six', '2016-2017', 'admission_fees', 0, 800, 800, 600, 200, '2021-09-06', '45454521', 'Due'),
+(23, 9, 'islam yearul', 'eight', '2017-2018', 'admission_fees', 200, 1000, 1200, 1000, 200, '2021-09-12', '4456465', 'Due'),
+(24, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'admission_fees', 0, 800, 800, 600, 200, '2021-09-06', '45454521', 'Due'),
+(25, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'january_salary', 200, 600, 800, 700, 100, '2021-09-06', '5464654', 'Due'),
+(26, 5, 'Md Yearul Islam', 'eight', '2016-2017', 'admission_fees', 100, 1000, 1100, 1000, 100, '2021-09-21', '565454545', 'Dueee');
 
 -- --------------------------------------------------------
 
@@ -641,6 +716,19 @@ CREATE TABLE `holiday` (
 INSERT INTO `holiday` (`holiday_id`, `title`, `holiday`, `date`) VALUES
 (2, 'JUNE 12', 'THERE IS GOING TO BE HOLIDAY SOON', 'Wed, 26 July 2017'),
 (3, 'MAY 25', 'THERE IS GOING TO BE HOLIDAY SOON', 'Tue, 25 July 2017');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `image_gallery`
+-- (See below for the actual view)
+--
+CREATE TABLE `image_gallery` (
+`file` varchar(200)
+,`user_image` varchar(200)
+,`seminar_image` varchar(150)
+,`Photo` varchar(40)
+);
 
 -- --------------------------------------------------------
 
@@ -950,12 +1038,65 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`std_id`, `FullName`, `Gender`, `DOB`, `Photo`, `RegNo`, `Class`, `AcademicYear`, `TotalFees`, `AdvanceFees`, `Balance`, `Parent`) VALUES
-(5, 'Md Yearul Islam', 'male', '2021-08-01', 'saiful.jpg', '1263640', 18, 2021, 15000, 5000, 10000, 123654),
+(5, 'Md Yearul Islam', 'male', '2021-08-01', 'Yearul-PP-2-Pic-2020-2.jpg', '1263640', 18, 2021, 15000, 5000, 10000, 123654),
+(9, 'Md Yearul Islam', 'male', '2021-08-01', 'Yearul-PP-2-Pic-2020-2.jpg', '1263640', 18, 2021, 15000, 5000, 10000, 123654),
 (12, 'Md Yearul Islam', 'male', '2021-08-01', 'saiful.jpg', '1263640', 18, 2021, 15000, 5000, 10000, 123654),
 (13, 'Yearul', 'male', '2021-08-19', 'Yearul-PP-2-Pic-2020-2.jpg', '1321313', 2312, 123213, 2132131, 123213, 12321321, 23213),
 (14, 'sss', 'male', '2021-08-24', 'roobon.png', '5354', 252, 32535, 542, 2454, 24545, 45452),
 (16, 'Yearul', 'male', '2021-08-19', 'Yearul-PP-2-Pic-2020-2.jpg', '1321313', 2312, 123213, 2132131, 123213, 12321321, 23213),
 (17, 'sss', 'male', '2021-08-24', 'roobon.png', '5354', 252, 32535, 542, 2454, 24545, 45452);
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `student_information_view`
+-- (See below for the actual view)
+--
+CREATE TABLE `student_information_view` (
+`std_id` int(10) unsigned
+,`FullName` varchar(40)
+,`email` varchar(100)
+,`phone` varchar(15)
+,`Gender` varchar(40)
+,`DOB` date
+,`RegNo` varchar(40)
+,`Class` int(10) unsigned
+,`AcademicYear` int(10) unsigned
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_registration`
+--
+
+CREATE TABLE `student_registration` (
+  `std_reg_id` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(15) NOT NULL,
+  `student_id` int(11) NOT NULL,
+  `class` varchar(20) NOT NULL,
+  `pass` varchar(200) NOT NULL,
+  `confirm_password` varchar(200) NOT NULL,
+  `image` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `student_registration`
+--
+
+INSERT INTO `student_registration` (`std_reg_id`, `fullname`, `username`, `email`, `phone`, `student_id`, `class`, `pass`, `confirm_password`, `image`) VALUES
+(3, 'Nabil Islam', 'islam', 'islamyearul@gmail.com', '151566556456', 3, 'eight', '123', '123', '11 # Ashraful Islam  PP Size Picture.jpg'),
+(4, 'Nabil Islam', 'islam', 'islamyearul@gmail.com', '151566556456', 3, 'seven', '1236', '1236', '11 # Ashraful Islam  PP Size Picture.jpg'),
+(5, 'Nabil Islam', 'islam', 'islamyearul@gmail.com', '151566556456', 3, 'seven', '123', '123', 'fhfh.png'),
+(6, 'Nabil Islam', 'islam', 'islamyearul@gmail.com', '151566556456', 3, 'six', '123', '123', 'fhfh.png'),
+(7, 'Nabil Islam', 'islam', 'islamyearul@gmail.com', '151566556456', 4, 'kg', '123', '123', 'fhfh.png'),
+(8, 'abc', 'abc', 'abc@abc.abc', '123456789', 1, 'eight', '1234', '1234', '11 # Ashraful Islam  PP Size Picture.jpg'),
+(9, 'islam yearul', 'islamy', 'islamyearul@gmail.com', '151566556456', 9, 'eight', '123', '123', 'Yearul-PP-2-Pic-2020-2.jpg'),
+(11, 'islam yearul', 'islamy', 'islamyearul@gmail.com', '151566556456', 9, '5', '123', '123', 'Yearul-PP-2-Pic-2020-2.jpg'),
+(12, 'Nabil Islam', 'nislam', 'yearul@gmail.com', '151566556456', 2, 'seven', '123', '123', 'bablu.png');
 
 -- --------------------------------------------------------
 
@@ -1058,11 +1199,29 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `image_gallery`
+--
+DROP TABLE IF EXISTS `image_gallery`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `image_gallery`  AS SELECT `add_event`.`file` AS `file`, `admin_info`.`user_image` AS `user_image`, `seminar`.`seminar_image` AS `seminar_image`, `students`.`Photo` AS `Photo` FROM (((`add_event` join `admin_info`) join `seminar`) join `students`) ;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `popular_course_view`
 --
 DROP TABLE IF EXISTS `popular_course_view`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `popular_course_view`  AS SELECT `cr`.`course_id` AS `course_id`, `cr`.`course_name` AS `course_name`, `cr`.`course_cat` AS `course_cat`, `cr`.`course_seat` AS `course_seat`, `cr`.`course_start_date` AS `course_start_date`, `cr`.`course_description` AS `course_description`, `cr`.`course_image` AS `course_image`, `cf`.`first_term_fee` AS `first_term_fee` FROM (`courses` `cr` join `course_process_fees` `cf`) WHERE `cr`.`course_id` = `cf`.`course_id` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `student_information_view`
+--
+DROP TABLE IF EXISTS `student_information_view`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `student_information_view`  AS SELECT `students`.`std_id` AS `std_id`, `students`.`FullName` AS `FullName`, `student_registration`.`email` AS `email`, `student_registration`.`phone` AS `phone`, `students`.`Gender` AS `Gender`, `students`.`DOB` AS `DOB`, `students`.`RegNo` AS `RegNo`, `students`.`Class` AS `Class`, `students`.`AcademicYear` AS `AcademicYear` FROM (`students` join `student_registration`) WHERE `students`.`std_id` = `student_registration`.`student_id` ;
 
 --
 -- Indexes for dumped tables
@@ -1094,6 +1253,12 @@ ALTER TABLE `all_class_fees_table`
   ADD UNIQUE KEY `class` (`class`);
 
 --
+-- Indexes for table `alumni`
+--
+ALTER TABLE `alumni`
+  ADD PRIMARY KEY (`a_id`);
+
+--
 -- Indexes for table `apply_course`
 --
 ALTER TABLE `apply_course`
@@ -1104,6 +1269,12 @@ ALTER TABLE `apply_course`
 --
 ALTER TABLE `at_add_attendance`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `awards`
+--
+ALTER TABLE `awards`
+  ADD PRIMARY KEY (`a_id`);
 
 --
 -- Indexes for table `class`
@@ -1260,6 +1431,12 @@ ALTER TABLE `students`
   ADD PRIMARY KEY (`std_id`);
 
 --
+-- Indexes for table `student_registration`
+--
+ALTER TABLE `student_registration`
+  ADD PRIMARY KEY (`std_reg_id`);
+
+--
 -- Indexes for table `stuff`
 --
 ALTER TABLE `stuff`
@@ -1298,13 +1475,19 @@ ALTER TABLE `admin_info`
 -- AUTO_INCREMENT for table `admission_request`
 --
 ALTER TABLE `admission_request`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `all_class_fees_table`
 --
 ALTER TABLE `all_class_fees_table`
   MODIFY `all_class_fees_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `alumni`
+--
+ALTER TABLE `alumni`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `apply_course`
@@ -1319,10 +1502,16 @@ ALTER TABLE `at_add_attendance`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT for table `awards`
+--
+ALTER TABLE `awards`
+  MODIFY `a_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `class_routine`
@@ -1376,13 +1565,13 @@ ALTER TABLE `exam_all_trash`
 -- AUTO_INCREMENT for table `exam_marks`
 --
 ALTER TABLE `exam_marks`
-  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `mark_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `feescollection`
 --
 ALTER TABLE `feescollection`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `get_in_touch`
@@ -1461,6 +1650,12 @@ ALTER TABLE `session`
 --
 ALTER TABLE `students`
   MODIFY `std_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `student_registration`
+--
+ALTER TABLE `student_registration`
+  MODIFY `std_reg_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `stuff`
