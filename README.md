@@ -1,7 +1,7 @@
 
 # School-Management-Application
 ```
-Please Downlod The Project and then unzip the file, 
+Please Download The Project and then unzip the file, 
 then go instruction folder, then you will got every instruction
 ```
 ![localhost_SMS_APPLICATION_index php (1)](https://user-images.githubusercontent.com/72243025/161059124-77187162-9fac-4c9c-bd1f-925b88056449.png)
